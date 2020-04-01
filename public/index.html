@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>fly</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #prev-loading {
+      width: 100vw;
+      height: 100vh;
+      text-align: center;
+      color: #999;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    #prev-loading .spin {
+      height: 30px;
+      width: 30px;
+      margin: 5px;
+      animation: prev-loading-rotate 2s linear infinite;
+    }
+
+    @keyframes prev-loading-rotate {
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+
+    #prev-loading .path {
+      animation: prev-loading-dash 1.5s ease-in-out infinite;
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: 0;
+      stroke-width: 3;
+      stroke: #4888ff;
+      stroke-linecap: round;
+    }
+
+    @keyframes prev-loading-dash {
+      0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+      }
+      50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -40px;
+      }
+      100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -120px;
+      }
+    }
+  </style>
+</head>
+<body>
+<noscript>
+  <strong>很抱歉，如果没有 JavaScript 支持，系统将不能正常工作。请启用浏览器的 JavaScript 然后继续。</strong>
+</noscript>
+<script>
+  window.addEventListener('error', function (e) {
+    var target = e.target || {};
+    var src = target.src || target.href;
+    var tagName = target.tagName;
+    var chunkFlag = src && src.indexOf(location.host) > -1 && src.indexOf("chunk-") > -1;
+    if ((tagName === "SCRIPT" || tagName === "LINK") && chunkFlag) {
+      setTimeout(function () {
+        location.reload(true);
+      }, 1000);
+    }
+  }, true);
+</script>
+<div id="app">
+  <div id="prev-loading">
+    <svg viewBox="25 25 50 50" class="spin">
+      <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+    </svg>
+    <p>加载中...</p>
+  </div>
+</div>
+<!-- built files will be auto injected -->
+<script src="https://static-cloud.oss-cn-hangzhou.aliyuncs.com/js/vue.js"></script>
+<script src="https://static-cloud.oss-cn-hangzhou.aliyuncs.com/js/vuex.min.js"></script>
+<script src="https://static-cloud.oss-cn-hangzhou.aliyuncs.com/js/vue-router.min.js"></script>
+<script src="https://static-cloud.oss-cn-hangzhou.aliyuncs.com/js/axios.min.js"></script>
+<script src="https://static-cloud.oss-cn-hangzhou.aliyuncs.com/js/data-area1.js"></script>
+<script src="https://static-cloud.oss-cn-hangzhou.aliyuncs.com/js/velocity.min.js"></script>
+<script src="https://map.qq.com/api/js?v=2.exp&key=UWXBZ-6E4WX-CQJ47-TGD5G-RDWOO-NMFUD"></script>
+
+</body>
+</html>

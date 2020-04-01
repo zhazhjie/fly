@@ -1,0 +1,135 @@
+.switch {
+  display: inline-block;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  position: relative;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.switch.mini {
+  height: 0.16rem;
+  line-height: 0.16rem;
+}
+
+.switch .input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.switch .input + .icon {
+  display: inline-block;
+  width: 0.36rem;
+  height: 0.2rem;
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: #ddd 0 0 0 0 inset;
+  border-radius: 0.2rem;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  float: left;
+}
+
+.switch.mini .input + .icon {
+  width: 0.3rem;
+  height: 0.16rem;
+}
+
+.switch .input + .icon::before {
+  content: '';
+  width: 0.18rem;
+  height: 0.18rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0.18rem;
+  background-color: #fff;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+.switch.mini .input + .icon::before {
+  width: 0.14rem;
+  height: 0.14rem;
+}
+
+.switch .input:checked + .icon {
+  border-color: $primary;
+  box-shadow: $primary 0 0 0 0.15rem inset;
+  transition: all 0.2s;
+}
+
+.switch .input:checked + .red {
+  border-color: $red;
+  box-shadow: $red 0 0 0 0.15rem inset;
+  transition: all 0.2s;
+}
+
+.switch .input:checked + .blue {
+  border-color: $blue;
+  box-shadow: $blue 0 0 0 0.15rem inset;
+  transition: all 0.2s;
+}
+
+.switch .input:checked + .green {
+  border-color: $green;
+  box-shadow: $green 0 0 0 0.15rem inset;
+  transition: all 0.2s;
+}
+
+.switch .input:checked + .red {
+  border-color: $red;
+  box-shadow: $red 0 0 0 15px inset;
+  transition: all 0.2s;
+}
+
+.switch .input:checked + .orange {
+  border-color: $orange;
+  box-shadow: $orange 0 0 0 0.15rem inset;
+  transition: all 0.2s;
+}
+
+.switch .input:checked + .icon::before {
+  left: .16rem;
+  transition: all 0.2s;
+}
+
+.switch.mini .input:checked + .icon::before {
+  left: .14rem;
+  transition: all 0.2s;
+}
+
+.switch .input:disabled + .icon {
+  border-color: #ddd;
+  background: #eee;
+  cursor: not-allowed;
+}
+
+.switch .input:disabled + .icon::before {
+  background: #f5f5f5;
+}
+
+.switch .input:checked:disabled + .icon {
+  border-color: #ddd;
+  box-shadow: #ddd 0 0 0 0 inset;
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+.switch .slot {
+  display: inline-block;
+  float: left;
+  margin-left: 0.05rem;
+}
+
+.switch .input:checked:not(:disabled) ~ .slot {
+  color: $primary;
+}
+
+.switch + .switch {
+  margin-left: .1rem;
+}

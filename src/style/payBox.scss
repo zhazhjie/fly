@@ -1,0 +1,25 @@
+.pay-type label {
+  background: #fff;
+  height: 0.5rem;
+  padding: 0 0.1rem;
+  display: flex;
+  align-items: center;
+
+}
+
+.pay-type > label:last-child {
+  border-top: 1px solid $bg;
+  margin-bottom: 0.1rem;
+}
+
+.pay-type .pay-icon {
+  font-family: iconfont-common;
+  height: 0.4rem;
+  width: 0.4rem;
+  line-height: 0.4rem;
+  margin-right: 0.1rem;
+  font-size: 0.25rem;
+  /*border-right: 1px solid $bg;*/
+  text-align: center;
+  /*border-left: 1px solid $bg;*/
+}

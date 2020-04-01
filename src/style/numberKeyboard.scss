@@ -1,0 +1,49 @@
+.number-keyboard {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  outline: 0;
+  z-index: 999;
+}
+
+.num-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.num-list td {
+  height: 0.55rem;
+  border: 1px solid #eee;
+  font-size: 0.24rem;
+  text-align: center;
+}
+
+.num-list td:active {
+  background: $bg;
+}
+
+.num-list .opt-btn {
+  font-size: 0.15rem;
+}
+
+.num-list .complete-btn {
+  background: $primary;
+  color: #fff;
+}
+
+.num-list .complete-btn:active {
+  background: $primary;
+  opacity: 0.8;
+}
+
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.25s;
+}
+
+.slide-down-enter,
+.slide-down-leave-to {
+  transform: translateY(100%);
+}

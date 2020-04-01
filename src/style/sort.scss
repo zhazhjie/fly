@@ -1,0 +1,46 @@
+.sort {
+  display: inline-flex;
+  align-items: center;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  vertical-align: middle;
+}
+
+.opt-box {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: 0.1rem;
+  margin-left: 0.05rem;
+}
+
+.sort-btn {
+  width: 0;
+  height: 0;
+  border-left: 0.05rem solid rgba(0, 0, 0, 0);
+  border-right: 0.05rem solid rgba(0, 0, 0, 0);
+  position: absolute;
+  left: 0;
+}
+
+.up-btn {
+  border-bottom: 0.06rem solid #ccc;
+  top: 0.03rem;
+}
+
+.down-btn {
+  border-top: 0.06rem solid #ccc;
+  bottom: 0.03rem;
+}
+
+.up-btn.active {
+  border-bottom-color: $primary;
+}
+
+.down-btn.active {
+  border-top-color: $primary;
+}
+
+span.active {
+  color: $primary;
+}

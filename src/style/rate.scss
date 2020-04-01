@@ -1,0 +1,26 @@
+.rate-box {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.rate-box > ul {
+  display: flex;
+}
+
+.rate-box > ul i {
+  font-family: "iconfont-common";
+  font-size: 0.14rem;
+  margin: 0 0.02rem;
+}
+
+.rate-bg {
+  color: #ccc;
+}
+
+.rate-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $orange;
+}

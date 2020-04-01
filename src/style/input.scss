@@ -1,0 +1,89 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.input {
+  font-family: "Microsoft Yahei";
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  outline: 0;
+  transition: all 0.2s;
+  border-radius: 0.05rem;
+  padding: 0 0.1rem;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.round {
+  border-radius: 0.35rem;
+}
+
+.textarea {
+  padding: 0.05rem 0.1rem;
+  resize: none;
+}
+
+.normal {
+  height: 0.35rem;
+}
+
+.small {
+  height: 0.3rem;
+}
+
+.mini {
+  height: 0.25rem;
+}
+
+.input:focus {
+  border-color: $primary;
+}
+
+.input.red:focus {
+  border-color: $red;
+}
+
+.input.green:focus {
+  border-color: $green;
+}
+
+.input.blue:focus {
+  border-color: $blue;
+}
+
+.input.orange:focus {
+  border-color: $orange;
+}
+
+.prefix, .suffix {
+  @apply --middle;
+  display: flex;
+  align-items: center;
+  padding: 0 0.08rem;
+}
+
+.prefix {
+  left: 0;
+}
+
+.suffix {
+  right: 0;
+}
+
+.clear-btn {
+  color: #999;
+}
+
+.clear-btn:active {
+  color: $red;
+}

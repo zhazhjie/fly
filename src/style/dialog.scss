@@ -1,0 +1,99 @@
+.dialog-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dialog {
+  min-width: 240px;
+  background: white;
+  position: absolute;
+  margin: 0 auto;
+  box-shadow: 1px 1px 10px 0 #666;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  height: 40px;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  flex: 1;
+  height: 100%;
+  user-select: none;
+  line-height: 40px;
+  padding: 0 10px;
+  cursor: move;
+}
+
+.header .opt {
+  flex-shrink: 0;
+  padding: 5px;
+}
+
+.content {
+  /*height: 100%;*/
+  flex: 1;
+  overflow: auto;
+  padding: 10px;
+}
+
+.footer {
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+}
+
+.opt i {
+  display: inline-block;
+  font-family: iconfont-common;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  margin: 0 5px;
+  font-size: 18px;
+}
+
+.resize {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  cursor: nw-resize;
+  z-index: 2;
+}
+
+.dialog-enter-active,
+.dialog-leave-active {
+  transition: all 0.2s;
+}
+
+.dialog-enter-active .dialog,
+.dialog-leave-active .dialog {
+  transition: all 0.2s;
+}
+
+.dialog-enter .dialog,
+.dialog-leave-to .dialog {
+  transform: scale3d(.1, .1, .1);
+}
+
+.dialog-enter,
+.dialog-leave-to {
+  opacity: 0;
+}

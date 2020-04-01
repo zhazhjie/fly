@@ -1,0 +1,134 @@
+.radio {
+  display: inline-block;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  position: relative;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.radio.mini {
+  height: 0.16rem;
+  line-height: 0.16rem;
+}
+
+.radio .input {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio .input + .icon {
+  display: inline-block;
+  width: 0.2rem;
+  height: 0.2rem;
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  /*box-shadow: #ddd 0 0 0 0 inset;*/
+  border-radius: 50%;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  float: left;
+}
+
+.radio.mini .input + .icon {
+  width: 0.16rem;
+  height: 0.16rem;
+}
+
+.radio .input + .icon::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: $primary;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s;
+}
+
+.radio .input:checked + .icon {
+  border-color: $primary;
+  /*transition: all 0.2s;*/
+}
+
+
+.radio .input:checked + .icon::before {
+  width: 0.1rem;
+  height: 0.1rem;
+  transition: all 0.2s;
+}
+
+.radio.mini .input:checked + .icon::before {
+  width: 0.08rem;
+  height: 0.08rem;
+}
+
+.radio .input:checked + .red::before {
+  background-color: $red;
+}
+
+.radio .input:checked + .red {
+  border-color: $red;
+}
+
+.radio .input:checked + .blue::before {
+  background-color: $blue;
+}
+
+.radio .input:checked + .blue {
+  border-color: $blue;
+}
+
+.radio .input:checked + .green::before {
+  background-color: $green;
+}
+
+.radio .input:checked + .green {
+  border-color: $green;
+}
+
+.radio .input:checked + .orange::before {
+  background-color: $orange;
+}
+
+.radio .input:checked + .orange {
+  border-color: $orange;
+}
+
+.radio .input:checked + .yellow::before {
+  background-color: var(--yellow);
+}
+
+.radio .input:checked + .yellow {
+  border-color: var(--yellow);
+}
+
+.radio .slot {
+  display: inline-block;
+  float: left;
+  margin-left: 0.05rem;
+}
+
+.radio .input:checked:not(:disabled) ~ .slot {
+  color: $primary;
+}
+
+.radio .input:disabled + .icon {
+  background: #eee;
+  transition: all 0.2s;
+  cursor: not-allowed;
+}
+
+.radio .input:checked:disabled + .icon {
+  border: 0.05rem solid #ddd;
+  background: #eee;
+  transition: all 0.2s;
+  cursor: not-allowed;
+}
+
+.radio + .radio {
+  margin-left: .1rem;
+}

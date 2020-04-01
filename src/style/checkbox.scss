@@ -1,0 +1,122 @@
+.checkbox {
+  display: inline-block;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  position: relative;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.checkbox.mini {
+  height: 0.16rem;
+  line-height: 0.16rem;
+}
+
+.checkbox .input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.checkbox .input + .icon {
+  display: inline-block;
+  width: 0.2rem;
+  height: 0.2rem;
+  position: relative;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: #ddd 0 0 0 0 inset;
+  border-radius: 0.03rem;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  float: left;
+}
+
+.checkbox.mini .input + .icon {
+  width: 0.16rem;
+  height: 0.16rem;
+}
+
+.checkbox .input + .icon::before {
+  box-sizing: border-box;
+  content: "";
+  border: 0.02rem solid #fff;
+  border-left: 0;
+  border-top: 0;
+  height: 0.12rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: rotate(45deg) scaleY(0) translate(-110%, -25%);
+  width: 0.06rem;
+  transition: transform .15s cubic-bezier(.71, -.46, .88, .6) .05s;
+  transform-origin: center;
+}
+
+.checkbox.mini .input + .icon::before {
+  height: 0.1rem;
+  width: 0.05rem;
+}
+
+.checkbox .input:checked + .icon {
+  border-color: $primary;
+  background-color: $primary;
+  transition: all 0.2s;
+}
+
+.checkbox .input:checked + .red {
+  border-color: $red;
+  background-color: $red;
+}
+
+.checkbox .input:checked + .blue {
+  border-color: $blue;
+  background-color: $blue;
+}
+
+.checkbox .input:checked + .green {
+  border-color: $green;
+  background-color: $green;
+}
+
+.checkbox .input:checked + .orange {
+  border-color: $orange;
+  background-color: $orange;
+}
+
+.checkbox .input:checked + .yellow {
+  border-color: var(--yellow);
+  background-color: var(--yellow);
+}
+
+.checkbox .input:checked + .icon::before {
+  transform: rotate(45deg) scaleY(1) translate(-110%, -25%);
+  transition: transform .15s cubic-bezier(.71, -.46, .88, .6) .05s;
+}
+
+.checkbox .input:disabled + .icon {
+  border-color: #ddd;
+  background: #eee;
+  cursor: not-allowed;
+}
+
+.checkbox .input:checked:disabled + .icon {
+  border-color: #ccc;
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+.checkbox .slot {
+  display: inline-block;
+  float: left;
+  margin-left: 0.05rem;
+}
+
+.checkbox .input:checked:not(:disabled) ~ .slot {
+  color: $primary;
+}
+
+.checkbox + .checkbox {
+  margin-left: .1rem;
+}

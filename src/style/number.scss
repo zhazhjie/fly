@@ -1,0 +1,62 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.num-box {
+  display: inline-flex;
+  text-align: center;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  border-radius: 0.05rem;
+}
+
+.big {
+  width: 100%;
+  height: 0.4rem;
+}
+
+.normal {
+  height: 0.35rem;
+}
+
+.small {
+  height: 0.3rem;
+}
+
+.mini {
+  height: 0.25rem;
+}
+
+.num-box button {
+  font-family: iconfont-common;
+  width: .3rem;
+  height: 100%;
+  line-height: 0.28rem;
+  font-size: 0.2rem;
+  background: #fff;
+  border: 0;
+  outline: 0;
+}
+
+.num-box button:active {
+  background: #eee;
+}
+
+.num-box button:disabled {
+  color: #ccc;
+}
+
+.num-box input {
+  width: 0.4rem;
+  height: 100%;
+  text-align: center;
+  border: 0;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  outline: 0;
+}

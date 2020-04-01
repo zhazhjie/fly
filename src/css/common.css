@@ -1,0 +1,34 @@
+/**
+ui组件小图标
+ */
+@font-face {
+  font-family: 'iconfont-common';  /* project id 1412496 */
+  src: url('//at.alicdn.com/t/font_1412496_uea3ctvseck.eot');
+  src: url('//at.alicdn.com/t/font_1412496_uea3ctvseck.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1412496_uea3ctvseck.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1412496_uea3ctvseck.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1412496_uea3ctvseck.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1412496_uea3ctvseck.svg#iconfont') format('svg');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(100vw / 3.75);
+}
+
+li {
+  list-style: none
+}
+
+i, em {
+  font-style: normal;
+}
+
+.icon-common {
+    font-family: 'iconfont-common';
+}
