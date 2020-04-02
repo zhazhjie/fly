@@ -14,6 +14,10 @@
         path: "",
         navList: [
           {
+            title: "快速入门",
+            path: "/"
+          },
+          {
             title: "Button 按钮",
             path: "/button"
           },
@@ -147,6 +151,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 2;
 
     ul {
       li {

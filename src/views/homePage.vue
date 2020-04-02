@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <div>欢迎回来！</div>
+  <section class="home-page">
+    <div>省略一万字</div>
   </section>
 </template>
 
@@ -17,5 +17,9 @@
 </script>
 
 <style scoped>
-
+.home-page{
+  background: #fff;
+  padding: 20px;
+  min-height: 100vh;
+}
 </style>

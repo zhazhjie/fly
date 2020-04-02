@@ -6,7 +6,7 @@
 */
 
 <template>
-  <label class="switch" :class="[size]">
+  <label class="switch" :class="[getSize]">
     <input
       ref="input"
       class="input"
@@ -20,8 +20,11 @@
 </template>
 
 <script>
+  import {mixins} from "./mixins";
+
   export default {
     name: 'f-switch',
+    mixins: [mixins],
     props: {
       value: {
         type: [Boolean, Number, String]

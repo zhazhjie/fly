@@ -13,7 +13,7 @@
       @blur='handleBlur'
       @input='handleInput'
       :readonly='!filterable'
-      :size="size"
+      :size="getSize"
       :color="color"
       :value="getValue(curItem,1)"
       :placeholder="placeholder">
@@ -23,7 +23,7 @@
       <div class="select-list" v-show='showFlag'>
         <ul class="scroll-box" @touchmove.stop>
           <li
-            :class='[curItem===item?"active":"",color,size]'
+            :class='[curItem===item?"active":"",color,getSize]'
             v-for='(item,index) in filterList'
             @click='selectItem(item)'>
             <slot :item="item">{{getValue(item,1)}}</slot>
@@ -37,9 +37,11 @@
 
 <script>
   import fInput from './input';
+  import {mixins} from "./mixins";
 
   export default {
     name: 'f-select',
+    mixins: [mixins],
     props: {
       value: {
         type: [String, Object, Number]

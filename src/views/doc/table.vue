@@ -2,20 +2,12 @@
   <table class="table">
     <thead>
     <tr>
-      <th>参数</th>
-      <th>说明</th>
-      <th>类型</th>
-      <th>可选值</th>
-      <th>默认值</th>
+      <th v-for="item in columns">{{item.label}}</th>
     </tr>
     </thead>
     <tbody>
     <tr v-for="item in data">
-      <td>{{item.param}}</td>
-      <td>{{item.explain}}</td>
-      <td>{{item.type}}</td>
-      <td>{{item.optionalValue}}</td>
-      <td>{{item.defaultValue}}</td>
+      <td v-for="column in columns">{{item[column.field]}}</td>
     </tr>
     </tbody>
   </table>
@@ -25,8 +17,30 @@
   export default {
     name: "f-table",
     props: {
-      type: String,
+      type: {
+        type: String,
+        default: "prop"
+      },
       data: Array,
+    },
+    computed: {
+      columns() {
+        switch (this.type) {
+          case "prop":
+            return [
+              {label: "参数", field: "param"},
+              {label: "说明", field: "explain"},
+              {label: "类型", field: "type"},
+              {label: "可选值", field: "optionalValue"},
+              {label: "默认值", field: "defaultValue"},
+            ];
+          case "event":
+            return [
+              {label: "事件名称", field: "event"},
+              {label: "说明", field: "param"},
+            ]
+        }
+      }
     },
     data() {
       return {}

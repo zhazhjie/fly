@@ -6,7 +6,7 @@
 */
 
 <template>
-  <label class="radio" :class="[size]">
+  <label class="radio" :class="[getSize]">
     <input
       ref="input"
       class="input"
@@ -21,8 +21,11 @@
 </template>
 
 <script>
+  import {mixins} from "./mixins";
+
   export default {
     name: 'f-radio',
+    mixins: [mixins],
     props: {
       value: {
         type: [String, Number]
@@ -58,6 +61,7 @@
     methods: {
       change(e) {
         this.$emit('input', this.label);
+        this.$emit('change', this.label);
       }
     },
     computed: {

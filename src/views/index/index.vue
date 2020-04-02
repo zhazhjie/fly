@@ -2,7 +2,7 @@
   <section class="index">
     <f-nav></f-nav>
     <main class="main">
-      <transition name='fade-right'>
+      <transition name='fade-right' mode="out-in">
         <router-view/>
       </transition>
     </main>
@@ -39,6 +39,7 @@
 
     .main {
       flex: 1;
+      position: relative;
       /*background: #fff;*/
     }
 

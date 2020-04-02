@@ -24,7 +24,14 @@ export default new Router({
           meta: {
             title: '按钮'
           },
-          component: () => import('./views/doc/button/button'),
+          component: () => import('./views/doc/button'),
+        },
+        {
+          path: '/radio',
+          meta: {
+            title: '单选框'
+          },
+          component: () => import('./views/doc/radio'),
         },
       ]
     },

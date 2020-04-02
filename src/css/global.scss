@@ -101,7 +101,7 @@ select:disabled {
 }
 
 .black-bg {
-  background: #000;
+  background: $black;
 }
 
 .font-bold {
@@ -123,7 +123,7 @@ select:disabled {
 .fade-right-leave-active,
 .fade-right-enter-active {
   transition: all .5s;
-  position: fixed;
+  position: absolute;
   width: 100%;
 }
 

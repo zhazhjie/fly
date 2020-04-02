@@ -77,7 +77,7 @@
     top: 50%;
     border-radius: 0.1rem;
     padding: 0.2rem 0.3rem;
-    z-index: 9999;
+    z-index: 99999;
     align-items: center;
     /*box-shadow: 0 0 0.05rem rgba(0, 0, 0, .3);*/
     background-color: rgba(36, 36, 36, .8);
