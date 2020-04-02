@@ -6,7 +6,7 @@
 body {
   font-family: "Microsoft Yahei", "Hiragino Sans GB", tahoma, arial, serif;
   -webkit-tap-highlight-color: rgba(200, 200, 200, 0);
-  font-size: 0.14rem;
+  font-size: 13px;
   background: $bg;
   color: $black;
 }
@@ -31,7 +31,7 @@ a {
 }
 
 ::-webkit-scrollbar-track-piece {
-  background-color: #fff;
+  background-color: #f1f1f1;
 }
 
 :-moz-placeholder {
@@ -46,33 +46,6 @@ input:disabled,
 textarea:disabled,
 select:disabled {
   cursor: not-allowed;
-}
-
-.ripple {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-image: radial-gradient(circle, #B7CBE6 10%, transparent 10.01%);
-  background-position: 50%;
-  pointer-events: none;
-  transform: scale(10, 10);
-  opacity: 0;
-  transition: transform .3s, opacity .5s;
-}
-
-.ripple:active::after {
-  transform: scale(0, 0);
-  opacity: .3;
-  transition: 0s;
 }
 
 .primary {
@@ -129,38 +102,6 @@ select:disabled {
 
 .black-bg {
   background: #000;
-}
-
-.font10 {
-  font-size: 0.10rem;
-}
-
-.font12 {
-  font-size: 0.12rem;
-}
-
-.font13 {
-  font-size: 0.13rem;
-}
-
-.font14 {
-  font-size: 0.14rem;
-}
-
-.font15 {
-  font-size: 0.15rem;
-}
-
-.font16 {
-  font-size: 0.16rem;
-}
-
-.font18 {
-  font-size: 0.18rem;
-}
-
-.font20 {
-  font-size: 0.2rem;
 }
 
 .font-bold {
@@ -239,69 +180,20 @@ select:disabled {
   left: 0;
   background: $bg;
 }
-
-.scroll-box {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  /*position: relative;*/
+.title{
+  font-size: 20px;
+  margin: 25px 0 10px;
 }
-
-.scroll-box::before {
-  content: '';
-  width: 1px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-height: calc(100% + 1px);
-}
-
-.num-icon {
-  position: fixed;
-  display: inline-block;
-  width: 0.15rem;
-  height: 0.15rem;
-  background: $primary;
-  border-radius: 50%;
-  z-index: 2;
-}
-
-.badge {
-  background: $red;
-  color: #fff;
-  min-width: .18rem;
-  height: .18rem;
-  line-height: .18rem;
-  border-radius: .1rem;
-  padding: 0 0.05rem;
-  text-align: center;
-  display: inline-block;
-  position: absolute;
-  font-size: 0.11rem;
-}
-
-.right-arrow {
-  position: relative;
-  padding-right: 0.25rem;
-}
-
-.right-arrow::after {
-  font-family: "iconfont-common";
-  content: '\e681';
-  position: absolute;
-  top: 50%;
-  right: 0.05rem;
-  color: #c2c2c2;
-  width: 0.2rem;
-  height: 0.2rem;
-  line-height: 0.2rem;
-  margin-top: -0.09rem;
-  text-align: center;
-  transition: all 0.3s;
-}
-
 .box {
-  margin-top: 0.1rem;
-  border-radius: 0.05rem;
+  margin-top: 15px;
+  border-radius: 5px;
   background: #fff;
   overflow: hidden;
+  padding: 15px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+}
+
+.box-title {
+  font-size: 16px;
+  margin-bottom: 15px;
 }

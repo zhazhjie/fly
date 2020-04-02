@@ -30,5 +30,26 @@ i, em {
 }
 
 .icon-common {
-    font-family: 'iconfont-common';
+  font-family: 'iconfont-common';
+}
+
+.scroll-box {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /*position: relative;*/
+}
+
+.scroll-box::before {
+  content: '';
+  width: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: calc(100% + 1px);
+}
+
+@media screen and (min-width: 800px) {
+  html {
+    font-size: 100px;
+  }
 }

@@ -6,7 +6,7 @@
 */
 
 <template>
-  <f-view title="预览" id="index">
+  <f-view title="预览" class="preview">
     <f-list :loading="loading" :eof="eof" @refresh="refresh" @loadMore="loadMore" :data-length="1">
       <div class="content">
         <div class="item-title">按钮</div>
@@ -60,7 +60,7 @@
           <p>按住头部可拖拽、右下角放大缩小、可最大化</p>
         </f-dialog>
         <div class="item-title">加载中</div>
-        <f-spin></f-spin>
+        <f-loading></f-loading>
         <div class="item-title">拾取器</div>
         <f-button @click="pickerFlag=true">拾取器</f-button>
         <f-picker :show-flag.sync="pickerFlag" :data-list="[[1,2,3,4,5],['一','二','三','四','五']]"
@@ -98,6 +98,7 @@
   import FView from "../components/view";
 
   export default {
+    name: 'f-preview',
     components: {FView, fUpload},
     data() {
       return {
@@ -168,7 +169,7 @@
 
 <style scoped>
 
-  #index {
+  .preview {
     /*height: 100vh;*/
     background: #fff;
   }

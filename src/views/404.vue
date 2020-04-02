@@ -1,59 +1,222 @@
-/**
- * @author: zhazhjie
- * @email: zhazhjie@vip.qq.com
- * @date: 2018-09-30 16:00:45
- * @version: 1.0
- */
-
 <template>
-  <section id="not-found" class="child-route">
-  	<div class="wrap">
-  		<div class="font16 gray">OOPS！您访问的页面不存在...</div>
-  		<!-- <i class="icon">&#xe61f;</i> -->
-      <img class="img" src="@/img/404.png">
-  		<f-button class='btn' color='blue' @click='routeBack'>返回</f-button>
-  	</div>
-  </section>
+  <div class="wscn-http404-container">
+    <div class="wscn-http404">
+      <div class="pic-404">
+        <img class="pic-404__parent" src="../img/404.png" alt="404">
+        <img class="pic-404__child left" src="../img/404_cloud.png" alt="404">
+        <img class="pic-404__child mid" src="../img/404_cloud.png" alt="404">
+        <img class="pic-404__child right" src="../img/404_cloud.png" alt="404">
+      </div>
+      <div class="bullshit">
+        <div class="bullshit__oops">OOPS!</div>
+        <!-- <div class="bullshit__info">版权所有
+          <a class="link-type" href="https://wallstreetcn.com" target="_blank">华尔街见闻</a>
+        </div> -->
+        <div class="bullshit__headline">{{ message }}</div>
+        <div class="bullshit__info">请检查您输入的网址是否正确，请点击以下按钮返回主页或者发送错误报告</div>
+        <f-button type="primary" @click='routeBack'>返回</f-button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
 
+  export default {
+    name: 'Page404',
+    computed: {
+      message() {
+        return '网管说这个页面你不能进......'
+      }
     }
-  },
-  components: {
-
-  },
-  methods: {
-
-  },
-  computed: {
-
-  },
-  mounted(){
-
   }
-}
 </script>
 
 <style scoped>
-.wrap{
-	background: #fff;
-	height: 100vh;
-	text-align: center;
-  padding: 0.15rem;
-	@apply --flex-center;
-}
-.icon{
-	font-size: 2.5rem;
-}
-.wrap .btn{
-	width: 1rem;
-}
-.img{
-  width: 100%;
-  margin: 0.2rem 0;
-}
+  .wscn-http404-container {
+    padding-top: 50px;
+  }
+
+  .wscn-http404 {
+    position: relative;
+    width: 1200px;
+    padding: 0 50px;
+    overflow: hidden;
+  }
+
+  .pic-404__parent {
+    width: 100%;
+  }
+
+  .pic-404 {
+    position: relative;
+    float: left;
+    width: 600px;
+    overflow: hidden;
+  }
+
+  .pic-404__child {
+    position: absolute;
+  }
+
+  .left {
+    width: 80px;
+    top: 17px;
+    left: 220px;
+    opacity: 0;
+    animation-name: cloudLeft;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+  }
+
+  .mid {
+    width: 46px;
+    top: 10px;
+    left: 420px;
+    opacity: 0;
+    animation-name: cloudMid;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1.2s;
+  }
+
+  .right {
+    width: 62px;
+    top: 100px;
+    left: 500px;
+    opacity: 0;
+    animation-name: cloudRight;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+  }
+
+  .bullshit {
+    position: relative;
+    float: left;
+    width: 300px;
+    padding: 30px 0;
+    overflow: hidden;
+  }
+
+  .bullshit__oops {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 40px;
+    color: #1482f0;
+    opacity: 0;
+    margin-bottom: 20px;
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+
+  .bullshit__headline {
+    font-size: 20px;
+    line-height: 24px;
+    color: #222;
+    font-weight: bold;
+    opacity: 0;
+    margin-bottom: 10px;
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-delay: 0.1s;
+    animation-fill-mode: forwards;
+  }
+
+  .bullshit__info {
+    font-size: 13px;
+    line-height: 21px;
+    color: grey;
+    opacity: 0;
+    margin-bottom: 30px;
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(60px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes cloudLeft {
+    0% {
+      top: 17px;
+      left: 220px;
+      opacity: 0;
+    }
+    20% {
+      top: 33px;
+      left: 188px;
+      opacity: 1;
+    }
+    80% {
+      top: 81px;
+      left: 92px;
+      opacity: 1;
+    }
+    100% {
+      top: 97px;
+      left: 60px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes cloudMid {
+    0% {
+      top: 10px;
+      left: 420px;
+      opacity: 0;
+    }
+    20% {
+      top: 40px;
+      left: 360px;
+      opacity: 1;
+    }
+    70% {
+      top: 130px;
+      left: 180px;
+      opacity: 1;
+    }
+    100% {
+      top: 160px;
+      left: 120px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes cloudRight {
+    0% {
+      top: 100px;
+      left: 500px;
+      opacity: 0;
+    }
+    20% {
+      top: 120px;
+      left: 460px;
+      opacity: 1;
+    }
+    80% {
+      top: 180px;
+      left: 340px;
+      opacity: 1;
+    }
+    100% {
+      top: 200px;
+      left: 300px;
+      opacity: 0;
+    }
+  }
 </style>

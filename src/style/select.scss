@@ -34,7 +34,7 @@ i.rotate180 {
   top: calc(100% + 10px);
   left: 0;
   width: 100%;
-  border: 1px solid #ddd;
+  border: $border;
   padding: 0.05rem 0;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .2);
   background: #fff;

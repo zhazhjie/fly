@@ -10,7 +10,7 @@ input[type="number"] {
 .num-box {
   display: inline-flex;
   text-align: center;
-  border: 1px solid #ddd;
+  border: $border;
   overflow: hidden;
   border-radius: 0.05rem;
 }

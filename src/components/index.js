@@ -27,9 +27,17 @@ import Skeleton from './skeleton';
 import ImgClip from './imgClip';
 import Input2 from './input-2';
 import Picker from './picker';
+import InfiniteLoad from './infiniteLoad';
+import PayBox from './payBox';
+import Title from './title';
+import View from './view';
+import Upload from './upload';
+import Loading1 from './loading/loading-1';
+import Loading2 from './loading/loading-2';
+import Loading3 from './loading/loading-3';
 import './msg';
 import './loading';
-import '../css/common.css'
+import '../css/common.scss'
 
 const flyUI = Object.create(null);
 flyUI.install = function (Vue, options) {
@@ -54,8 +62,17 @@ flyUI.install = function (Vue, options) {
   Vue.component(Rate.name, Rate);
   Vue.component(NumberKeyboard.name, NumberKeyboard);
   Vue.component(Skeleton.name, Skeleton);
-  Vue.component(ImgClip.name,ImgClip);
-  Vue.component(Input2.name,Input2);
-  Vue.component(Picker.name,Picker);
+  Vue.component(ImgClip.name, ImgClip);
+  Vue.component(Input2.name, Input2);
+  Vue.component(Picker.name, Picker);
+  Vue.component(InfiniteLoad.name, InfiniteLoad);
+  Vue.component(PayBox.name, PayBox);
+  Vue.component(Title.name, Title);
+  Vue.component(View.name, View);
+  Vue.component(Upload.name, Upload);
+  Vue.component(Loading1.name, Loading1);
+  Vue.component(Loading2.name, Loading2);
+  Vue.component(Loading3.name, Loading3);
 };
+
 export default flyUI;

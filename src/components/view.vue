@@ -1,5 +1,5 @@
 <template>
-	<section class="view">
+  <section class="view">
     <f-title v-if="!!title">
       <template>{{title}}</template>
       <template slot="right">
@@ -11,38 +11,43 @@
       <slot/>
     </div>
     <slot name="footer"></slot>
-    <transition name='fade-right'>
+    <transition name='fade-right' v-if="routable">
       <router-view class='child-router scroll-box'/>
     </transition>
   </section>
 </template>
 
 <script>
-	import FTitle from "./title";
-	export default {
-		name: "f-view",
-    props:{
-			title:{
-				type:String,
-        default:""
+  import FTitle from "./title";
+
+  export default {
+    name: "f-view",
+    props: {
+      title: {
+        type: String,
+        default: ""
       },
-      scrollByBody:{
-			  type:Boolean,
+      scrollByBody: {
+        type: Boolean,
         default: true
+      },
+      routable: {
+        type: Boolean,
+        default: false
       }
     },
-		components: {FTitle},
-		data() {
-			return {}
-		},
-		methods: {},
-		mounted() {
-		}
-	}
+    components: {FTitle},
+    data() {
+      return {}
+    },
+    methods: {},
+    mounted() {
+    }
+  }
 </script>
 
 <style scoped>
-.view{
-  padding-top: 0.45rem;
-}
+  .view {
+    padding-top: 0.45rem;
+  }
 </style>

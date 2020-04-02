@@ -23,6 +23,6 @@
   }
 </script>
 
-<style>
-  @import url('./css/global.scss');
+<style lang="scss">
+  @import "./css/global";
 </style>

@@ -11,6 +11,22 @@ export default new Router({
         title: '首页'
       },
       component: () => import('./views/index'),
+      children:[
+        {
+          path: '',
+          meta: {
+            title: '首页'
+          },
+          component: () => import('./views/homePage'),
+        },
+        {
+          path: '/button',
+          meta: {
+            title: '按钮'
+          },
+          component: () => import('./views/doc/button/button'),
+        },
+      ]
     },
     {
       path: '/preview',
