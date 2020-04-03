@@ -8,7 +8,7 @@
       <scroll-box>
         <scroll-list :list="provinceList" v-model="result.province" v-bind='$attrs'></scroll-list>
         <scroll-list :list="cityList" v-model="result.city" v-bind='$attrs'></scroll-list>
-        <scroll-list :list="areaList" v-model="result.area" v-bind='$attrs'></scroll-list>
+        <scroll-list :list="areaList" v-model="result.area" v-bind='$attrs' v-if="requireArea"></scroll-list>
       </scroll-box>
     </f-popup>
   </div>
@@ -17,13 +17,25 @@
 <script>
   import scrollList from "../scroll/scrollList";
   import elPopup from "../popup";
-  import {province as provinceList, city as cityList, area as areaList} from "./areaData";
+  // import {province as provinceList, city as cityList, area as areaList} from "./areaData";
   import scrollBox from "../scroll/scrollBox";
 
   export default {
     name: "f-area-picker",
     components: {scrollBox, scrollList, elPopup},
     props: {
+      provinceList: {
+        type: Array,
+        default: () => ([])
+      },
+      cityList: {
+        type: Array,
+        default: () => ([])
+      },
+      areaList: {
+        type: Array,
+        default: () => ([])
+      },
       showFlag: {
         type: Boolean,
         default: false
@@ -38,12 +50,16 @@
           return {value: 'value', text: 'text'}
         }
       },
+      requireArea: {
+        type: Boolean,
+        default: true
+      }
     },
     data() {
       return {
-        provinceList: provinceList,
-        cityList: [],
-        areaList: [],
+        // provinceList: provinceList,
+        // cityList: [],
+        // areaList: [],
         result: {
           province: "",
           city: "",
@@ -79,7 +95,7 @@
         this.hidePopup();
       },
       hidePopup() {
-        this.$emit('update:showFlag', false)
+        this.$emit('update:showFlag', false);
       },
       isObj(item) {
         return Object.prototype.toString.call(item) === '[object Object]';

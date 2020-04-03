@@ -12,6 +12,7 @@
       @click='handleClick'
       @blur='handleBlur'
       @input='handleInput'
+      :disabled="disabled"
       :readonly='!filterable'
       :size="getSize"
       :color="color"
@@ -55,6 +56,10 @@
         default: '请选择'
       },
       filterable: {
+        type: Boolean,
+        default: false,
+      },
+      disabled: {
         type: Boolean,
         default: false,
       },

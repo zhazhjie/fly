@@ -10,9 +10,20 @@
 
 .rate-box > ul i {
   font-family: "iconfont-common";
-  font-size: 0.14rem;
   margin: 0 0.02rem;
   cursor: pointer;
+  &.big{
+    font-size: 0.20rem;
+  }
+  &.normal{
+    font-size: 0.18rem;
+  }
+  &.small{
+    font-size: 0.16rem;
+  }
+  &.mini{
+    font-size: 0.14rem;
+  }
 }
 
 .rate-bg {

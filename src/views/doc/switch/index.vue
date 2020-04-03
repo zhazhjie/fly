@@ -33,11 +33,18 @@
             defaultValue: ""
           },
           {
-            param: "label",
-            explain: "Radio的值",
-            type: "string/number",
+            param: "trueValue",
+            explain: "打开时的值",
+            type: "string/number/boolean",
             optionalValue: "-",
-            defaultValue: "-"
+            defaultValue: "true"
+          },
+          {
+            param: "falseValue",
+            explain: "关闭时的值",
+            type: "string/number/boolean",
+            optionalValue: "-",
+            defaultValue: "false"
           },
           {
             param: "size",
@@ -59,13 +66,6 @@
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
-          },
-          {
-            param: "group",
-            explain: "分组，当值和其他组Radio有重叠时必传",
-            type: "string",
-            optionalValue: "-",
-            defaultValue: "-"
           },
         ]
       }

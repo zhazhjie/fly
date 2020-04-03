@@ -22,7 +22,7 @@ a {
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
-  background-color: #fff;
+  background-color: $bg;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -31,7 +31,7 @@ a {
 }
 
 ::-webkit-scrollbar-track-piece {
-  background-color: #f1f1f1;
+  background-color: $bg;
 }
 
 :-moz-placeholder {
@@ -180,17 +180,19 @@ select:disabled {
   left: 0;
   background: $bg;
 }
-.title{
+
+.title {
   font-size: 20px;
   margin: 25px 0 10px;
 }
+
 .box {
-  margin-top: 15px;
+  margin: 20px 0;
   border-radius: 5px;
   background: #fff;
   overflow: hidden;
   padding: 15px;
-  box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
 }
 
 .box-title {

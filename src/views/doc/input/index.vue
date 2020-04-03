@@ -10,6 +10,10 @@
       <div class="box-title">Props</div>
       <f-table :data="propList" type="prop"></f-table>
     </div>
+    <div class="box">
+      <div class="box-title">Slots</div>
+      <f-table :data="slotList" type="slot"></f-table>
+    </div>
   </section>
 </template>
 
@@ -33,17 +37,17 @@
             defaultValue: ""
           },
           {
-            param: "label",
-            explain: "Radio的值",
-            type: "string/number",
-            optionalValue: "-",
-            defaultValue: "-"
+            param: "type",
+            explain: "输入框类型",
+            type: "string",
+            optionalValue: "input/textarea",
+            defaultValue: "input"
           },
           {
             param: "size",
             explain: "尺寸",
             type: "string",
-            optionalValue: "small/mini",
+            optionalValue: "normal/small/mini",
             defaultValue: "small"
           },
           {
@@ -54,6 +58,13 @@
             defaultValue: "primary"
           },
           {
+            param: "clearable",
+            explain: "是否可清除",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "false"
+          },
+          {
             param: "disabled",
             explain: "禁用状态",
             type: "boolean",
@@ -61,11 +72,28 @@
             defaultValue: "false"
           },
           {
-            param: "group",
-            explain: "分组，当值和其他组Radio有重叠时必传",
+            param: "readonly",
+            explain: "只读状态",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "false"
+          },
+          {
+            param: "placeholder",
+            explain: "占位文本",
             type: "string",
             optionalValue: "-",
             defaultValue: "-"
+          },
+        ],
+        slotList:[
+          {
+            name: "prefix",
+            explain: "输入框前缀",
+          },
+          {
+            name: "suffix",
+            explain: "输入框后缀",
           },
         ]
       }

@@ -3,11 +3,7 @@
     <p class="title">代码演示</p>
     <div class="box">
       <div class="box-title">基础用法</div>
-      <pre>
-        <code class="html">
-          {{base}}
-        </code>
-      </pre>
+      <f-code lang="html">{{base}}</f-code>
     </div>
     <p class="title">API</p>
     <div class="box">
@@ -20,10 +16,11 @@
 <script>
   import {base} from "./code";
   import FTable from "../table";
+  import FCode from "../code";
 
   export default {
     name: "button-doc",
-    components: {FTable},
+    components: {FCode, FTable},
     data() {
       return {
         base: base,
@@ -75,9 +72,7 @@
     },
     methods: {},
     mounted() {
-      document.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightBlock(block);
-      });
+
     }
   }
 </script>

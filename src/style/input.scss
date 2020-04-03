@@ -24,6 +24,10 @@ input[type="number"] {
   padding: 0 0.1rem;
   width: 100%;
   -webkit-appearance: none;
+
+  &:disabled {
+    background: #eee;
+  }
 }
 
 .round {

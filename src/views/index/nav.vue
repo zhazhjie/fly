@@ -14,7 +14,7 @@
         path: "",
         navList: [
           {
-            title: "快速入门",
+            title: "快速上手",
             path: "/"
           },
           {
@@ -86,7 +86,7 @@
             path: "/list"
           },
           {
-            title: "number 加减",
+            title: "Number 加减",
             path: "/number"
           },
           {
@@ -144,16 +144,17 @@
 
 <style lang="scss" scoped>
   .nav {
-    height: 100vh;
+    height: calc(100vh - 50px);
     background: #fff;
     width: 220px;
     overflow: auto;
     position: fixed;
-    top: 0;
+    top: 50px;
     left: 0;
     z-index: 2;
 
     ul {
+      padding: 10px 0;
       li {
         height: 50px;
         line-height: 50px;

@@ -5,14 +5,14 @@
         v-for="(item,index) in scores"
         @click="setValue(item,index)"
         v-show="item.value<=value">
-        <i>&#xe600;</i>
+        <i :class="getSize">&#xe600;</i>
       </li>
     </ul>
     <ul class="rate-bg">
       <li
         v-for="(item,index) in scores"
         @click="setValue(item,index)">
-        <i>&#xe600;</i>
+        <i :class="getSize">&#xe600;</i>
       </li>
     </ul>
     <span style="margin-left: 0.1rem" v-if="showText">{{curScoreText}}</span>
@@ -20,8 +20,11 @@
 </template>
 
 <script>
+  import {mixins} from "./mixins";
+
   export default {
     name: "f-rate",
+    mixins: [mixins],
     props: {
       value: {
         type: [Number, String],
@@ -35,9 +38,9 @@
         type: Boolean,
         default: true
       },
-      scores:{
-        type:Array,
-        default:()=>([
+      scores: {
+        type: Array,
+        default: () => ([
           {
             text: "差",
             value: 1

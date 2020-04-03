@@ -33,11 +33,18 @@
             defaultValue: ""
           },
           {
-            param: "label",
-            explain: "Radio的值",
-            type: "string/number",
+            param: "list",
+            explain: "选项列表",
+            type: "array",
             optionalValue: "-",
             defaultValue: "-"
+          },
+          {
+            param: "defaultProps",
+            explain: "选项的默认字段",
+            type: "object",
+            optionalValue: "-",
+            defaultValue: '{value: "value", text: "text"}'
           },
           {
             param: "size",
@@ -54,6 +61,13 @@
             defaultValue: "primary"
           },
           {
+            param: "filterable",
+            explain: "是否可过滤",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "false"
+          },
+          {
             param: "disabled",
             explain: "禁用状态",
             type: "boolean",
@@ -61,8 +75,22 @@
             defaultValue: "false"
           },
           {
-            param: "group",
-            explain: "分组，当值和其他组Radio有重叠时必传",
+            param: "round",
+            explain: "圆角",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "false"
+          },
+          {
+            param: "rows",
+            explain: "行数，仅对类型为textarea有效",
+            type: "number",
+            optionalValue: "-",
+            defaultValue: "-"
+          },
+          {
+            param: "placeholder",
+            explain: "占位文本",
             type: "string",
             optionalValue: "-",
             defaultValue: "-"

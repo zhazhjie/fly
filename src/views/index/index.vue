@@ -1,5 +1,6 @@
 <template>
   <section class="index">
+    <f-header></f-header>
     <f-nav></f-nav>
     <main class="main">
       <transition name='fade-right' mode="out-in">
@@ -15,10 +16,11 @@
 <script>
   import FExt from "../ext";
   import FNav from "./nav";
+  import FHeader from "./header";
 
   export default {
     name: "index",
-    components: {FNav, FExt},
+    components: {FHeader, FNav, FExt},
     data() {
       return {
         previewSrc: location.origin + location.pathname + "#/preview"
@@ -34,7 +36,7 @@
 <style lang="scss" scoped>
   .index {
     display: flex;
-    padding: 0 400px 0 235px;
+    padding: 50px 400px 0 235px;
     min-height: 100vh;
 
     .main {
@@ -48,7 +50,7 @@
       height: 667px;
       overflow: hidden;
       position: fixed;
-      top: 10px;
+      top: 60px;
       right: 10px;
       box-shadow: 0 0 10px 0 $shadow;
     }

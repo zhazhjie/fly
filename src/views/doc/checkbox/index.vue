@@ -60,13 +60,6 @@
             optionalValue: "true/false",
             defaultValue: "false"
           },
-          {
-            param: "group",
-            explain: "分组，当值和其他组Radio有重叠时必传",
-            type: "string",
-            optionalValue: "-",
-            defaultValue: "-"
-          },
         ]
       }
     },

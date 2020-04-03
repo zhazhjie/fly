@@ -37,8 +37,20 @@
           case "event":
             return [
               {label: "事件名称", field: "event"},
-              {label: "说明", field: "param"},
-            ]
+              {label: "说明", field: "explain"},
+              {label: "回调参数", field: "cb"},
+            ];
+          case "slot":
+            return [
+              {label: "名称", field: "name"},
+              {label: "说明", field: "explain"},
+            ];
+          case "method":
+            return [
+              {label: "方法名", field: "method"},
+              {label: "说明", field: "explain"},
+              {label: "回调参数", field: "cb"},
+            ];
         }
       }
     },
