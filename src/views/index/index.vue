@@ -35,12 +35,11 @@
 
 <style lang="scss" scoped>
   .index {
-    display: flex;
     padding: 50px 400px 0 235px;
     min-height: 100vh;
+    min-width: 1200px;
 
     .main {
-      flex: 1;
       position: relative;
       /*background: #fff;*/
     }

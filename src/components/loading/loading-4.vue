@@ -103,13 +103,4 @@
       width: 100%;
     }
   }
-  .fade-leave-active,
-  .fade-enter-active {
-    transition: all .3s;
-  }
-
-  .fade-enter,
-  .fade-leave-to {
-    opacity: 0;
-  }
 </style>

@@ -3,10 +3,7 @@
     <slot v-if="!loading"></slot>
     <template v-else>
       <ul class="line-list" v-for="item in row">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li v-for="item in 4"></li>
       </ul>
     </template>
   </div>

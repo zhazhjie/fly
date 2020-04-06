@@ -121,15 +121,3 @@ i.rotate180 {
 .active.blue {
   color: $blue;
 }
-
-.slide-enter-active,
-.slide-leave-active {
-  transition: all .3s;
-}
-
-.slide-enter,
-.slide-leave-to {
-  max-height: 0;
-  opacity: 0;
-  transform: translate3d(0, -10%, 0);
-}

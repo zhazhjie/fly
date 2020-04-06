@@ -6,8 +6,8 @@
 */
 
 <template>
-  <transition name='zoom-in'>
-    <div class="popup-wrapper" :style="{zIndex}" v-show='showFlag' :data-close='1' @click='emitClose'
+  <transition name='fade'>
+    <div class="popup-wrapper" :style="{zIndex}" v-show='showFlag' :data-closable='true' @click='emitClose'
          v-if="showFlag||initFlag">
       <div class="popup" :class='[position]' :style="{maxHeight: maxHeight}">
         <div class="popup-title">
@@ -89,7 +89,7 @@
     },
     methods: {
       emitClose(e) {
-        if (e.target.dataset.close && this.closeOnClickModal) {
+        if (e.target.dataset.closable && this.closeOnClickModal) {
           this.handleClose();
         }
       },
@@ -114,120 +114,6 @@
   }
 </script>
 
-<style scoped>
-
-  .popup-wrapper {
-    position: fixed;
-    background: rgba(0, 0, 0, 0.5);
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 99;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .popup {
-    border-radius: 0.05rem;
-    padding: 0.15rem;
-    background: #fff;
-    box-shadow: 1px 1px 10px 0 #666;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .middle {
-    position: relative;
-    width: 6rem;
-  }
-
-  .bottom {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border-radius: 0.1rem 0.1rem 0 0;
-    border: 0;
-  }
-
-  .close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 0.3rem;
-    width: 0.3rem;
-    line-height: 0.3rem;
-    font-size: 0.25rem;
-    cursor: pointer;
-    text-align: center;
-    color: #999;
-    user-select: none;
-  }
-
-  .close:active {
-    opacity: 0.8;
-  }
-
-  .popup-title {
-    font-size: 0.18rem;
-    margin-bottom: 0.15rem;
-  }
-
-  .center .popup-title {
-    border-bottom: none;
-  }
-
-  .popup-content {
-    flex: 1;
-    /*max-height: calc(100vh - 1.5rem);*/
-    overflow: auto;
-  }
-
-  .bottom .popup-content {
-    /*max-height: calc(100vh - 3rem);*/
-  }
-
-  .operate {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0.2rem 0 0;
-  }
-
-  .zoom-in-enter-active,
-  .zoom-in-leave-active {
-    transition: all 0.25s;
-  }
-
-  .zoom-in-enter-active .middle,
-  .zoom-in-leave-active .middle {
-    transition: all 0.25s;
-  }
-
-  .zoom-in-enter .middle,
-  .zoom-in-leave-to .middle {
-    transform: scale3d(.1, .1, .1);
-  }
-
-  .zoom-in-enter-active .bottom,
-  .zoom-in-leave-active .bottom {
-    transition: all 0.25s;
-  }
-
-  .zoom-in-enter .bottom,
-  .zoom-in-leave-to .bottom {
-    transform: translateY(100%);
-  }
-
-  .zoom-in-enter,
-  .zoom-in-leave-to {
-    opacity: 0;
-  }
-
-  @media screen and (max-width: 600px) {
-    .middle {
-      width: 90%;
-    }
-  }
+<style lang="scss" scoped>
+  @import "../../style/popup";
 </style>

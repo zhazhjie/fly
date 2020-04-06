@@ -623,7 +623,7 @@
     border-radius: 0.1rem 0.1rem 0 0;
   }
 
-  .date-picker .close-popup,
+  .date-picker .close,
   .date-picker .popup-title {
     display: none;
   }

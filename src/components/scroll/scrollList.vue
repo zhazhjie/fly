@@ -29,6 +29,10 @@
       value: {
         type: [Number, String, Object],
       },
+      format: {
+        type: Boolean,
+        default: true,
+      },
       defaultProps: {
         type: Object,
         default: () => {
@@ -45,11 +49,21 @@
       }
     },
     methods: {
+      formatNumber(val) {
+        if (!this.format) return val;
+        let isNumber = !isNaN(val);
+        if (isNumber) {
+          val += "";
+          return val[1] ? val : "0" + val;
+        } else {
+          return val;
+        }
+      },
       showText(item) {
         if (Object.prototype.toString.call(item) === "[object Object]") {
-          return item[this.defaultProps.text];
+          return this.formatNumber(item[this.defaultProps.text]);
         } else {
-          return item < 10 ? "0" + item : item
+          return this.formatNumber(item);
         }
       },
       handleStart(e) {

@@ -78,22 +78,12 @@
   z-index: 2;
 }
 
-.dialog-enter-active,
-.dialog-leave-active {
-  transition: all 0.2s;
+.fade-enter-active .dialog,
+.fade-leave-active .dialog {
+  transition: all 0.3s;
 }
 
-.dialog-enter-active .dialog,
-.dialog-leave-active .dialog {
-  transition: all 0.2s;
-}
-
-.dialog-enter .dialog,
-.dialog-leave-to .dialog {
+.fade-enter .dialog,
+.fade-leave-to .dialog {
   transform: scale3d(.1, .1, .1);
-}
-
-.dialog-enter,
-.dialog-leave-to {
-  opacity: 0;
 }

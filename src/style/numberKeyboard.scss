@@ -37,13 +37,3 @@
   background: $primary;
   opacity: 0.8;
 }
-
-.slide-down-enter-active,
-.slide-down-leave-active {
-  transition: all 0.25s;
-}
-
-.slide-down-enter,
-.slide-down-leave-to {
-  transform: translateY(100%);
-}

@@ -3,7 +3,7 @@
       <code ref="code" :class="lang">
         <slot/>
       </code>
-    </pre>
+  </pre>
 </template>
 
 <script>
@@ -25,6 +25,12 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  pre {
+    width: 100%;
 
+    code {
+      width: 100%;
+    }
+  }
 </style>

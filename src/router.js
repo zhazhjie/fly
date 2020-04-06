@@ -61,6 +61,13 @@ export default new Router({
           },
           component: () => import('./views/doc/input'),
         },
+        {
+          path: '/picker',
+          meta: {
+            title: '拾取器'
+          },
+          component: () => import('./views/doc/picker'),
+        },
       ]
     },
     {

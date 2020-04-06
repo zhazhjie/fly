@@ -100,9 +100,7 @@
     },
     methods: {},
     mounted() {
-      document.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightBlock(block);
-      });
+
     }
   }
 </script>

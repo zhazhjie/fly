@@ -60,17 +60,19 @@
           <p>按住头部可拖拽、右下角放大缩小、可最大化</p>
         </f-dialog>
         <div class="item-title">加载中</div>
-        <f-loading></f-loading>
+        <f-loading-2></f-loading-2>
+        <f-loading-3></f-loading-3>
         <div class="item-title">拾取器</div>
         <f-button @click="pickerFlag=true">拾取器</f-button>
-        <f-picker :show-flag.sync="pickerFlag" :data-list="[[1,2,3,4,5],['一','二','三','四','五']]"
+        <f-picker :show-flag.sync="pickerFlag" :format="false" :data-list="[[1,2,3,4,5],['一','二','三','四','五']]"
                   v-model="pickerValues"></f-picker>
         <div class="item-title">时间选择器</div>
         <f-button @click="datePickerFlag=true">时间选择器</f-button>
         <f-date-picker :show-flag.sync="datePickerFlag"></f-date-picker>
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
-        <f-area-picker :show-flag.sync="areaPickerFlag"></f-area-picker>
+        <f-area-picker :province-list="provinceList" :city-list="cityList" :area-list="areaList"
+                       :show-flag.sync="areaPickerFlag" @change="areaChange"></f-area-picker>
         <div class="item-title">轮播图</div>
         <f-carousel>
           <f-carousel-item v-for="(item,index) in 4" :key="index">
@@ -95,6 +97,7 @@
 <script>
   import fUpload from "../components/upload";
   import {fileToDataURL} from "js-utils";
+  import {province, city, area} from "../components/areaPicker/areaData";
   import FView from "../components/view";
 
   export default {
@@ -102,6 +105,9 @@
     components: {FView, fUpload},
     data() {
       return {
+        provinceList: province,
+        cityList: city,
+        areaList: area,
         selectVal: 1,
         checkboxVal: [1],
         radioVal: 1,
@@ -129,6 +135,9 @@
       }
     },
     methods: {
+      areaChange(val){
+        alert(JSON.stringify(val))
+      },
       handleShowLoading() {
         this.showLoading();
         setTimeout(() => {
@@ -137,7 +146,7 @@
       },
       handleSelectFile(e) {
         let file = e.target.files[0];
-        fileToDataURL(file, data => {
+        fileToDataURL(file).then(data => {
           this.imgData = data;
           this.imgClipFlag = true;
         })

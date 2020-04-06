@@ -49,6 +49,7 @@ input[type="number"] {
 
 .num-box button:disabled {
   color: #ccc;
+  cursor: not-allowed;
 }
 
 .num-box input {

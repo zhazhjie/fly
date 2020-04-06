@@ -6,9 +6,9 @@
         <f-button size="mini" type="text" @click="submit">确定</f-button>
       </div>
       <scroll-box>
-        <scroll-list :list="provinceList" v-model="result.province" v-bind='$attrs'></scroll-list>
-        <scroll-list :list="cityList" v-model="result.city" v-bind='$attrs'></scroll-list>
-        <scroll-list :list="areaList" v-model="result.area" v-bind='$attrs' v-if="requireArea"></scroll-list>
+        <scroll-list :list="provinceFilterList" v-model="result.province" v-bind='$attrs'></scroll-list>
+        <scroll-list :list="cityFilterList" v-model="result.city" v-bind='$attrs'></scroll-list>
+        <scroll-list :list="areaFilterList" v-model="result.area" v-bind='$attrs' v-if="requireArea"></scroll-list>
       </scroll-box>
     </f-popup>
   </div>
@@ -57,9 +57,9 @@
     },
     data() {
       return {
-        // provinceList: provinceList,
-        // cityList: [],
-        // areaList: [],
+        provinceFilterList: this.provinceList,
+        cityFilterList: [],
+        areaFilterList: [],
         result: {
           province: "",
           city: "",
@@ -70,15 +70,13 @@
     },
     watch: {
       "result.province": function (province) {
-        this.setFilterList(cityList, "city", this.value[1], province.value);
-        // this.setFilterList(areaList, "area", "", this.result.city ? this.result.city.value : "");
+        this.setFilterList(this.cityList, "city", this.value[1], province.value);
       },
       "result.city": function (city) {
-        this.setFilterList(areaList, "area", this.value[2], city ? city.value : "");
+        this.setFilterList(this.areaList, "area", this.value[2], city ? city.value : "");
       },
       showFlag: function (value) {
         if (value && !this.initFlag) {
-          this.initFlag = true;
           this.init();
         }
       },
@@ -115,17 +113,15 @@
             result.push(v);
           }
         });
-        this[key + "List"] = result;
+        this[key + "FilterList"] = result;
         if (!hasValue) {
           this.result[key] = result[0];
         }
-        // console.log(key,value)
       },
       init() {
         if (this.showFlag) {
-          this.setFilterList(provinceList, "province", this.value[0], 0);
-          // this.setFilterList(cityList,"city",this.value[1],this.result.province.value);
-          // this.setFilterList(areaList,"area",this.value[2],this.result.city?this.result.city.value:"");
+          this.setFilterList(this.provinceList, "province", this.value[0], 0);
+          this.initFlag = true;
         }
       }
     },

@@ -37,7 +37,8 @@ import Loading2 from './loading/loading-2';
 import Loading3 from './loading/loading-3';
 import './msg';
 import './loading';
-import '../css/common.scss'
+import '../css/common.scss';
+import "../css/animate.scss";
 
 const flyUI = Object.create(null);
 flyUI.install = function (Vue, options) {

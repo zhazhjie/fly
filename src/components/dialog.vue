@@ -6,7 +6,7 @@
 */
 
 <template>
-  <transition name="dialog">
+  <transition name="fade">
     <div class="dialog-wrapper" v-show='showFlag' @touchstart='handleStart' @touchend='handleEnd'
          @touchmove='handleMove'>
       <div class="modal"></div>
