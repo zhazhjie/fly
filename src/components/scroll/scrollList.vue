@@ -6,9 +6,11 @@
       @scroll="handleScroll"
       @touchstart="handleStart"
       @touchend="handleEnd">
-      <li v-for="item in 2"></li>
+      <li></li>
+      <li></li>
       <li v-for="(item,index) in list" @click.stop="handleSelect(item,index)">{{showText(item)}}{{suffix}}</li>
-      <li v-for="item in 2"></li>
+      <li></li>
+      <li></li>
     </ul>
   </div>
 </template>
@@ -45,7 +47,8 @@
         itemHeight: 40,
         itemNum: 5,
         stepHeight: 5,
-        stop: false,
+        stopFlag: false,
+        autoFlag: false,
       }
     },
     methods: {
@@ -67,22 +70,25 @@
         }
       },
       handleStart(e) {
-        this.stop = true;
+        this.stopFlag = true;
+        this.autoFlag = false;
       },
       handleMove(e) {
         // this.clearMoveBack();
       },
       handleEnd(e) {
-        this.stop = false;
-        this.moveBack();
+        this.stopFlag = false;
+        this.scrollCb({target: this.$refs.scrollList});
       },
       moveBack(callback) {
-        if (this.stop) return;
+        if (this.stopFlag) return;
+        this.autoFlag = true;
         let scrollList = this.$refs.scrollList;
         let scrollTop = scrollList.scrollTop;
-        let height = scrollTop % this.itemHeight;
+        let height = scrollTop % this.itemHeight | 0;
         if (!height) {
           if (callback) callback();
+          this.autoFlag = false;
           return;
         }
         if (height > (this.itemHeight >> 1)) {
@@ -93,8 +99,9 @@
         requestAnimationFrame(() => this.moveBack(callback));
       },
       moveTo(index, callback) {
+        this.autoFlag = true;
         let scrollList = this.$refs.scrollList;
-        let scrollTop = scrollList.scrollTop;
+        let scrollTop = scrollList.scrollTop | 0;
         let targetHeight = this.itemHeight * index;
         let surplusHeight = Math.abs(targetHeight - scrollTop);
         let height = this.stepHeight < surplusHeight ? this.stepHeight : surplusHeight;
@@ -103,19 +110,28 @@
         } else if (scrollTop > targetHeight) {
           scrollList.scrollTop = (scrollTop - height) | 0;
         } else {
+          if (callback) callback();
+          this.autoFlag = false;
           return;
         }
         requestAnimationFrame(() => this.moveTo(index, callback));
       },
       handleScroll(e) {
+        if (this.autoFlag) return;
+        this.debounceScroll(e);
+        // this.scrollCb(e);
+      },
+      debounceScroll(e) {
 
       },
       scrollCb(e) {
-        this.moveBack(() => {
-          let scrollTop = e.target.scrollTop;
-          let index = scrollTop / this.itemHeight;
-          this.$emit("input", this.list[index]);
-        });
+        if (!this.autoFlag) {
+          this.moveBack(() => {
+            let scrollTop = e.target.scrollTop;
+            let index = scrollTop / this.itemHeight | 0;
+            this.$emit("input", this.list[index]);
+          });
+        }
       },
       handleSelect(item, index) {
         this.moveTo(index, () => {
@@ -127,13 +143,13 @@
         this.$nextTick(() => {
           this.$refs.scrollList.scrollTop = index * this.itemHeight;
         });
-      }
+      },
     },
     watch: {
       value: "setScrollTop"
     },
     created() {
-      this.handleScroll = debounce(this.scrollCb, 50);
+      this.debounceScroll = debounce(this.scrollCb, 80);
     },
     mounted() {
       // this.itemHeight=this.$refs.scrollList.offsetHeight/this.itemNum;
