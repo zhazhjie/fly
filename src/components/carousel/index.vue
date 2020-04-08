@@ -32,7 +32,7 @@
       },
       loop: {
         type: Boolean,
-        default: false
+        default: true
       },
       showIndicators: {
         type: Boolean,
@@ -41,6 +41,10 @@
       indicatorType: {
         type: String,
         default: "point"  //point number
+      },
+      initIndex: {
+        type: Number,
+        default: 2
       }
     },
     data() {
@@ -63,13 +67,18 @@
       carousel() {
         return this.$refs.carousel;
       },
+      items() {
+        console.log(this.$slots);
+        return this.$slots;
+      }
     },
     methods: {
-      getItems() {
-        return this.carousel.querySelectorAll(".carousel-item");
+      getItems(index) {
+        let items = this.carousel.querySelectorAll(".carousel-item");
+        return index === void 0 ? items : items[index];
       },
       getItemWidth(index) {
-        return this.getItems()[index].offsetWidth;
+        return this.getItems(index).offsetWidth;
       },
       getTotalWidth() {
         return Array.prototype.reduce.call(this.getItems(), (total, cur) => {
@@ -78,7 +87,7 @@
       },
       handleStart(e) {
         // if (this.isMoving) return;
-        this.clearMove();
+        this.stop();
         this.removeTransition();
         this.startX = e.changedTouches[0].pageX;
         this.startY = e.changedTouches[0].pageY;
@@ -102,11 +111,11 @@
           this.resetItem = true;
           let totalWidth = this.getTotalWidth();
           if (this.index >= lastIndex && curX < this.startX) {
-            let firstItem = this.getItems()[0];
+            let firstItem = this.getItems(0);
             firstItem.style.left = totalWidth + "px";
             // this.setNextItem(1);
           } else if (this.index <= 0 && curX > this.startX) {
-            let lastItem = this.getItems()[lastIndex];
+            let lastItem = this.getItems(lastIndex);
             lastItem.style.left = -totalWidth + "px";
             // this.setPrevItem(lastIndex-1);
           }
@@ -137,7 +146,7 @@
         } else {
           this.moveBack();
         }
-        this.move();
+        this.play();
       },
       setNextItem(index) {
         let totalWidth = this.getTotalWidth();
@@ -242,7 +251,7 @@
           this.index = 0;
           if (this.loop) {
             let totalWidth = this.getTotalWidth();
-            let firstItem = this.getItems()[0];
+            let firstItem = this.getItems(0);
             firstItem.style.left = totalWidth + "px";
             // this.setNextItem(1);
             this.setTranslateX(-totalWidth, () => {
@@ -294,20 +303,23 @@
           this.setTranslateX(-addWidth);
         }
       },
-      clearMove() {
+      stop() {
         clearInterval(this.tId);
       },
-      move() {
+      play() {
         if (this.autoPlay) {
-          this.tId = setInterval(() => this.next(), this.delay);
+          this.tId = setInterval(this.next, this.delay);
         }
+      },
+      init() {
+
       }
     },
     mounted() {
-      this.move();
+      this.play();
     },
     beforeDestroy() {
-      this.clearMove();
+      this.stop();
     }
   }
 </script>

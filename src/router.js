@@ -68,6 +68,27 @@ export default new Router({
           },
           component: () => import('./views/doc/picker'),
         },
+        {
+          path: '/datePicker',
+          meta: {
+            title: '日期选择器'
+          },
+          component: () => import('./views/doc/datePicker'),
+        },
+        {
+          path: '/areaPicker',
+          meta: {
+            title: '地区选择器'
+          },
+          component: () => import('./views/doc/areaPicker'),
+        },
+        {
+          path: '/carousel',
+          meta: {
+            title: '轮播图'
+          },
+          component: () => import('./views/doc/carousel'),
+        },
       ]
     },
     {

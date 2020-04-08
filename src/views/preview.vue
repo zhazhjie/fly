@@ -61,6 +61,7 @@
         </f-dialog>
         <div class="item-title">加载中</div>
         <f-loading-2></f-loading-2>
+        <br/>
         <f-loading-3></f-loading-3>
         <div class="item-title">拾取器</div>
         <f-button @click="pickerFlag=true">拾取器</f-button>
@@ -71,11 +72,10 @@
         <f-date-picker :show-flag.sync="datePickerFlag"></f-date-picker>
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
-        <f-area-picker :province-list="provinceList" :city-list="cityList" :area-list="areaList"
-                       :show-flag.sync="areaPickerFlag" @change="areaChange"></f-area-picker>
+        <f-area-picker :show-flag.sync="areaPickerFlag" @change="areaChange"></f-area-picker>
         <div class="item-title">轮播图</div>
         <f-carousel>
-          <f-carousel-item v-for="(item,index) in 4" :key="index">
+          <f-carousel-item v-for="(item,index) in imgList" :key="index">
             <div class="item" :style="{background:item%2===0?'#ccc':'#eee'}">{{item}}</div>
           </f-carousel-item>
         </f-carousel>
@@ -135,7 +135,7 @@
       }
     },
     methods: {
-      areaChange(val){
+      areaChange(val) {
         alert(JSON.stringify(val))
       },
       handleShowLoading() {
@@ -171,7 +171,9 @@
     },
     computed: {},
     mounted() {
-
+      setTimeout(() => {
+        this.imgList = [1,2,3,4];
+      }, 3000);
     }
   }
 </script>

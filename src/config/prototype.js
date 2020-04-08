@@ -20,9 +20,9 @@ Vue.prototype.$val = function (key, root = this) {
 };
 Vue.prototype.routeTo = function (path, replace) {
   if (replace) {
-    router.replace(path)
+    router.replace(path).catch(() => {});
   } else {
-    router.push(path)
+    router.push(path).catch(() => {});
   }
 };
 Vue.prototype.routeBack = function () {

@@ -5,9 +5,10 @@ import store from './store'
 import flyUI from './components'
 import './config'
 import imgPreview from 'js-utils/imgPreview'
+import flyConfig from './config/common'
 
 Vue.config.productionTip = false;
-Vue.use(flyUI);
+Vue.use(flyUI, flyConfig);
 Vue.use(imgPreview);
 
 new Vue({

@@ -41,11 +41,13 @@
   .fade-top-bottom {
     top: 0;
     background: linear-gradient(#fff, rgba(255, 255, 255, 0.1));
+    z-index: 1;
   }
 
   .fade-bottom-top {
     bottom: 0;
     background: linear-gradient(rgba(255, 255, 255, 0.1), #fff);
+    z-index: 1;
   }
 
   .dividing-line {

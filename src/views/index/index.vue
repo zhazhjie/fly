@@ -8,7 +8,11 @@
       </transition>
     </main>
     <div class="preview">
-      <f-ext :src="previewSrc"></f-ext>
+      <f-ext class="win" :src="previewSrc"></f-ext>
+      <div class="tips">
+        <p>部分touch事件在预览无法生效，请在手机中查看</p>
+        <div ref="qrCode"></div>
+      </div>
     </div>
   </section>
 </template>
@@ -17,6 +21,7 @@
   import FExt from "../ext";
   import FNav from "./nav";
   import FHeader from "./header";
+  import QRCode from "js-utils/qrcode"
 
   export default {
     name: "index",
@@ -26,14 +31,27 @@
         previewSrc: location.origin + location.pathname + "#/preview"
       }
     },
-    methods: {},
+    methods: {
+      buildQrCode() {
+        this.$nextTick(() => {
+          let dom = this.$refs.qrCode;
+          dom.innerHTML = "";
+          new QRCode(dom, {
+            text: this.previewSrc,
+            width: 100,
+            height: 100,
+          });
+        });
+      }
+    },
     mounted() {
-
+      this.buildQrCode();
     }
   }
 </script>
 
 <style lang="scss" scoped>
+  @import "../../css/mixin";
   .index {
     padding: 50px 400px 0 235px;
     min-height: 100vh;
@@ -45,13 +63,23 @@
     }
 
     .preview {
-      width: 375px;
-      height: 667px;
-      overflow: hidden;
+
       position: fixed;
       top: 60px;
       right: 10px;
-      box-shadow: 0 0 10px 0 $shadow;
+      .win{
+        width: 375px;
+        height: 667px;
+        /*overflow: hidden;*/
+        box-shadow: 0 0 10px 0 $shadow;
+      }
+      .tips{
+        color: $gray;
+        @include flex-center;
+        p{
+          margin: 5px 0;
+        }
+      }
     }
   }
 

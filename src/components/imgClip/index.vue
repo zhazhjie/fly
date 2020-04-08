@@ -66,92 +66,92 @@
     },
     mounted() {
       document.body.appendChild(this.$el);
-      this.$input = this.$el.querySelectorAll('#file_input')[0]
-      this.$srcImg = this.$el.querySelectorAll('#clip_src_img')[0]
-      this.$resImg = this.$el.querySelectorAll('#clip_res_img')[0]
-      this.$imgContainer = this.$el.querySelectorAll('.img-container')[0]
-      this.$preContainer = this.$el.querySelectorAll('.pre-container')[0]
-      this.$containerBox = this.$el.querySelectorAll('.container-bg')[0]
+      this.$input = this.$el.querySelectorAll('#file_input')[0];
+      this.$srcImg = this.$el.querySelectorAll('#clip_src_img')[0];
+      this.$resImg = this.$el.querySelectorAll('#clip_res_img')[0];
+      this.$imgContainer = this.$el.querySelectorAll('.img-container')[0];
+      this.$preContainer = this.$el.querySelectorAll('.pre-container')[0];
+      this.$containerBox = this.$el.querySelectorAll('.container-bg')[0];
     },
     methods: {
       cancelClip() {
         this.$emit('update:showFlag', false);
       },
       submitClip() {
-        this.clip()
-        // console.log(this.clipData)
+        this.clip();
+        // console.log(this.clipData);
         this.$emit('submitClip', this.clipData);
         this.cancelClip();
       },
       srcImgLoaded() {
-        this.nw = this.$srcImg.naturalWidth
-        this.nh = this.$srcImg.naturalHeight
-        this.clearSelect()
-        this.setImgSize()
-        //this.updatePreview()
-        //this.clip()
+        this.nw = this.$srcImg.naturalWidth;
+        this.nh = this.$srcImg.naturalHeight;
+        this.clearSelect();
+        this.setImgSize();
+        //this.updatePreview();
+        //this.clip();
       },
       clearSelect() {
-        const box = this.$refs.box
-        box.clearRec()
-        this.clipData = null
+        const box = this.$refs.box;
+        box.clearRec();
+        this.clipData = null;
       },
       setImgSize() {
-        // image's naturalWidth naturalHeight ratio
-        const nr = this.nw / this.nh
-        const scw = this.$containerBox.offsetWidth
-        const sch = this.$containerBox.offsetHeight
-        const sr = scw / sch
-        let rw = 0  // select box width
-        let rh = 0  // select box height
+        // image's naturalWidth naturalHeight ratio;
+        const nr = this.nw / this.nh;
+        const scw = this.$containerBox.offsetWidth;
+        const sch = this.$containerBox.offsetHeight;
+        const sr = scw / sch;
+        let rw = 0;  // select box width
+        let rh = 0;  // select box height
         if (nr >= sr) {
-          this.imgSize.w = scw
-          this.imgSize.h = scw / nr
-          this.containerTop = (sch - this.imgSize.h) / 2
+          this.imgSize.w = scw;
+          this.imgSize.h = scw / nr;
+          this.containerTop = (sch - this.imgSize.h) / 2;
         } else {
-          this.imgSize.h = sch
-          this.imgSize.w = sch * nr
-          this.containerTop = 0
+          this.imgSize.h = sch;
+          this.imgSize.w = sch * nr;
+          this.containerTop = 0;
         }
         if (this.nw >= this.nh) {
-          rh = this.imgSize.h
-          rw = rh * this.ratio
+          rh = this.imgSize.h;
+          rw = rh * this.ratio;
         } else {
-          rw = this.imgSize.w
-          rh = rw / this.ratio
+          rw = this.imgSize.w;
+          rh = rw / this.ratio;
         }
-        this.$srcImg.setAttribute('style', `width:${this.imgSize.w}px;height:${this.imgSize.h}px;`)
+        this.$srcImg.setAttribute('style', `width:${this.imgSize.w}px;height:${this.imgSize.h}px;`);
         this.$imgContainer.setAttribute('style',
-          `width:${this.imgSize.w}px;height:${this.imgSize.h}px;top:${this.containerTop}px;`)
-        this.$refs.box.rec = {w: rw, h: rh, l: 0, t: 0}
+          `width:${this.imgSize.w}px;height:${this.imgSize.h}px;top:${this.containerTop}px;`);
+        this.$refs.box.rec = {w: rw, h: rh, l: 0, t: 0};
       },
       getComputedRec(r) {
-        const cw = this.$imgContainer.offsetWidth
-        const ch = this.$imgContainer.offsetHeight
-        const wr = cw / this.nw
-        const hr = ch / this.nh
+        const cw = this.$imgContainer.offsetWidth;
+        const ch = this.$imgContainer.offsetHeight;
+        const wr = cw / this.nw;
+        const hr = ch / this.nh;
         return {
           l: r.l / wr, t: r.t / hr,
           w: r.w / wr, h: r.h / hr
         }
       },
       clip() {
-        let rec = this.$refs.box.rec
+        let rec = this.$refs.box.rec;
         if (!rec.w || !rec.h) {
           return
         }
-        const bufferCanvas = document.createElement('canvas')
-        const bfx = bufferCanvas.getContext('2d')
-        const computedRec = this.getComputedRec(rec)
+        const bufferCanvas = document.createElement('canvas');
+        const bfx = bufferCanvas.getContext('2d');
+        const computedRec = this.getComputedRec(rec);
         let size = computedRec.w < this.size ? computedRec.w : this.size;
-        bufferCanvas.width = size
-        bufferCanvas.height = size
+        bufferCanvas.width = size;
+        bufferCanvas.height = size;
         bfx.fillStyle = "rgba(0,0,0,0)";
         bfx.fillRect(0, 0, bufferCanvas.width, bufferCanvas.height);
-        bfx.drawImage(this.$srcImg, computedRec.l, computedRec.t, computedRec.w, computedRec.h, 0, 0, size, size)
-        //bfx.drawImage(this.$srcImg, -computedRec.l, -computedRec.t, this.nw, this.nh)
+        bfx.drawImage(this.$srcImg, computedRec.l, computedRec.t, computedRec.w, computedRec.h, 0, 0, size, size);
+        //bfx.drawImage(this.$srcImg, -computedRec.l, -computedRec.t, this.nw, this.nh);
         this.clipData = bufferCanvas.toDataURL();
-        //console.log(this.nw, this.nh)
+        //console.log(this.nw, this.nh);
       },
     }
   }

@@ -53,7 +53,7 @@
         }
         // console.log(this.values);
         this.$emit("input", this.values);
-        this.$emit("change", this.values);
+        this.$emit("submit", this.values);
         this.hidePopup();
       },
       hidePopup() {

@@ -371,12 +371,12 @@
           let endTime = this.formatDate(this.endTime);
           let result = [startTime, endTime];
           this.$emit("input", result);
-          this.$emit("change", result);
-          console.log(result)
+          this.$emit("submit", result);
+          // console.log(result);
         } else {
           this.$emit("input", startTime);
-          this.$emit("change", startTime);
-          console.log(startTime)
+          this.$emit("submit", startTime);
+          // console.log(startTime);
         }
         this.hidePopup();
       },

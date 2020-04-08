@@ -31,21 +31,14 @@
         propList: [
           {
             param: "value/v-model",
-            explain: "绑定值",
-            type: "array",
+            explain: "绑定值，",
+            type: "string/date/array",
             optionalValue: "",
             defaultValue: ""
           },
           {
-            param: "dataList",
-            explain: "数据列表，二维数组",
-            type: "array",
-            optionalValue: "-",
-            defaultValue: "-"
-          },
-          {
             param: "showFlag",
-            explain: "是否显示 picker，支持 .sync 修饰符",
+            explain: "是否显示，支持 .sync 修饰符",
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
@@ -55,11 +48,11 @@
             explain: "选项的默认字段",
             type: "object",
             optionalValue: "-",
-            defaultValue: '{value: "value", text: "text"}'
+            defaultValue: "{value: 'value', text: 'text'}"
           },
           {
-            param: "format",
-            explain: "格式化数值，如：1=>'01'",
+            param: "requireArea",
+            explain: "是否显示区域",
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "true"

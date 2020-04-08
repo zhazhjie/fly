@@ -16,8 +16,7 @@
 </template>
 
 <script>
-  import {debounce} from "js-utils";
-
+  let timer = null;
   export default {
     name: "f-scroll-list",
     props: {
@@ -49,6 +48,7 @@
         stepHeight: 5,
         stopFlag: false,
         autoFlag: false,
+        index: 0
       }
     },
     methods: {
@@ -118,11 +118,13 @@
       },
       handleScroll(e) {
         if (this.autoFlag) return;
-        this.debounceScroll(e);
-        // this.scrollCb(e);
-      },
-      debounceScroll(e) {
-
+        // this.debounceScroll(e);
+        this.stopFlag = true;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          this.stopFlag = false;
+          this.scrollCb(e);
+        }, 80);
       },
       scrollCb(e) {
         if (!this.autoFlag) {
@@ -148,11 +150,7 @@
     watch: {
       value: "setScrollTop"
     },
-    created() {
-      this.debounceScroll = debounce(this.scrollCb, 80);
-    },
     mounted() {
-      // this.itemHeight=this.$refs.scrollList.offsetHeight/this.itemNum;
       this.setScrollTop();
     }
   }
@@ -171,6 +169,7 @@
     overflow: auto;
     padding-right: 15px;
     -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
   }
 
   .scroll-list li {

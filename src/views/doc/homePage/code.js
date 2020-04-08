@@ -5,7 +5,7 @@
  */
 export const install =
   `
-  cnpm install git+http://git.tigoyun.com/zzhijie/fly-components.git
+  cnpm install git+http://git.tigoyun.com/zzhijie/fly-components.git --save
   `;
 export const code =
   `
@@ -22,5 +22,21 @@ export const code =
   `;
 export const config =
   `
-  Vue.use(Fly, {size: "mini"});
+  Vue.use(
+    Fly, 
+    {
+      //尺寸
+      size: "small",
+      //上传组件配置
+      uploadConfig: {
+        action: ""
+      },
+      //地区选择配置
+      areaConfig: {
+        provinceList: [],
+        cityList: [],
+        areaList: []
+      }
+    }
+  );
   `;

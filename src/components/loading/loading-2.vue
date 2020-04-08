@@ -26,41 +26,6 @@
   }
 </script>
 
-<style scoped>
-  .spin {
-    height: 30px;
-    width: 30px;
-    margin: 5px;
-    animation: loading-rotate 2s linear infinite;
-  }
-
-  @keyframes loading-rotate {
-    100% {
-      transform: rotate(1turn);
-    }
-  }
-
-  .path {
-    animation: loading-dash 1.5s ease-in-out infinite;
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: 0;
-    stroke-width: 3;
-    stroke: #4888ff;
-    stroke-linecap: round;
-  }
-
-  @keyframes loading-dash {
-    0% {
-      stroke-dasharray: 1, 200;
-      stroke-dashoffset: 0;
-    }
-    50% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -40px;
-    }
-    100% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -120px;
-    }
-  }
+<style lang="scss" scoped>
+  @import "../../style/loading/loading-2";
 </style>

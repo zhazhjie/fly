@@ -34,221 +34,220 @@
     },
     computed: {
       showBox () {
-        return this.rec.w && this.rec.h
+        return this.rec.w && this.rec.h;
       },
       imgStyle () {
-        return `width:${this.srcSize.w}px;height:${this.srcSize.h}px;top:${-this.rec.t}px;left:${-this.rec.l}px;`
+        return `width:${this.srcSize.w}px;height:${this.srcSize.h}px;top:${-this.rec.t}px;left:${-this.rec.l}px;`;
       },
       recStyle () {
-        return `width:${this.rec.w}px;height:${this.rec.h}px;left:${this.rec.l}px;top:${this.rec.t}px;`
+        return `width:${this.rec.w}px;height:${this.rec.h}px;left:${this.rec.l}px;top:${this.rec.t}px;`;
       }
     },
     methods: {
       getLeft (el) {
-        let left = el.offsetLeft
-        let parent = el.offsetParent
+        let left = el.offsetLeft;
+        let parent = el.offsetParent;
 
         while (parent) {
-          left += parent.offsetLeft
-          parent = parent.offsetParent
+          left += parent.offsetLeft;
+          parent = parent.offsetParent;
         }
         return left
       },
       getTop (el) {
-        let top = el.offsetTop
-        let parent = el.offsetParent
+        let top = el.offsetTop;
+        let parent = el.offsetParent;
 
         while (parent) {
-          top += parent.offsetTop
-          parent = parent.offsetParent
+          top += parent.offsetTop;
+          parent = parent.offsetParent;
         }
         return top
       },
       initAction (name, x, y) {
-        this.action = name
-        this.pl = this.getLeft(this.$el)
-        this.pt = this.getTop(this.$el)
-        this.actionPoint = {x, y}
-        this.referPoint = {x: this.rec.l, y: this.rec.t}
+        this.action = name;
+        this.pl = this.getLeft(this.$el);
+        this.pt = this.getTop(this.$el);
+        this.actionPoint = {x, y};
+        this.referPoint = {x: this.rec.l, y: this.rec.t};
 
         if (name === 'drag-lt') {
-          this.referPoint = {x: this.rec.l + this.rec.w, y: this.rec.t + this.rec.h}
+          this.referPoint = {x: this.rec.l + this.rec.w, y: this.rec.t + this.rec.h};
         } else if (name === 'drag-lb') {
-          this.referPoint = {x: this.rec.l + this.rec.w, y: this.rec.t}
+          this.referPoint = {x: this.rec.l + this.rec.w, y: this.rec.t};
         } else if (name === 'drag-rt') {
-          this.referPoint = {x: this.rec.l, y: this.rec.t + this.rec.h}
+          this.referPoint = {x: this.rec.l, y: this.rec.t + this.rec.h};
         } else if (name === 'drag-rb') {
-          this.referPoint = {x: this.rec.l, y: this.rec.t}
+          this.referPoint = {x: this.rec.l, y: this.rec.t};
         }
       },
       pointTouchDown (name, e) {
-        this.initAction(name, e.touches[0].pageX, e.touches[0].pageY)
-        e.stopPropagation()
+        this.initAction(name, e.touches[0].pageX, e.touches[0].pageY);
+        e.stopPropagation();
       },
       boxTouchDown (e) {
-        this.initAction('move', e.touches[0].pageX, e.touches[0].pageY)
-        e.stopPropagation()
+        this.initAction('move', e.touches[0].pageX, e.touches[0].pageY);
+        e.stopPropagation();
       },
       wrapTouchDown (e) {
         if (this.rec.w && this.rec.h) {
-          return
+          return;
         }
-        this.initAction('cross', e.touches[0].pageX, e.touches[0].pageY)
+        this.initAction('cross', e.touches[0].pageX, e.touches[0].pageY);
         this.rec = {
           w: 0,
           h: 0,
           l: e.touches[0].pageX - this.pl,
           t: e.touches[0].pageY - this.pt
-        }
+        };
         e.stopPropagation()
       },
       disableDrag () {
         if (this.action) {
-          this.action = ''
-          this.$emit('selectEnd')
+          this.action = '';
+          this.$emit('selectEnd');
         }
       },
       clearRec () {
-        this.action = ''
-        this.rec = {w: 0, h: 0, l: 0, t: 0}
+        this.action = '';
+        this.rec = {w: 0, h: 0, l: 0, t: 0};
       },
       updateRec (e) {
         //console.log(e)
         e.preventDefault();
         if (!this.action) {
-          return
+          return;
         }
-
-        const elWidth = this.$el.offsetWidth
-        const elHeight = this.$el.offsetHeight
-        const dx = e.changedTouches[0].pageX - this.actionPoint.x
-        const dy = e.changedTouches[0].pageY - this.actionPoint.y
-        const x = e.changedTouches[0].pageX
-        const y = e.changedTouches[0].pageY
-        let w = 0
-        let h = 0
-        let t = 0
-        let l = 0
+        const elWidth = this.$el.offsetWidth;
+        const elHeight = this.$el.offsetHeight;
+        const dx = e.changedTouches[0].pageX - this.actionPoint.x;
+        const dy = e.changedTouches[0].pageY - this.actionPoint.y;
+        const x = e.changedTouches[0].pageX;
+        const y = e.changedTouches[0].pageY;
+        let w = 0;
+        let h = 0;
+        let t = 0;
+        let l = 0;
 
         if (dx === 0 && dy === 0) {
-          return
+          return;
         }
 
         if (this.action === 'move') {
-          t = dy + this.referPoint.y
-          l = dx + this.referPoint.x
+          t = dy + this.referPoint.y;
+          l = dx + this.referPoint.x;
 
           if (t <= 0) {
-            t = 0
+            t = 0;
           } else if (t + this.rec.h >= elHeight) {
-            t = elHeight - this.rec.h
+            t = elHeight - this.rec.h;
           }
 
           if (l <= 0) {
             l = 0
           } else if (l + this.rec.w >= elWidth) {
-            l = elWidth - this.rec.w
+            l = elWidth - this.rec.w;
           }
 
-          this.rec.l = l
-          this.rec.t = t
+          this.rec.l = l;
+          this.rec.t = t;
         } else if (this.action === 'cross') {
           if (dx > 0 && dy > 0) {
-            w = dx + this.rec.l >= elWidth ? elWidth - this.rec.l : dx
-            h = w / this.ratio
+            w = dx + this.rec.l >= elWidth ? elWidth - this.rec.l : dx;
+            h = w / this.ratio;
 
             if (h + this.rec.t > elHeight) {
-              h = elHeight - this.rec.t
-              w = h * this.ratio
+              h = elHeight - this.rec.t;
+              w = h * this.ratio;
             }
-            this.rec.w = w
-            this.rec.h = h
+            this.rec.w = w;
+            this.rec.h = h;
           } else if (dx > 0 && dy < 0) {
-            w = dx + this.referPoint.x >= elWidth ? elWidth - this.referPoint.x : dx
-            h = w / this.ratio
+            w = dx + this.referPoint.x >= elWidth ? elWidth - this.referPoint.x : dx;
+            h = w / this.ratio;
 
             if (h >= this.referPoint.y) {
-              h = this.referPoint.y
-              w = h * this.ratio
+              h = this.referPoint.y;
+              w = h * this.ratio;
             }
 
-            this.rec.t = this.referPoint.y - h
-            this.rec.w = w
-            this.rec.h = h
+            this.rec.t = this.referPoint.y - h;
+            this.rec.w = w;
+            this.rec.h = h;
           } else if (dx < 0 && dy < 0) {
-            w = dx + this.referPoint.x <= 0 ? this.referPoint.x : -dx
-            h = w / this.ratio
+            w = dx + this.referPoint.x <= 0 ? this.referPoint.x : -dx;
+            h = w / this.ratio;
 
             if (h >= this.referPoint.y) {
-              h = this.referPoint.y
-              w = h * this.ratio
+              h = this.referPoint.y;
+              w = h * this.ratio;
             }
 
-            this.rec.t = this.referPoint.y - h
-            this.rec.l = this.referPoint.x - w
-            this.rec.w = w
-            this.rec.h = h
+            this.rec.t = this.referPoint.y - h;
+            this.rec.l = this.referPoint.x - w;
+            this.rec.w = w;
+            this.rec.h = h;
           } else if (dx < 0 && dy > 0) {
-            w = dx + this.referPoint.x <= 0 ? this.referPoint.x : -dx
-            h = w / this.ratio
+            w = dx + this.referPoint.x <= 0 ? this.referPoint.x : -dx;
+            h = w / this.ratio;
 
             if (h + this.referPoint.y >= elHeight) {
-              h = elHeight - this.referPoint.y
-              w = h * this.ratio
+              h = elHeight - this.referPoint.y;
+              w = h * this.ratio;
             }
 
-            this.rec.l = this.referPoint.x - w
-            this.rec.w = w
-            this.rec.h = h
+            this.rec.l = this.referPoint.x - w;
+            this.rec.w = w;
+            this.rec.h = h;
           }
         } else if (this.action === 'drag-lt' || this.action === 'drag-rt'
           || this.action === 'drag-lb' || this.action === 'drag-rb') {
-          w = x - (this.referPoint.x + this.pl)
-          h = y - (this.referPoint.y + this.pt)
+          w = x - (this.referPoint.x + this.pl);
+          h = y - (this.referPoint.y + this.pt);
           if (this.action === 'drag-lt') {
-            w = w * -1 >= this.referPoint.x ? this.referPoint.x : w * -1
-            h = w / this.ratio
+            w = w * -1 >= this.referPoint.x ? this.referPoint.x : w * -1;
+            h = w / this.ratio;
 
             if (h >= this.referPoint.y) {
-              h = this.referPoint.y
-              w = h * this.ratio
+              h = this.referPoint.y;
+              w = h * this.ratio;
             }
-            this.rec.l = this.referPoint.x - w
-            this.rec.t = this.referPoint.y - h
+            this.rec.l = this.referPoint.x - w;
+            this.rec.t = this.referPoint.y - h;
           } else if (this.action === 'drag-lb') {
-            w = w * -1 >= this.referPoint.x ? this.referPoint.x : w * -1
-            h = w / this.ratio
+            w = w * -1 >= this.referPoint.x ? this.referPoint.x : w * -1;
+            h = w / this.ratio;
 
             if (h >= elHeight - this.referPoint.y) {
-              h = elHeight - this.referPoint.y
-              w = h * this.ratio
+              h = elHeight - this.referPoint.y;
+              w = h * this.ratio;
             }
-            this.rec.l = this.referPoint.x - w
-            this.rec.t = this.referPoint.y
+            this.rec.l = this.referPoint.x - w;
+            this.rec.t = this.referPoint.y;
           } else if (this.action === 'drag-rt') {
-            w = w >= elWidth - this.referPoint.x ? elWidth - this.referPoint.x : w
-            h = w / this.ratio
+            w = w >= elWidth - this.referPoint.x ? elWidth - this.referPoint.x : w;
+            h = w / this.ratio;
 
             if (h >= this.referPoint.y) {
-              h = this.referPoint.y
-              w = h * this.ratio
+              h = this.referPoint.y;
+              w = h * this.ratio;
             }
-            this.rec.l = this.referPoint.x
-            this.rec.t = this.referPoint.y - h
+            this.rec.l = this.referPoint.x;
+            this.rec.t = this.referPoint.y - h;
           } else if (this.action === 'drag-rb') {
-            w = w >= elWidth - this.referPoint.x ? elWidth - this.referPoint.x : w
-            h = w / this.ratio
+            w = w >= elWidth - this.referPoint.x ? elWidth - this.referPoint.x : w;
+            h = w / this.ratio;
 
             if (h >= elHeight - this.referPoint.y) {
-              h = elHeight - this.referPoint.y
-              w = h * this.ratio
+              h = elHeight - this.referPoint.y;
+              w = h * this.ratio;
             }
-            this.rec.l = this.referPoint.x
-            this.rec.t = this.referPoint.y
+            this.rec.l = this.referPoint.x;
+            this.rec.t = this.referPoint.y;
           }
 
-          this.rec.w = w
-          this.rec.h = h
+          this.rec.w = w;
+          this.rec.h = h;
         }
       }
     },

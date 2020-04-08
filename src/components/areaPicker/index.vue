@@ -24,18 +24,18 @@
     name: "f-area-picker",
     components: {scrollBox, scrollList, elPopup},
     props: {
-      provinceList: {
-        type: Array,
-        default: () => ([])
-      },
-      cityList: {
-        type: Array,
-        default: () => ([])
-      },
-      areaList: {
-        type: Array,
-        default: () => ([])
-      },
+      // provinceList: {
+      //   type: Array,
+      //   default: () => ([])
+      // },
+      // cityList: {
+      //   type: Array,
+      //   default: () => ([])
+      // },
+      // areaList: {
+      //   type: Array,
+      //   default: () => ([])
+      // },
       showFlag: {
         type: Boolean,
         default: false
@@ -56,7 +56,11 @@
       }
     },
     data() {
+      let {provinceList = [], cityList = [], areaList = []} = this.$fly.areaConfig || {};
       return {
+        provinceList,
+        cityList,
+        areaList,
         provinceFilterList: this.provinceList,
         cityFilterList: [],
         areaFilterList: [],
@@ -87,9 +91,9 @@
         for (let key in this.result) {
           result.push(this.result[key]);
         }
-        console.log(result);
+        // console.log(result);
         this.$emit("input", result);
-        this.$emit("change", result);
+        this.$emit("submit", result);
         this.hidePopup();
       },
       hidePopup() {

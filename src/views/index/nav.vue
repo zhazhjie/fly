@@ -50,7 +50,7 @@
             path: "/datePicker"
           },
           {
-            title: "AreaPicker 区域选择器",
+            title: "AreaPicker 地区选择器",
             path: "/areaPicker"
           },
           {
