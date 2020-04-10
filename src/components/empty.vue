@@ -6,7 +6,7 @@
 */
 
 <template>
-  <div class="not-data">
+  <div class="empty">
     <i>&#xe602;</i>
     <div>
       <slot>暂无数据</slot>
@@ -16,7 +16,7 @@
 
 <script>
   export default {
-    name: 'f-not-data',
+    name: 'f-empty',
     data() {
       return {}
     },
@@ -30,13 +30,13 @@
 </script>
 
 <style scoped>
-  .not-data {
+  .empty {
     padding: 15px;
     text-align: center;
     color: #ccc;
   }
 
-  .not-data i {
+  .empty i {
     font-family: "iconfont-common";
     display: block;
     font-size: 0.65rem;

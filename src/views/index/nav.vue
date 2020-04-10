@@ -122,8 +122,8 @@
             path: "/upload"
           },
           {
-            title: "NotData 无数据",
-            path: "/notData"
+            title: "Empty 无数据",
+            path: "/empty"
           },
         ]
       }

@@ -13,7 +13,7 @@ import Button from './button.vue';
 import Popup from './popup';
 import List from './list.vue';
 import Dialog from './dialog.vue';
-import NotData from './notData.vue';
+import Empty from './empty.vue';
 import Number from './number.vue';
 import InputNumber from './inputNumber';
 import DatePicker from './datePicker';
@@ -52,7 +52,7 @@ flyUI.install = function (Vue, options) {
   Vue.component(Popup.name, Popup);
   Vue.component(List.name, List);
   Vue.component(Dialog.name, Dialog);
-  Vue.component(NotData.name, NotData);
+  Vue.component(Empty.name, Empty);
   Vue.component(Number.name, Number);
   Vue.component(InputNumber.name, InputNumber);
   Vue.component(DatePicker.name, DatePicker);

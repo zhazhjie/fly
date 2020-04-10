@@ -18,8 +18,8 @@
     <div :class="bodyScroll?'':'scroll-box'" ref='scrollBox' @scroll="handleScroll">
       <slot name='header'/>
       <slot/>
-      <slot name="notData">
-        <f-not-data v-if='!dataLength'>{{notDataText}}</f-not-data>
+      <slot name="empty">
+        <f-empty v-if='!dataLength'>{{emptyText}}</f-empty>
       </slot>
       <div class="load-more">
         <f-loading-3 v-show='!isRefresh&&loading&&!!dataLength'/>
@@ -38,7 +38,7 @@
 
 <script>
   import FLoading1 from './loading/loading-1'
-  import FNotData from './notData'
+  import FEmpty from './empty'
   import {throttle} from "js-utils";
   import FLoading3 from "./loading/loading-3";
 
@@ -58,7 +58,7 @@
         type: Number,
         default: 0
       },
-      notDataText: {
+      emptyText: {
         type: String,
         default: '-暂无数据-'
       },
@@ -89,7 +89,7 @@
     components: {
       FLoading3,
       FLoading1,
-      FNotData
+      FEmpty
     },
     methods: {
       getScrollSize() {

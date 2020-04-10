@@ -1,8 +1,8 @@
 <template>
   <div>
     <slot/>
-    <slot name="notData">
-      <f-not-data v-if='!dataLength'>{{notDataText}}</f-not-data>
+    <slot name="empty">
+      <f-empty v-if='!dataLength'>{{emptyText}}</f-empty>
     </slot>
     <div class="load-more" ref="end">
       <f-loading-3 v-show='loading&&!!dataLength'/>
@@ -35,7 +35,7 @@
         type: Number,
         default: 0
       },
-      notDataText: {
+      emptyText: {
         type: String,
         default: '-暂无数据-'
       },

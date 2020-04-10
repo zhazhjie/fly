@@ -29,7 +29,7 @@
             @click='selectItem(item)'>
             <slot :item="item">{{getValue(item,1)}}</slot>
           </li>
-          <li class='not-data' v-if='!filterList.length'>-无数据-</li>
+          <li class='empty' v-if='!filterList.length'>-无数据-</li>
         </ul>
       </div>
     </transition>
