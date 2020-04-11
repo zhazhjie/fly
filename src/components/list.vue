@@ -22,7 +22,7 @@
         <f-empty v-if='!dataLength'>{{emptyText}}</f-empty>
       </slot>
       <div class="load-more">
-        <f-loading-3 v-show='!isRefresh&&loading&&!!dataLength'/>
+        <f-loading-2 v-show='!isRefresh&&loading&&!!dataLength'/>
         <div class="load-end" v-show='eof&&dataLength'>-END-</div>
       </div>
       <slot name='footer'/>
@@ -40,7 +40,7 @@
   import FLoading1 from './loading/loading-1'
   import FEmpty from './empty'
   import {throttle} from "js-utils";
-  import FLoading3 from "./loading/loading-3";
+  import FLoading2 from "./loading/loading-2";
 
   export default {
     name: 'f-list',
@@ -87,7 +87,7 @@
       }
     },
     components: {
-      FLoading3,
+      FLoading2,
       FLoading1,
       FEmpty
     },

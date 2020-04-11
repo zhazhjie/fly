@@ -1,9 +1,7 @@
 <template>
   <div class="loading">
     <ul>
-      <li v-for="item in 3">
-        <div></div>
-      </li>
+      <li v-for="item in 3"></li>
     </ul>
   </div>
 </template>

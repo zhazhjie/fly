@@ -5,7 +5,7 @@
       <f-empty v-if='!dataLength'>{{emptyText}}</f-empty>
     </slot>
     <div class="load-more" ref="end">
-      <f-loading-3 v-show='loading&&!!dataLength'/>
+      <f-loading-2 v-show='loading&&!!dataLength'/>
       <div class="font12 gray" v-show='eof&&dataLength'>- END -</div>
     </div>
     <transition name='fade'>
@@ -16,11 +16,11 @@
 
 <script>
   import FLoading1 from "./loading/loading-1";
-  import FLoading3 from "./loading/loading-3";
+  import FLoading2 from "./loading/loading-2";
 
   export default {
     name: "f-infinite-load",
-    components: {FLoading3, FLoading1},
+    components: {FLoading2, FLoading1},
     props: {
       loading: {
         type: Boolean,

@@ -15,6 +15,9 @@ module.exports = {
       'axios': 'axios',
       './areaData': 'areaData'
     },
+    output: {
+      libraryExport: 'default'
+    }
   },
   productionSourceMap: false,
   publicPath: './',
