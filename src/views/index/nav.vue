@@ -122,7 +122,7 @@
             path: "/upload"
           },
           {
-            title: "Empty 无数据",
+            title: "Empty 空",
             path: "/empty"
           },
         ]
@@ -155,6 +155,7 @@
 
     ul {
       padding: 10px 0;
+
       li {
         height: 50px;
         line-height: 50px;
@@ -167,6 +168,17 @@
 
         &.active {
           color: $primary;
+          position: relative;
+
+          &::before {
+            content: "";
+            width: 4px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: $primary;
+          }
         }
       }
     }

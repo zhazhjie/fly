@@ -89,6 +89,34 @@ export default new Router({
           },
           component: () => import('./views/doc/carousel'),
         },
+        {
+          path: '/imgClip',
+          meta: {
+            title: '图片裁切'
+          },
+          component: () => import('./views/doc/imgClip'),
+        },
+        {
+          path: '/loading',
+          meta: {
+            title: '加载'
+          },
+          component: () => import('./views/doc/loading'),
+        },
+        {
+          path: '/msg',
+          meta: {
+            title: '消息提示'
+          },
+          component: () => import('./views/doc/msg'),
+        },
+        {
+          path: '/popup',
+          meta: {
+            title: '弹出层'
+          },
+          component: () => import('./views/doc/popup'),
+        },
       ]
     },
     {

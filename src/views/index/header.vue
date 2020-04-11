@@ -2,7 +2,7 @@
   <header class="header">
     <div class="left">
       <img class="logo" src="../../img/logo.png">
-      <!--<p class="primary">Fly</p>-->
+      <p class="primary tit">Fly</p>
     </div>
     <f-button type="plain" round>
       <a target="_blank" href="http://git.tigoyun.com/zzhijie/fly-components.git">v1.0.0</a>
@@ -45,6 +45,12 @@
       .logo {
         width: 35px;
         margin-right: 10px;
+      }
+
+      .tit {
+        background: linear-gradient(to right, $red, $orange);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
     }
 
