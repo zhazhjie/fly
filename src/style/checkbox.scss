@@ -88,8 +88,8 @@
 }
 
 .checkbox .input:checked + .yellow {
-  border-color: var(--yellow);
-  background-color: var(--yellow);
+  border-color: $yellow;
+  background-color: $yellow;
 }
 
 .checkbox .input:checked + .icon::before {

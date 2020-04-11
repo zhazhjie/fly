@@ -7,130 +7,130 @@
   position: relative;
   user-select: none;
   vertical-align: middle;
-}
 
-.radio.mini {
-  height: 0.16rem;
-  line-height: 0.16rem;
-}
+  &.mini {
+    height: 0.16rem;
+    line-height: 0.16rem;
 
-.radio .input {
-  position: absolute;
-  opacity: 0;
-}
+    .input + .icon {
+      width: 0.16rem;
+      height: 0.16rem;
 
-.radio .input + .icon {
-  display: inline-block;
-  width: 0.2rem;
-  height: 0.2rem;
-  position: relative;
-  border: $border;
-  background-color: #fff;
-  /*box-shadow: #ddd 0 0 0 0 inset;*/
-  border-radius: 50%;
-  box-sizing: border-box;
-  transition: all 0.2s;
-  float: left;
-}
+      &:checked + .icon::before {
+        width: 0.08rem;
+        height: 0.08rem;
+      }
+    }
+  }
 
-.radio.mini .input + .icon {
-  width: 0.16rem;
-  height: 0.16rem;
-}
+  .input {
+    position: absolute;
+    opacity: 0;
 
-.radio .input + .icon::before {
-  content: "";
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background-color: $primary;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.2s;
-}
+    + .icon {
+      display: inline-block;
+      width: 0.2rem;
+      height: 0.2rem;
+      position: relative;
+      border: $border;
+      background-color: #fff;
+      /*box-shadow: #ddd 0 0 0 0 inset;*/
+      border-radius: 50%;
+      box-sizing: border-box;
+      transition: all 0.2s;
+      float: left;
 
-.radio .input:checked + .icon {
-  border-color: $primary;
-  /*transition: all 0.2s;*/
-}
+      &::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background-color: $primary;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.2s;
+      }
+    }
 
+    &:checked {
+      &:not(:disabled) ~ .slot {
+        color: $primary;
+      }
 
-.radio .input:checked + .icon::before {
-  width: 0.1rem;
-  height: 0.1rem;
-  transition: all 0.2s;
-}
+      &:disabled + .icon {
+        border: 0.05rem solid #ddd;
+        background: #eee;
+        transition: all 0.2s;
+        cursor: not-allowed;
+      }
 
-.radio.mini .input:checked + .icon::before {
-  width: 0.08rem;
-  height: 0.08rem;
-}
+      + .icon {
+        border-color: $primary;
+        /*transition: all 0.2s;*/
+        &::before {
+          width: 0.1rem;
+          height: 0.1rem;
+          transition: all 0.2s;
+        }
+      }
 
-.radio .input:checked + .red::before {
-  background-color: $red;
-}
+      + .red {
+        border-color: $red;
 
-.radio .input:checked + .red {
-  border-color: $red;
-}
+        &::before {
+          background-color: $red;
+        }
+      }
 
-.radio .input:checked + .blue::before {
-  background-color: $blue;
-}
+      + .blue {
+        border-color: $blue;
 
-.radio .input:checked + .blue {
-  border-color: $blue;
-}
+        &::before {
+          background-color: $blue;
+        }
+      }
 
-.radio .input:checked + .green::before {
-  background-color: $green;
-}
+      + .green {
+        border-color: $green;
 
-.radio .input:checked + .green {
-  border-color: $green;
-}
+        &::before {
+          background-color: $green;
+        }
+      }
 
-.radio .input:checked + .orange::before {
-  background-color: $orange;
-}
+      + .orange {
+        border-color: $orange;
 
-.radio .input:checked + .orange {
-  border-color: $orange;
-}
+        &::before {
+          background-color: $orange;
+        }
+      }
 
-.radio .input:checked + .yellow::before {
-  background-color: var(--yellow);
-}
+      + .yellow {
+        border-color: $yellow;
 
-.radio .input:checked + .yellow {
-  border-color: var(--yellow);
-}
+        & + .yellow::before {
+          background-color: $yellow;
+        }
+      }
+    }
+  }
 
-.radio .slot {
-  display: inline-block;
-  float: left;
-  margin-left: 0.05rem;
-}
+  .slot {
+    display: inline-block;
+    float: left;
+    margin-left: 0.05rem;
+  }
 
-.radio .input:checked:not(:disabled) ~ .slot {
-  color: $primary;
-}
+  .input:disabled + .icon {
+    background: #eee;
+    transition: all 0.2s;
+    cursor: not-allowed;
+  }
 
-.radio .input:disabled + .icon {
-  background: #eee;
-  transition: all 0.2s;
-  cursor: not-allowed;
-}
-
-.radio .input:checked:disabled + .icon {
-  border: 0.05rem solid #ddd;
-  background: #eee;
-  transition: all 0.2s;
-  cursor: not-allowed;
-}
-
-.radio + .radio {
-  margin-left: .1rem;
+  + .radio {
+    margin-left: .1rem;
+  }
 }

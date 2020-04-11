@@ -1,6 +1,6 @@
 .slide-enter-active,
 .slide-leave-active {
-  transition: all .3s;
+  transition: all .25s;
 }
 
 .slide-enter,
@@ -27,7 +27,7 @@
 
 .zoom-enter-active,
 .zoom-leave-active {
-  transition: all .3s;
+  transition: all .25s;
 }
 
 .zoom-enter,
@@ -38,7 +38,7 @@
 
 .fade-leave-active,
 .fade-enter-active {
-  transition: all .3s;
+  transition: all .25s;
 }
 
 .fade-enter,
