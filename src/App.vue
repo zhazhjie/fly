@@ -7,8 +7,6 @@
 </template>
 
 <script>
-  import {getSearchParams} from "js-utils";
-
   export default {
     name: 'App',
     computed: {
