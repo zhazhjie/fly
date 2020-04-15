@@ -1,4 +1,4 @@
-# fly-ui
+# fly-components
 
 > 移动端ui组件，不定期更新
 
