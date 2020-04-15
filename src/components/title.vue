@@ -5,7 +5,7 @@
       <i class="back-icon" @click="routeBack">&#xe682;</i>
     </slot>
     </span>
-    <span><slot/></span>
+    <span class="mid"><slot/></span>
     <span class="right">
       <slot name="right">
       <i @click="routeTo('/')" class="home-icon">&#xe60b;</i>

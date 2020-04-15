@@ -1,4 +1,5 @@
 @import "../css/var";
+@import "../css/mixin";
 
 .main-title {
   height: 0.45rem;
@@ -13,33 +14,42 @@
   z-index: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.3);
-}
+  justify-content: center;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 
-.main-title .left {
-  /*@apply --middle;*/
-  /*left: 0.1rem;*/
-  padding: 0 0.1rem;
-}
+  .left {
+    @include middle;
+    left: 0;
+    padding: 0 0.1rem;
 
-.main-title .right {
-  /*@apply --middle;*/
-  /*right: 0.1rem;*/
-  padding: 0 0.1rem;
-}
+    .back-icon {
+      display: inline-block;
+      font-weight: bolder;
+      font-size: 0.16rem;
+      font-family: "iconfont-common";
+      line-height: 0.3rem;
+      cursor: pointer;
+    }
+  }
 
-.back-icon {
-  display: inline-block;
-  font-weight: bolder;
-  font-size: 0.16rem;
-  font-family: "iconfont-common";
-  line-height: 0.3rem;
-  cursor: pointer;
-}
+  .mid {
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-.home-icon {
-  font-size: 0.18rem;
-  line-height: 0.3rem;
-  cursor: pointer;
+  .right {
+    @include middle;
+    right: 0;
+    padding: 0 0.1rem;
+
+    .home-icon {
+      font-size: 0.18rem;
+      line-height: 0.3rem;
+      cursor: pointer;
+    }
+  }
+
+
 }
