@@ -54,8 +54,13 @@
     },
     methods: {
       showMsg(data) {
-        this.text = data.text || data;
-        this.type = data.type || 0;
+        if (Object.prototype.toString.call(data) === "[object Object]") {
+          this.text = data.text || "";
+          this.type = data.type || 0;
+        } else {
+          this.text = data;
+          this.type = 0;
+        }
         this.showFlag = true;
         clearTimeout(this.tId);
         this.tId = setTimeout(() => {
