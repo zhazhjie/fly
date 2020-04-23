@@ -11,7 +11,7 @@
       <slot/>
     </div>
     <slot name="footer"></slot>
-    <transition name='fade-right' v-if="routable">
+    <transition :name='transitionName' v-if="routable">
       <router-view class='child-router scroll-box'/>
     </transition>
   </section>
@@ -34,6 +34,10 @@
       routable: {
         type: Boolean,
         default: false
+      },
+      transitionName: {
+        type: String,
+        default: 'fade-right'
       }
     },
     components: {FTitle},
