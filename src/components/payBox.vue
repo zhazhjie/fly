@@ -20,7 +20,7 @@
             <p class="gray font12"><i class="icon-common">&#xe60d;</i> 支付宝安全支付</p>
           </div>
         </label>
-        <slot></slot>
+        <slot name="other"></slot>
       </div>
       <f-button size="big" :loading="loading" @click="submitPay">确认</f-button>
     </f-popup>
