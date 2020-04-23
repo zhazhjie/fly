@@ -73,6 +73,9 @@
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
         <f-area-picker :show-flag.sync="areaPickerFlag" @change="areaChange"></f-area-picker>
+        <div class="item-title">支付盒子</div>
+        <f-button @click="payBoxFlag=true">支付盒子</f-button>
+        <f-pay-box :show-flag.sync="payBoxFlag"></f-pay-box>
         <div class="item-title">轮播图</div>
         <f-carousel>
           <f-carousel-item v-for="(item,index) in imgList" :key="index">
@@ -117,6 +120,7 @@
         dialogFlag: false,
         datePickerFlag: false,
         areaPickerFlag: false,
+        payBoxFlag: false,
         imgList: [],
         imgClipFlag: false,
         imgData: "",

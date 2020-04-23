@@ -1,27 +1,22 @@
 @import "../css/var";
 
-.pay-type label {
+.pay-type .pay-item {
   background: #fff;
-  height: 0.5rem;
-  padding: 0 0.1rem;
+  padding: 0.15rem 0.1rem;
   display: flex;
   align-items: center;
-
-}
-
-.pay-type > label:last-child {
+  justify-content: space-between;
   border-top: 1px solid $bg;
-  margin-bottom: 0.1rem;
-}
-
-.pay-type .pay-icon {
-  font-family: iconfont-common;
-  height: 0.4rem;
-  width: 0.4rem;
-  line-height: 0.4rem;
-  margin-right: 0.1rem;
-  font-size: 0.25rem;
-  /*border-right: 1px solid $bg;*/
-  text-align: center;
-  /*border-left: 1px solid $bg;*/
+  .info{
+    display: flex;
+    align-items: center;
+    .font12{
+      margin-top: 0.03rem;
+    }
+  }
+  .pay-icon {
+    font-family: iconfont-common;
+    margin-right: 0.1rem;
+    font-size: 0.3rem;
+  }
 }

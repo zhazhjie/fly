@@ -4,30 +4,34 @@
       <template slot="title">支付方式</template>
       <slot></slot>
       <div class="pay-type">
-        <label class="pay-type">
-          <f-radio v-model="payType" label="WX"></f-radio>
-          <i class="pay-icon green">&#xe614;</i>
-          <div>
-            <p>微信支付</p>
-            <p class="gray font12"><i class="icon-common">&#xe60d;</i> 微信安全支付</p>
+        <label class="pay-item">
+          <div class="info">
+            <i class="pay-icon green">&#xe614;</i>
+            <div>
+              <p>微信支付</p>
+              <p class="gray font12"><i class="icon-common">&#xe60d;</i> 微信安全支付</p>
+            </div>
           </div>
+          <f-radio v-model="payType" :label="wxCode"></f-radio>
         </label>
-        <label class="pay-type" style="margin-top: 0.07rem;" v-if="!isWeiXin">
-          <f-radio v-model="payType" label="ALIPAY"></f-radio>
-          <i class="pay-icon blue">&#xe725;</i>
-          <div>
-            <p>支付宝</p>
-            <p class="gray font12"><i class="icon-common">&#xe60d;</i> 支付宝安全支付</p>
+        <label class="pay-item" v-if="!isWeiXin">
+          <div class="info">
+            <i class="pay-icon blue">&#xe725;</i>
+            <div>
+              <p>支付宝</p>
+              <p class="gray font12"><i class="icon-common">&#xe60d;</i> 支付宝安全支付</p>
+            </div>
           </div>
+          <f-radio v-model="payType" :label="alipayCode"></f-radio>
         </label>
-        <slot name="other"></slot>
+        <slot name="other" :payType="payType"></slot>
       </div>
       <f-button size="big" :loading="loading" @click="submitPay">确认</f-button>
     </f-popup>
     <f-popup :popFlag.sync="passwordFlag" @submit="submitPassword">
       <template slot="title">支付密码</template>
       <div>
-        <f-input type="password" placeholder="请输入支付密码" v-model="payPassword"></f-input>
+        <f-input-2 type="password" placeholder="请输入支付密码" v-model="payPassword"></f-input-2>
       </div>
     </f-popup>
   </div>
@@ -43,12 +47,21 @@
         type: Boolean,
         default: false
       },
-      amount: {
-        type: Number,
-      },
       loading: {
         type: Boolean,
         default: false
+      },
+      wxCode: {
+        type: String,
+        default: "WX"
+      },
+      alipayCode: {
+        type: String,
+        default: "ALIPAY"
+      },
+      defaultPayType: {
+        type: String,
+        default: "WX"
       }
     },
     data() {
@@ -56,23 +69,20 @@
         isWeiXin: isWeiXin(),
         passwordFlag: false,
         payPassword: "",
-        payType: "WX",
-        wallet: {}
+        payType: this.defaultPayType,
       }
     },
-    computed: {
-
-    },
+    computed: {},
     methods: {
       submitPassword() {
         if (!this.payPassword) {
-          return this.showMsg({text: "支付密码不能为空！", type: 2})
+          return this.showMsg({text: "支付密码不能为空！", type: 2});
         }
         this.passwordFlag = false;
         this.$emit("submitPay", {payType: this.payType, payPassword: this.payPassword});
       },
       closePay() {
-        this.$emit('update:showFlag', false)
+        this.$emit('update:showFlag', false);
       },
       submitPay() {
         this.$emit("submitPay", {payType: this.payType, payPassword: this.payPassword});
