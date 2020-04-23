@@ -58,3 +58,8 @@
   opacity: 0;
   transform: translateX(-50px);
 }
+
+.fade-right-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+}
