@@ -49,7 +49,9 @@
       }
     },
     methods: {
-      uploadImg(data) {
+      uploadImg(file) {
+        let fd = new FormData();
+        fd.append("file", file);
         return new Promise((resolve, reject) => {
           let xhr = new XMLHttpRequest();
           let {headers, action} = this.uploadConfig;
@@ -69,7 +71,7 @@
               xhr.setRequestHeader(key, headers[key]);
             }
           }
-          xhr.send(data);
+          xhr.send(fd);
         });
       },
       emitUpload() {
