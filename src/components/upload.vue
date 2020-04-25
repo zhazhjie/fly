@@ -42,6 +42,7 @@
     },
     data() {
       return {
+        fileName: "",
         loading: false,
         imgData: "",
         showFlag: false,
@@ -79,10 +80,11 @@
         this.$refs.file.click();
       },
       submitClip(data) {
-        this.upload(dataURLtoFile(data, ""));
+        this.upload(dataURLtoFile(data, this.fileName));
       },
       uploadFile(e) {
         let file = e.target.files[0];
+        this.fileName = file.name;
         if (file.size > 5.5 * 1024 * 1024) {
           return this.$msg.warning('图片大小不能大于5M');
         }
