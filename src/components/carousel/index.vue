@@ -129,6 +129,7 @@
       },
       handleEnd(e) {
         // if(this.isMoving) return;
+        if (this.getItems().length<=1) return;
         this.movable = true;
         this.firstChange = true;
         let curX = e.changedTouches[0].pageX;
