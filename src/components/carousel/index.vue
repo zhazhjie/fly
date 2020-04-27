@@ -68,7 +68,6 @@
         return this.$refs.carousel;
       },
       items() {
-        console.log(this.$slots);
         return this.$slots;
       }
     },
@@ -87,6 +86,7 @@
       },
       handleStart(e) {
         // if (this.isMoving) return;
+        if (this.getItems().length<=1) return;
         this.stop();
         this.removeTransition();
         this.startX = e.changedTouches[0].pageX;
@@ -95,6 +95,7 @@
         this.startTime = Date.now();
       },
       handleMove(e) {
+        if (this.getItems().length<=1) return;
         if (!this.movable) return;
         let curX = e.changedTouches[0].pageX;
         let curY = e.changedTouches[0].pageY;
