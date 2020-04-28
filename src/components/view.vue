@@ -1,5 +1,5 @@
 <template>
-  <section class="view">
+  <section class="view" :style="{paddingTop: title?'0.45rem':'0'}">
     <f-title v-if="!!title">
       <template>{{title}}</template>
       <template slot="right">
@@ -52,6 +52,6 @@
 
 <style scoped>
   .view {
-    padding-top: 0.45rem;
+
   }
 </style>
