@@ -9,7 +9,7 @@
     </main>
     <div class="preview">
       <f-ext class="win" :src="previewSrc"></f-ext>
-      <div class="tips">
+      <div class="tip">
         <p>部分touch事件在预览无法生效，请在手机中查看</p>
         <div ref="qrCode"></div>
       </div>
@@ -73,7 +73,7 @@
         /*overflow: hidden;*/
         box-shadow: 0 0 10px 0 $shadow;
       }
-      .tips{
+      .tip{
         color: $gray;
         @include flex-center;
         p{

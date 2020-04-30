@@ -146,3 +146,28 @@ select:disabled {
   font-size: 16px;
   margin-bottom: 15px;
 }
+
+.tips{
+  font-size: 12px;
+  color: $gray;
+  border-left: 3px solid $primary;
+  padding: 5px 10px;
+}
+
+.fade-right-leave-active,
+.fade-right-enter-active {
+  transition: all .5s;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.fade-right-enter {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.fade-right-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+}
