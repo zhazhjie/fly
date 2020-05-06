@@ -16,7 +16,7 @@ input[type="number"] {
 }
 
 .input {
-  font-family: "Microsoft Yahei";
+  font-family: "Microsoft Yahei", serif;
   box-sizing: border-box;
   border: $border;
   outline: 0;
@@ -25,6 +25,7 @@ input[type="number"] {
   padding: 0 0.1rem;
   width: 100%;
   -webkit-appearance: none;
+  font-size: 0.14rem;
 
   &:disabled {
     background: #eee;
