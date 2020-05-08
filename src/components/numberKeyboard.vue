@@ -11,7 +11,7 @@
         </tr>
         <tr>
           <td v-for="item in [7,8,9]" @touchstart @click="handleInput(item)">{{item}}</td>
-          <td width="25%" rowspan="2" class="opt-btn complete-btn" @touchstart @click="handleBlur">完成</td>
+          <td width="25%" rowspan="2" class="opt-btn complete-btn" @touchstart @click="handleSubmit">{{submitText}}</td>
         </tr>
         <tr>
           <td colspan="2" @touchstart @click="handleInput(0)">0</td>
@@ -38,7 +38,10 @@
         type: Number,
         default: 999999
       },
-
+      submitText: {
+        type: String,
+        default: "完成"
+      }
     },
     data() {
       return {}
@@ -64,6 +67,10 @@
         if (this.value.length) {
           this.$emit("input", this.value.slice(0, -1));
         }
+      },
+      handleSubmit() {
+        this.$emit("update:showFlag", false);
+        this.$emit("submit", this.value);
       }
     },
     mounted() {
