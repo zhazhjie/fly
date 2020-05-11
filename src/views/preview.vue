@@ -39,7 +39,7 @@
         <div class="item-title">加减</div>
         <f-number v-model="numVal" :step="0.1"></f-number>
         <div class="space"></div>
-        <f-input-number v-model="inputNumVal" display size="mini"></f-input-number>
+        <f-input-number v-model="inputNumVal" editable display size="mini"></f-input-number>
         <div class="item-title">数字小键盘</div>
         <f-input placeholder="点击弹出小键盘" readonly v-model="keyboardVal" @focus="keyboardFlag=true"></f-input>
         <f-number-keyboard :show-flag.sync="keyboardFlag" v-model="keyboardVal">数字小键盘</f-number-keyboard>

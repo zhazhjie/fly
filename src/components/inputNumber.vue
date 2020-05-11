@@ -17,8 +17,8 @@
       </button>
     </transition>
     <transition name="rotate-out">
-      <span tabindex="0" class="value" :contenteditable="editable" @blur="setValue"
-            v-show="value>0||display">{{value}}</span>
+      <input type="number" class="value" :readonly="!editable" @blur="setValue"
+            v-show="value>0||display" :value="value"/>
     </transition>
     <button
       class="add"

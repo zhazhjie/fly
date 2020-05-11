@@ -18,16 +18,16 @@ export const mixins = {
       this.$emit('input', value);
     },
     setValue(e) {
-      let value = +e.target.innerText;
+      let value = +e.target.value;
       if (value >= this.minValue && value <= this.maxValue) {
         let fold = value.divide(this.step);
         if (fold % 1 === 0) {
           this.$emit('input', value);
         } else {
-          e.target.innerText = this.value;
+          e.target.value = this.value;
         }
       } else {
-        e.target.innerText = this.value;
+        e.target.value = this.value;
       }
     }
   }
