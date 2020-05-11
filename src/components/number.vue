@@ -14,24 +14,31 @@
 </template>
 
 <script>
+  import {mixins} from "./mixins/number";
+
   export default {
     name: 'f-number',
+    mixins: [mixins],
     props: {
       value: {
         type: [String, Number],
         default: 1
       },
       maxValue: {
-        type: [String, Number],
-        default: 9999
+        type: Number,
+        default: Number.MAX_SAFE_INTEGER
       },
       minValue: {
-        type: [String, Number],
-        default: 1
+        type: Number,
+        default: 0
       },
       size: {
         type: String,
         default: 'small'
+      },
+      step: {
+        type: Number,
+        default: 1
       },
     },
     data() {
@@ -39,25 +46,7 @@
     },
     components: {},
     watch: {},
-    methods: {
-      changeNum(isAdd) {
-        let value;
-        if (isAdd) {
-          value = this.maxValue && this.value >= this.maxValue ? this.maxValue : +this.value + 1;
-        } else {
-          value = this.minValue && this.value <= this.minValue ? this.minValue : this.value - 1;
-        }
-        this.$emit('input', value);
-      },
-      setValue(e) {
-        let value = e.target.value | 0;
-        if (value < this.minValue || value > this.maxValue) {
-          e.target.value = this.value;
-        } else {
-          this.$emit('input', value);
-        }
-      }
-    },
+    methods: {},
     computed: {},
     mounted() {
 

@@ -37,7 +37,9 @@
         <div class="item-title">输入框2</div>
         <f-input-2 placeholder="请输入"></f-input-2>
         <div class="item-title">加减</div>
-        <f-number v-model="numVal"></f-number>
+        <f-number v-model="numVal" :step="0.1"></f-number>
+        <div class="space"></div>
+        <f-input-number v-model="inputNumVal" display size="mini"></f-input-number>
         <div class="item-title">数字小键盘</div>
         <f-input placeholder="点击弹出小键盘" readonly v-model="keyboardVal" @focus="keyboardFlag=true"></f-input>
         <f-number-keyboard :show-flag.sync="keyboardFlag" v-model="keyboardVal">数字小键盘</f-number-keyboard>
@@ -115,6 +117,7 @@
         checkboxVal: [1],
         radioVal: 1,
         numVal: 1,
+        inputNumVal:0,
         switchVal: true,
         popupFlag: false,
         dialogFlag: false,
@@ -233,5 +236,9 @@
     line-height: 2rem;
     text-align: center;
     background: #eee;
+  }
+
+  .space{
+    padding: 0.05rem;
   }
 </style>

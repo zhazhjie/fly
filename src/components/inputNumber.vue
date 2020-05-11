@@ -13,11 +13,12 @@
         :class="[size]"
         @click.stop='changeNum(false,$event)'
         :disabled="disabled||value<=minValue"
-        v-show="value>0">&#xe6ce;
+        v-show="value>0||display">&#xe6ce;
       </button>
     </transition>
     <transition name="rotate-out">
-      <span class="value" v-show="value>0">{{value}}</span>
+      <span tabindex="0" class="value" :contenteditable="editable" @blur="setValue"
+            v-show="value>0||display">{{value}}</span>
     </transition>
     <button
       class="add"
@@ -29,19 +30,23 @@
 </template>
 
 <script>
+  import "js-utils/accuracyCalculate";
+  import {mixins} from "./mixins/number";
+
   export default {
     name: 'f-input-number',
+    mixins: [mixins],
     props: {
       value: {
-        type: [String, Number],
+        type: [Number, String],
         default: 0
       },
       maxValue: {
-        type: [String, Number],
-        default: 9999
+        type: Number,
+        default: Number.MAX_SAFE_INTEGER
       },
       minValue: {
-        type: [String, Number],
+        type: Number,
         default: 0
       },
       size: {
@@ -51,35 +56,26 @@
       disabled: {
         type: Boolean,
         default: false,
-      }
+      },
+      editable: {
+        type: Boolean,
+        default: false,
+      },
+      display: {
+        type: Boolean,
+        default: false
+      },
+      step: {
+        type: Number,
+        default: 1
+      },
     },
     data() {
       return {}
     },
     components: {},
     watch: {},
-    methods: {
-      changeNum(isAdd, e) {
-        if (this.disabled) return;
-        let value;
-        if (isAdd) {
-          value = this.maxValue && this.value >= this.maxValue ? this.maxValue : +this.value + 1;
-          this.$emit('add', {value, e});
-        } else {
-          value = this.minValue && this.value <= this.minValue ? this.minValue : this.value - 1;
-          this.$emit('subtract', {value, e});
-        }
-        this.$emit('input', value);
-      },
-      setValue(e) {
-        let value = e.target.value | 0;
-        if (value < this.minValue || value > this.maxValue) {
-          e.target.value = this.value;
-        } else {
-          this.$emit('input', value);
-        }
-      }
-    },
+    methods: {},
     computed: {},
     mounted() {
 
