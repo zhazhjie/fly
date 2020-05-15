@@ -88,6 +88,9 @@
       },
       color: {
         type: String,
+      },
+      maxLength: {
+        type: Number,
       }
     },
     data() {
@@ -116,7 +119,12 @@
         this.$emit("blur", e);
       },
       emitInput(e) {
-        this.$emit("input", e.target.value);
+        let value = e.target.value || "";
+        if (this.maxLength && value.length > this.maxLength) {
+          e.target.value = value.slice(0, -1);
+        } else {
+          this.$emit("input", e.target.value);
+        }
       },
       emitChange(e) {
         this.$emit("change", e.target.value);

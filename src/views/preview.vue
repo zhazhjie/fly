@@ -33,13 +33,13 @@
         <f-switch v-model="switchVal">{{switchVal}}</f-switch>
         <f-switch v-model="switchVal" disabled>{{switchVal}}</f-switch>
         <div class="item-title">输入框</div>
-        <f-input placeholder="请输入"></f-input>
+        <f-input placeholder="请输入" :max-length="10"></f-input>
         <div class="item-title">输入框2</div>
         <f-input-2 placeholder="请输入"></f-input-2>
         <div class="item-title">加减</div>
         <f-number v-model="numVal" :step="0.1"></f-number>
         <div class="space"></div>
-        <f-input-number v-model="inputNumVal" editable display size="mini"></f-input-number>
+        <f-input-number v-model="inputNumVal" editable display size="mini" :max-value="10"></f-input-number>
         <div class="item-title">数字小键盘</div>
         <f-input placeholder="点击弹出小键盘" readonly v-model="keyboardVal" @focus="keyboardFlag=true"></f-input>
         <f-number-keyboard :show-flag.sync="keyboardFlag" v-model="keyboardVal">数字小键盘</f-number-keyboard>
