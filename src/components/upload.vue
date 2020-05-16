@@ -7,7 +7,7 @@
       <f-loading-2></f-loading-2>
       <!--<div class="gray">上传中...</div>-->
     </div>
-    <input ref="file" type="file" accept="image/*" style="display: none" @change="uploadFile"></input>
+    <input ref="file" type="file" accept="image/*" :capture="capture" style="display: none" @change="uploadFile"></input>
     <!--<div class="font10 gray">微信分身请用拍照上传</div>-->
     <img-clip :size="maxWidth" :show-flag.sync="showFlag" :img="imgData" @submitClip="submitClip"></img-clip>
   </div>
@@ -38,6 +38,13 @@
       clip: {
         type: Boolean,
         default: false
+      },
+      size: {
+        type: Number,
+        default: 5
+      },
+      capture: {
+        type: String
       }
     },
     data() {
@@ -85,11 +92,11 @@
       uploadFile(e) {
         let file = e.target.files[0];
         this.fileName = file.name;
-        if (file.size > 5.5 * 1024 * 1024) {
-          return this.$msg.warning('图片大小不能大于5M');
+        if (file.size > this.size * 1024 * 1024) {
+          return this.$msg.warning('图片大小不能大于' + this.size + 'M');
         }
         if (!/(jpg|jpeg|png)/i.test(file.type)) {
-          return this.$msg.warning('图片格式必须为jpg/jpeg/png');
+          return this.$msg.warning('图片格式必须为jpg或png');
         }
         if (this.clip) {
           return fileToDataURL(file).then(data => {
