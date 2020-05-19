@@ -152,6 +152,62 @@ export default new Router({
           },
           component: () => import('./views/doc/numberKeyboard'),
         },
+        {
+          path: '/rate',
+          meta: {
+            title: '评分'
+          },
+          component: () => import('./views/doc/rate'),
+        },
+        {
+          path: '/sort',
+          meta: {
+            title: '排序'
+          },
+          component: () => import('./views/doc/sort'),
+        },
+        {
+          path: '/skeleton',
+          meta: {
+            title: '骨架'
+          },
+          component: () => import('./views/doc/skeleton'),
+        },
+        {
+          path: '/payBox',
+          meta: {
+            title: '支付选择框'
+          },
+          component: () => import('./views/doc/payBox'),
+        },
+        {
+          path: '/title',
+          meta: {
+            title: '标题'
+          },
+          component: () => import('./views/doc/title'),
+        },
+        {
+          path: '/view',
+          meta: {
+            title: '页面'
+          },
+          component: () => import('./views/doc/view'),
+        },
+        {
+          path: '/upload',
+          meta: {
+            title: '上传'
+          },
+          component: () => import('./views/doc/upload'),
+        },
+        {
+          path: '/empty',
+          meta: {
+            title: '空'
+          },
+          component: () => import('./views/doc/empty'),
+        },
       ]
     },
     {

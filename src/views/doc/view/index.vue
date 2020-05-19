@@ -1,0 +1,78 @@
+<template>
+  <section>
+    <p class="title">代码演示</p>
+    <div class="box">
+      <div class="box-title">基础用法</div>
+        <f-code lang="html">{{base}}</f-code>
+    </div>
+    <p class="title">API</p>
+    <div class="box">
+      <div class="box-title">Props</div>
+      <f-table :data="propList" type="prop"></f-table>
+    </div>
+    <div class="box">
+      <div class="box-title">Slots</div>
+      <f-table :data="slotList" type="slot"></f-table>
+    </div>
+  </section>
+</template>
+
+<script>
+  import {base} from "./code";
+  import FTable from "../table";
+  import FCode from "../code";
+
+  export default {
+    name: "button-doc",
+    components: {FCode, FTable},
+    data() {
+      return {
+        base: base,
+        propList: [
+          {
+            param: "title",
+            explain: "标题栏标题",
+            type: "string",
+            optionalValue: "-",
+            defaultValue: "-"
+          },
+          {
+            param: "scrollByBody",
+            explain: "body内滚动(true)或元素内滚动",
+            type: "Boolean",
+            optionalValue: "true/false",
+            defaultValue: "true"
+          },
+          {
+            param: "routable",
+            explain: "是否有子路由",
+            type: "Boolean",
+            optionalValue: "true/false",
+            defaultValue: "false"
+          },
+          {
+            param: "transitionName",
+            explain: "过渡动画名称",
+            type: "string",
+            optionalValue: "-",
+            defaultValue: "fade-right"
+          },
+        ],
+        slotList:[
+          {
+            name: "title-right",
+            explain: "标题栏右侧",
+          },
+        ]
+      }
+    },
+    methods: {},
+    mounted() {
+
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+
+</style>
