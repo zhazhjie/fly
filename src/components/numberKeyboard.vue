@@ -36,11 +36,13 @@
       },
       maxLength: {
         type: Number,
-        default: 999999
       },
       submitText: {
         type: String,
         default: "完成"
+      },
+      beforeClose: {
+        type: Function,
       }
     },
     data() {
@@ -56,11 +58,18 @@
       }
     },
     methods: {
-      handleBlur() {
+      done() {
         this.$emit("update:showFlag", false);
       },
+      handleBlur() {
+        if (this.beforeClose) {
+          this.beforeClose(this.done);
+        } else {
+          this.done();
+        }
+      },
       handleInput(num) {
-        if (this.value.length >= this.maxLength) return;
+        if (this.maxLength && this.value.length >= this.maxLength) return;
         this.$emit("input", this.value + num);
       },
       handleDelete() {

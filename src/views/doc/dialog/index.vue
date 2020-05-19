@@ -5,10 +5,10 @@
       <div class="box-title">基础用法</div>
         <f-code lang="html">{{base}}</f-code>
     </div>
-    <div class="box">
-      <div class="box-title">扩展用法</div>
-      <f-code lang="javascript">{{ext}}</f-code>
-    </div>
+    <!--<div class="box">-->
+      <!--<div class="box-title">扩展用法</div>-->
+      <!--<f-code lang="javascript">{{ext}}</f-code>-->
+    <!--</div>-->
     <p class="title">API</p>
     <div class="box">
       <div class="box-title">Props</div>
@@ -49,11 +49,32 @@
             defaultValue: "false"
           },
           {
-            param: "position",
-            explain: "弹出位置",
-            type: "string",
-            optionalValue: "middle/bottom",
-            defaultValue: "middle"
+            param: "width",
+            explain: "对话框宽度",
+            type: "number",
+            optionalValue: "-",
+            defaultValue: "300"
+          },
+          {
+            param: "height",
+            explain: "对话框高度",
+            type: "number",
+            optionalValue: "-",
+            defaultValue: "300"
+          },
+          {
+            param: "top",
+            explain: "对话框至浏览器窗口顶部距离",
+            type: "number",
+            optionalValue: "-",
+            defaultValue: "-"
+          },
+          {
+            param: "left",
+            explain: "对话框至浏览器窗口左侧距离",
+            type: "number",
+            optionalValue: "-",
+            defaultValue: "-"
           },
           {
             param: "title",
@@ -63,32 +84,11 @@
             defaultValue: "提示"
           },
           {
-            param: "simple",
-            explain: "简单模式，只显示右上角关闭按钮",
+            param: "reset",
+            explain: "重置弹出位置",
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
-          },
-          {
-            param: "closeOnClickModal",
-            explain: "点击模态层关闭弹窗",
-            type: "boolean",
-            optionalValue: "true/false",
-            defaultValue: "true"
-          },
-          {
-            param: "zIndex",
-            explain: "弹出层层级",
-            type: "number",
-            optionalValue: "-",
-            defaultValue: "99"
-          },
-          {
-            param: "maxHeight",
-            explain: "弹出层最大高度",
-            type: "string",
-            optionalValue: "-",
-            defaultValue: "90vh"
           },
         ],
         eventList: [

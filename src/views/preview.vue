@@ -42,7 +42,7 @@
         <f-input-number v-model="inputNumVal" editable display size="mini" :max-value="10"></f-input-number>
         <div class="item-title">数字小键盘</div>
         <f-input placeholder="点击弹出小键盘" readonly v-model="keyboardVal" @focus="keyboardFlag=true"></f-input>
-        <f-number-keyboard :show-flag.sync="keyboardFlag" v-model="keyboardVal">数字小键盘</f-number-keyboard>
+        <f-number-keyboard :show-flag.sync="keyboardFlag" v-model="keyboardVal" :before-close="geA">数字小键盘</f-number-keyboard>
         <div class="item-title">评分</div>
         <f-rate v-model="score"></f-rate>
         <div class="item-title">消息提示</div>
@@ -142,6 +142,10 @@
       }
     },
     methods: {
+      geA(done){
+        console.log(123)
+        done();
+      },
       areaChange(val) {
         alert(JSON.stringify(val))
       },

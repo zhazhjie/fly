@@ -16,10 +16,12 @@
 }
 
 .num-list td {
-  height: 0.55rem;
+  height: 0.6rem;
   border: 1px solid #eee;
   font-size: 0.24rem;
   text-align: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .num-list td:active {

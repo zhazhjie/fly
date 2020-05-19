@@ -5,10 +5,10 @@
       <div class="box-title">基础用法</div>
         <f-code lang="html">{{base}}</f-code>
     </div>
-    <div class="box">
-      <div class="box-title">扩展用法</div>
-      <f-code lang="javascript">{{ext}}</f-code>
-    </div>
+    <!--<div class="box">-->
+      <!--<div class="box-title">扩展用法</div>-->
+      <!--<f-code lang="javascript">{{ext}}</f-code>-->
+    <!--</div>-->
     <p class="title">API</p>
     <div class="box">
       <div class="box-title">Props</div>
@@ -35,66 +35,50 @@
         ext: ext,
         propList: [
           {
-            param: "showFlag",
-            explain: "是否显示，支持 .sync 修饰符",
-            type: "boolean",
-            optionalValue: "true/false",
-            defaultValue: "false"
-          },
-          {
             param: "loading",
-            explain: "确认按钮加载",
+            explain: "加载中标识",
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
           },
           {
-            param: "position",
-            explain: "弹出位置",
-            type: "string",
-            optionalValue: "middle/bottom",
-            defaultValue: "middle"
+            param: "eof",
+            explain: "到底标识，没有更多数据了",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "false"
           },
           {
-            param: "title",
-            explain: "标题",
+            param: "dataLength",
+            explain: "数据长度",
+            type: "number",
+            optionalValue: "-",
+            defaultValue: "-"
+          },
+          {
+            param: "emptyText",
+            explain: "无数据时显示的文字",
             type: "string",
             optionalValue: "-",
-            defaultValue: "提示"
+            defaultValue: "-暂无数据-"
           },
           {
-            param: "simple",
-            explain: "简单模式，只显示右上角关闭按钮",
-            type: "boolean",
-            optionalValue: "true/false",
-            defaultValue: "false"
-          },
-          {
-            param: "closeOnClickModal",
-            explain: "点击模态层关闭弹窗",
+            param: "bodyScroll",
+            explain: "body滚动标识，值为false时在元素内滚动，子路由时可用",
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "true"
-          },
-          {
-            param: "zIndex",
-            explain: "弹出层层级",
-            type: "number",
-            optionalValue: "-",
-            defaultValue: "99"
-          },
-          {
-            param: "maxHeight",
-            explain: "弹出层最大高度",
-            type: "string",
-            optionalValue: "-",
-            defaultValue: "90vh"
-          },
+          }
         ],
         eventList: [
           {
-            event: "submit",
-            explain: "点击确定事件",
+            event: "loadMore",
+            explain: "到底加载更多事件",
+            cb: "Function()"
+          },
+          {
+            event: "refresh",
+            explain: "下拉刷新事件",
             cb: "Function()"
           },
         ]

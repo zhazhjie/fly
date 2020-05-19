@@ -117,6 +117,41 @@ export default new Router({
           },
           component: () => import('./views/doc/popup'),
         },
+        {
+          path: '/dialog',
+          meta: {
+            title: '对话框'
+          },
+          component: () => import('./views/doc/dialog'),
+        },
+        {
+          path: '/infiniteLoad',
+          meta: {
+            title: '无限加载'
+          },
+          component: () => import('./views/doc/infiniteLoad'),
+        },
+        {
+          path: '/list',
+          meta: {
+            title: '列表'
+          },
+          component: () => import('./views/doc/list'),
+        },
+        {
+          path: '/number',
+          meta: {
+            title: '加减'
+          },
+          component: () => import('./views/doc/number'),
+        },
+        {
+          path: '/numberKeyboard',
+          meta: {
+            title: '数字小键盘'
+          },
+          component: () => import('./views/doc/numberKeyboard'),
+        },
       ]
     },
     {

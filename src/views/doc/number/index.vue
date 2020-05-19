@@ -5,20 +5,24 @@
       <div class="box-title">基础用法</div>
         <f-code lang="html">{{base}}</f-code>
     </div>
+    <!--<div class="box">-->
+      <!--<div class="box-title">扩展用法</div>-->
+      <!--<f-code lang="javascript">{{ext}}</f-code>-->
+    <!--</div>-->
     <p class="title">API</p>
     <div class="box">
       <div class="box-title">Props</div>
       <f-table :data="propList" type="prop"></f-table>
     </div>
     <div class="box">
-      <div class="box-title">Slots</div>
-      <f-table :data="slotList" type="slot"></f-table>
+      <div class="box-title">Events</div>
+      <f-table :data="eventList" type="event"></f-table>
     </div>
   </section>
 </template>
 
 <script>
-  import {base} from "./code";
+  import {base,ext} from "./code";
   import FTable from "../table";
   import FCode from "../code";
 
@@ -28,6 +32,7 @@
     data() {
       return {
         base: base,
+        ext: ext,
         propList: [
           {
             param: "value/v-model",
@@ -37,70 +42,65 @@
             defaultValue: ""
           },
           {
-            param: "type",
-            explain: "输入框类型",
-            type: "string",
-            optionalValue: "input/textarea",
-            defaultValue: "input"
-          },
-          {
-            param: "maxLength",
-            explain: "最大长度，默认不限制",
+            param: "maxValue",
+            explain: "最大值",
             type: "number",
             optionalValue: "-",
-            defaultValue: "-"
+            defaultValue: "Number.MAX_SAFE_INTEGER"
+          },
+          {
+            param: "minValue",
+            explain: "最小值",
+            type: "number",
+            optionalValue: "-",
+            defaultValue: "0"
+          },
+          {
+            param: "step",
+            explain: "步伐值",
+            type: "number",
+            optionalValue: "-",
+            defaultValue: "1"
           },
           {
             param: "size",
             explain: "尺寸",
             type: "string",
-            optionalValue: "normal/small/mini",
+            optionalValue: "small/mini",
             defaultValue: "small"
           },
           {
-            param: "color",
-            explain: "颜色",
-            type: "string",
-            optionalValue: "primary/red/blue/orange/green/yellow/gray/black",
-            defaultValue: "primary"
-          },
-          {
-            param: "clearable",
-            explain: "是否可清除",
-            type: "boolean",
-            optionalValue: "true/false",
-            defaultValue: "false"
-          },
-          {
             param: "disabled",
-            explain: "禁用状态",
+            explain: "禁用标识",
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
           },
           {
-            param: "readonly",
-            explain: "只读状态",
+            param: "editable",
+            explain: "值可手动输入，仅对f-input-number有效",
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
           },
           {
-            param: "placeholder",
-            explain: "占位文本",
-            type: "string",
-            optionalValue: "-",
-            defaultValue: "-"
-          },
+            param: "display",
+            explain: "加减按钮始终显示，仅对f-input-number有效",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "false"
+          }
         ],
-        slotList:[
+        eventList: [
           {
-            name: "prefix",
-            explain: "输入框前缀",
+            event: "add",
+            explain: "绑定值增加时触发，先于input事件",
+            cb: "Function({value, e})，参数说明：{绑定值，事件对象}"
           },
           {
-            name: "suffix",
-            explain: "输入框后缀",
+            event: "subtract",
+            explain: "绑定值减小时触发，先于input事件",
+            cb: "Function({value, e})，参数说明：{绑定值，事件对象}"
           },
         ]
       }
