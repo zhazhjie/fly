@@ -64,7 +64,7 @@
           },
           {
             param: "bodyScroll",
-            explain: "body滚动标识，值为false时在元素内滚动，子路由时可用",
+            explain: "body内滚动，否则元素内滚动",
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "true"

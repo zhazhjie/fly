@@ -29,27 +29,27 @@
             param: "value/v-model",
             explain: "绑定值",
             type: "string/number",
-            optionalValue: "",
-            defaultValue: ""
+            optionalValue: "-",
+            defaultValue: "-"
           },
           {
             param: "readonly",
             explain: "是否只读",
-            type: "Boolean",
+            type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
           },
           {
             param: "showText",
             explain: "是否显示文字",
-            type: "Boolean",
+            type: "boolean",
             optionalValue: "true/false",
             defaultValue: "true"
           },
           {
             param: "scores",
             explain: "分数数组",
-            type: "Array",
+            type: "array",
             optionalValue: "-",
             defaultValue: "[\n" +
 								"          {\n" +

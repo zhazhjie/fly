@@ -38,15 +38,15 @@
           },
           {
             param: "scrollByBody",
-            explain: "body内滚动(true)或元素内滚动",
-            type: "Boolean",
+            explain: "body内滚动，否则元素内滚动",
+            type: "boolean",
             optionalValue: "true/false",
             defaultValue: "true"
           },
           {
             param: "routable",
             explain: "是否有子路由",
-            type: "Boolean",
+            type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
           },

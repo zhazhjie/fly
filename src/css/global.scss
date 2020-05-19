@@ -147,7 +147,7 @@ select:disabled {
   margin-bottom: 15px;
 }
 
-.tips{
+.tips {
   font-size: 12px;
   color: $gray;
   border-left: 3px solid $primary;
@@ -170,4 +170,8 @@ select:disabled {
 .fade-right-leave-to {
   opacity: 0;
   transform: translateX(50px);
+}
+
+.pointer {
+  cursor: pointer;
 }

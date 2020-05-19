@@ -27,7 +27,7 @@
         propList: [
           {
             param: "value/v-model",
-            explain: "绑定值",
+            explain: "绑定值，0不排序，1升序，2降序",
             type: "number",
             optionalValue: "0/1/2",
             defaultValue: "0"

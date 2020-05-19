@@ -32,17 +32,17 @@
           {
             param: "showFlag",
             explain: "是否显示，支持 .sync 修饰符",
-            type: "Boolean",
+            type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
           },
-					{
-						param: "loading",
-						explain: "加载中标识",
-						type: "Boolean",
-						optionalValue: "true/false",
-						defaultValue: "true"
-					},
+					// {
+					// 	param: "loading",
+					// 	explain: "加载中标识",
+					// 	type: "boolean",
+					// 	optionalValue: "true/false",
+					// 	defaultValue: "false"
+					// },
           {
             param: "wxCode",
             explain: "微信支付编码",

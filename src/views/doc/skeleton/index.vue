@@ -28,14 +28,14 @@
           {
             param: "loading",
             explain: "加载中标识",
-            type: "Boolean",
+            type: "boolean",
             optionalValue: "true/false",
             defaultValue: "true"
           },
           {
             param: "row",
             explain: "段落占位图行数(骨架重复次数)",
-            type: "Number",
+            type: "number",
             optionalValue: "-",
             defaultValue: "1"
           },

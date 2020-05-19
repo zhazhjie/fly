@@ -3,6 +3,7 @@
     <p class="title">代码演示</p>
     <div class="box">
       <div class="box-title">基础用法</div>
+      <p class="tips">需要配置省市区列表，详见<span class="primary pointer" @click="routeTo('/')">快速上手</span></p>
       <f-code lang="html">{{base}}</f-code>
     </div>
     <p class="title">API</p>

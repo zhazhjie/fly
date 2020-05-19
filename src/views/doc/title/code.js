@@ -1,3 +1,3 @@
 export const base = `
- <f-title></f-title>
+ <f-title>这是一个标题</f-title>
   `;
