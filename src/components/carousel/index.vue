@@ -86,7 +86,7 @@
       },
       handleStart(e) {
         // if (this.isMoving) return;
-        if (this.getItems().length<=1) return;
+        if (this.getItems().length <= 1) return;
         this.stop();
         this.removeTransition();
         this.startX = e.changedTouches[0].pageX;
@@ -95,7 +95,7 @@
         this.startTime = Date.now();
       },
       handleMove(e) {
-        if (this.getItems().length<=1) return;
+        if (this.getItems().length <= 1) return;
         if (!this.movable) return;
         let curX = e.changedTouches[0].pageX;
         let curY = e.changedTouches[0].pageY;
@@ -129,13 +129,15 @@
       },
       handleEnd(e) {
         // if(this.isMoving) return;
-        if (this.getItems().length<=1) return;
+        if (this.getItems().length <= 1) return;
         this.movable = true;
         this.firstChange = true;
         let curX = e.changedTouches[0].pageX;
         if (curX === this.startX) return;
         // this.isMoving=true;
-        if (Date.now() - this.startTime < this.interval) {
+        let offset = 20;
+        let inOffset = curX < this.startX + offset && curX > this.startX - offset;
+        if (Date.now() - this.startTime < this.interval && !inOffset) {
           if (this.sideSwitch(curX) && !this.loop) {
             this.moveBack();
           } else {
