@@ -7,9 +7,9 @@
       <f-loading-2></f-loading-2>
       <!--<div class="gray">上传中...</div>-->
     </div>
-    <input ref="file" type="file" accept="image/*" :capture="capture" style="display: none" @change="uploadFile"></input>
+    <input ref="file" type="file" accept="image/*" :capture="capture" style="display: none" @change="uploadFile"/>
     <!--<div class="font10 gray">微信分身请用拍照上传</div>-->
-    <img-clip :size="maxWidth" :show-flag.sync="showFlag" :img="imgData" @submitClip="submitClip"></img-clip>
+    <img-clip :width="maxWidth" :height="maxHeight" :show-flag.sync="showFlag" :img="imgData" @submitClip="submitClip"></img-clip>
   </div>
 </template>
 

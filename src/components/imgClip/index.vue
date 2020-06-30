@@ -37,10 +37,14 @@
         type: Boolean,
         default: false
       },
-      size: {
-        type: Number,
-        default: 300
-      },
+			width: {
+				type: Number,
+				default: 300
+			},
+			height: {
+				type: Number,
+				default: 300
+			},
     },
     components: {
       selectBox
@@ -55,7 +59,7 @@
         nw: 0,
         nh: 0,
         clipData: null,
-        ratio: 10 / 10, // equal to SelectBox's width / height
+				ratio: this.width / this.height, // equal to SelectBox's width / height
         imgSize: {w: 0, h: 0},
         containerTop: 0,
         realSize: {
@@ -143,12 +147,13 @@
         const bufferCanvas = document.createElement('canvas');
         const bfx = bufferCanvas.getContext('2d');
         const computedRec = this.getComputedRec(rec);
-        let size = computedRec.w < this.size ? computedRec.w : this.size;
-        bufferCanvas.width = size;
-        bufferCanvas.height = size;
-        bfx.fillStyle = "rgba(0,0,0,0)";
-        bfx.fillRect(0, 0, bufferCanvas.width, bufferCanvas.height);
-        bfx.drawImage(this.$srcImg, computedRec.l, computedRec.t, computedRec.w, computedRec.h, 0, 0, size, size);
+				let width = computedRec.w < this.width ? computedRec.w : this.width;
+				let height = computedRec.h < this.height ? computedRec.h : this.height;
+				bufferCanvas.width = width;
+				bufferCanvas.height = height;
+				bfx.fillStyle = "rgba(0,0,0,0)";
+				bfx.fillRect(0, 0, bufferCanvas.width, bufferCanvas.height);
+				bfx.drawImage(this.$srcImg, computedRec.l, computedRec.t, computedRec.w, computedRec.h, 0, 0, width, height);
         //bfx.drawImage(this.$srcImg, -computedRec.l, -computedRec.t, this.nw, this.nh);
         this.clipData = bufferCanvas.toDataURL();
         //console.log(this.nw, this.nh);
