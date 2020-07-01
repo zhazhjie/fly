@@ -14,6 +14,7 @@
       @blur="emitBlur"
       @input="emitInput"
       @change="emitChange"
+      @keyup="emitKeyup"
       :disabled="disabled"
       :readonly="readonly"
       :value="value"
@@ -32,6 +33,7 @@
       @blur="emitBlur"
       @input="emitInput"
       @change="emitChange"
+      @keyup="emitKeyup"
       :disabled="disabled"
       :readonly="readonly"
       :value="value"/>
@@ -117,6 +119,9 @@
       },
       emitBlur(e) {
         this.$emit("blur", e);
+      },
+      emitKeyup(e) {
+        this.$emit("keyup", e);
       },
       emitInput(e) {
         let value = e.target.value || "";
