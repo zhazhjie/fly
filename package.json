@@ -35,5 +35,8 @@
     "Android >= 4.0",
     "IOS >= 6.0",
     "not ie <= 11"
-  ]
+  ],
+  "_from": "fly-components@git+http://git.tigoyun.com/zzhijie/fly-components.git",
+  "_resolved": "http://git.tigoyun.com/zzhijie/fly-components.git#3f6584cdb7fb55e9667a0798da2e75463ed456bc",
+  "__npminstall_done": "Wed Jul 08 2020 13:55:03 GMT+0800 (中国标准时间)"
 }
