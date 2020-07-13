@@ -71,6 +71,10 @@
       maxHeight: {
         type: String,
         default: "90vh"
+      },
+      appendToBody: {
+        type: Boolean,
+        default: false
       }
     },
     data() {
@@ -102,14 +106,19 @@
       },
       setBodyScroll(flag) {
         // document.body.style.overflow = flag ? "auto" : "hidden";
+      },
+      init() {
+        if (this.appendToBody) {
+          document.body.appendChild(this.$el);
+        }
       }
     },
     computed: {},
     mounted() {
-
+      this.init();
     },
     beforeDestroy() {
-      this.setBodyScroll(true);
+
     }
   }
 </script>
