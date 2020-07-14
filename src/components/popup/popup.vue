@@ -111,6 +111,11 @@
         if (this.appendToBody) {
           document.body.appendChild(this.$el);
         }
+      },
+      clear() {
+        if (this.appendToBody) {
+          document.body.removeChild(this.$el);
+        }
       }
     },
     computed: {},
@@ -118,7 +123,7 @@
       this.init();
     },
     beforeDestroy() {
-
+      this.clear();
     }
   }
 </script>
