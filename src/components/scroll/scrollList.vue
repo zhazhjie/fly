@@ -114,11 +114,8 @@
       debounceScroll() {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-          this.scrollCb();
+          this.moveBack();
         }, 80);
-      },
-      scrollCb() {
-        this.moveBack();
       },
       handleSelect(item, index) {
         this.moveTo(index);
