@@ -16,7 +16,6 @@
 </template>
 
 <script>
-  let timer = null;
   export default {
     name: "f-scroll-list",
     props: {
@@ -46,9 +45,9 @@
         itemHeight: 40,
         itemNum: 5,
         stepHeight: 5,
-        stopFlag: false,
-        autoFlag: false,
-        index: 0
+        manualFlag: false,
+        index: 0,
+        timer: null
       }
     },
     methods: {
@@ -70,36 +69,30 @@
         }
       },
       handleStart(e) {
-        this.stopFlag = true;
-        this.autoFlag = false;
+        this.manualFlag = true;
       },
       handleMove(e) {
         // this.clearMoveBack();
       },
       handleEnd(e) {
-        this.stopFlag = false;
-        this.scrollCb({target: this.$refs.scrollList});
+        this.manualFlag = false;
+        this.debounceScroll();
       },
-      moveBack(callback) {
-        if (this.stopFlag) return;
-        this.autoFlag = true;
+      moveBack() {
         let scrollList = this.$refs.scrollList;
         let scrollTop = scrollList.scrollTop;
         let height = scrollTop % this.itemHeight | 0;
         if (!height) {
-          if (callback) callback();
-          this.autoFlag = false;
-          return;
+          return this.submitResult();
         }
         if (height > (this.itemHeight >> 1)) {
           scrollList.scrollTop = (scrollTop + 1) | 0;
         } else {
           scrollList.scrollTop = (scrollTop - 1) | 0;
         }
-        requestAnimationFrame(() => this.moveBack(callback));
+        requestAnimationFrame(this.moveBack);
       },
-      moveTo(index, callback) {
-        this.autoFlag = true;
+      moveTo(index) {
         let scrollList = this.$refs.scrollList;
         let scrollTop = scrollList.scrollTop | 0;
         let targetHeight = this.itemHeight * index;
@@ -110,35 +103,32 @@
         } else if (scrollTop > targetHeight) {
           scrollList.scrollTop = (scrollTop - height) | 0;
         } else {
-          if (callback) callback();
-          this.autoFlag = false;
           return;
         }
-        requestAnimationFrame(() => this.moveTo(index, callback));
+        requestAnimationFrame(() => this.moveTo(index));
       },
       handleScroll(e) {
-        if (this.autoFlag) return;
-        // this.debounceScroll(e);
-        this.stopFlag = true;
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-          this.stopFlag = false;
-          this.scrollCb(e);
+        if (this.manualFlag) return;
+        this.debounceScroll(e);
+      },
+      debounceScroll() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+          this.scrollCb();
         }, 80);
       },
-      scrollCb(e) {
-        if (!this.autoFlag) {
-          this.moveBack(() => {
-            let scrollTop = e.target.scrollTop;
-            let index = scrollTop / this.itemHeight | 0;
-            this.$emit("input", this.list[index]);
-          });
-        }
+      scrollCb() {
+        this.moveBack();
       },
       handleSelect(item, index) {
-        this.moveTo(index, () => {
-          this.$emit("input", item);
-        });
+        this.moveTo(index);
+      },
+      submitResult() {
+        // console.log("input");
+        let scrollList = this.$refs.scrollList;
+        let scrollTop = scrollList.scrollTop;
+        let index = scrollTop / this.itemHeight | 0;
+        this.$emit("input", this.list[index]);
       },
       setScrollTop() {
         let index = this.list.indexOf(this.value);
