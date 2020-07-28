@@ -19,7 +19,7 @@
       <slot name='header'/>
       <slot/>
       <slot name="empty">
-        <f-empty v-if='!dataLength'>{{emptyText}}</f-empty>
+        <f-empty v-if='!dataLength&&!loading'>{{emptyText}}</f-empty>
       </slot>
       <div class="load-more">
         <f-loading-2 v-show='!isRefresh&&loading&&!!dataLength'/>
