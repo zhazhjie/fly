@@ -43,12 +43,12 @@
         <span class="cur-time-item active">{{formatDate(startTime)}}</span>
       </div>
       <scroll-box>
-        <scroll-list :list="yearRange" suffix="年" v-model="time.year" v-if="isRequire.year"></scroll-list>
-        <scroll-list :list="monthRange" suffix="月" v-model="time.month" v-if="isRequire.month"></scroll-list>
-        <scroll-list :list="dateRange" suffix="日" v-model="time.date" v-if="isRequire.date"></scroll-list>
-        <scroll-list :list="hourRange" suffix="时" v-model="time.hour" v-if="isRequire.hour"></scroll-list>
-        <scroll-list :list="minuteRange" suffix="分" v-model="time.minute" v-if="isRequire.minute"></scroll-list>
-        <scroll-list :list="secondRange" suffix="秒" v-model="time.second" v-if="isRequire.second"></scroll-list>
+        <scroll-list :list="yearRange" :suffix="getSuffix('年')" v-model="time.year" v-if="isRequire.year"></scroll-list>
+        <scroll-list :list="monthRange" :suffix="getSuffix('月')" v-model="time.month" v-if="isRequire.month"></scroll-list>
+        <scroll-list :list="dateRange" :suffix="getSuffix('日')" v-model="time.date" v-if="isRequire.date"></scroll-list>
+        <scroll-list :list="hourRange" :suffix="getSuffix('时')" v-model="time.hour" v-if="isRequire.hour"></scroll-list>
+        <scroll-list :list="minuteRange" :suffix="getSuffix('分')" v-model="time.minute" v-if="isRequire.minute"></scroll-list>
+        <scroll-list :list="secondRange" :suffix="getSuffix('秒')" v-model="time.second" v-if="isRequire.second"></scroll-list>
       </scroll-box>
     </f-popup>
   </div>
@@ -136,6 +136,10 @@
       limitCurMonth: {
         type: Boolean,
         default: false
+      },
+      suffixFlag: {
+        type: Boolean,
+        default: true
       }
     },
     data() {
@@ -394,7 +398,7 @@
         this.$emit("input", "");
         this.curType = this.curType === "date" ? "month" : "date";
         this.isRange = this.curType === "date";
-        if(this.curType === "month") this.handleChangeActiveTime("startTime");
+        if (this.curType === "month") this.handleChangeActiveTime("startTime");
         // if (this.isRange && !this.endTime) {
         //   this.endTime = this.getDateObj();
         // }
@@ -568,6 +572,9 @@
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
       },
+      getSuffix(suffix) {
+        return this.suffixFlag ? suffix : "";
+      }
     },
     mounted() {
       this.initTime();
