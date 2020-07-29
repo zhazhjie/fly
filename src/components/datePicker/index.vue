@@ -575,7 +575,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
   .opt-box {
     display: flex;
