@@ -43,12 +43,12 @@
         <span class="cur-time-item active">{{formatDate(startTime)}}</span>
       </div>
       <scroll-box>
-        <scroll-list :list="yearRange" :suffix="getSuffix('年')" v-model="time.year" v-if="isRequire.year"></scroll-list>
-        <scroll-list :list="monthRange" :suffix="getSuffix('月')" v-model="time.month" v-if="isRequire.month"></scroll-list>
-        <scroll-list :list="dateRange" :suffix="getSuffix('日')" v-model="time.date" v-if="isRequire.date"></scroll-list>
-        <scroll-list :list="hourRange" :suffix="getSuffix('时')" v-model="time.hour" v-if="isRequire.hour"></scroll-list>
-        <scroll-list :list="minuteRange" :suffix="getSuffix('分')" v-model="time.minute" v-if="isRequire.minute"></scroll-list>
-        <scroll-list :list="secondRange" :suffix="getSuffix('秒')" v-model="time.second" v-if="isRequire.second"></scroll-list>
+        <scroll-list ref="year" :list="yearRange" :suffix="getSuffix('年')" v-model="time.year" v-if="isRequire.year"></scroll-list>
+        <scroll-list ref="month" :list="monthRange" :suffix="getSuffix('月')" v-model="time.month" v-if="isRequire.month"></scroll-list>
+        <scroll-list ref="date" :list="dateRange" :suffix="getSuffix('日')" v-model="time.date" v-if="isRequire.date"></scroll-list>
+        <scroll-list ref="hour" :list="hourRange" :suffix="getSuffix('时')" v-model="time.hour" v-if="isRequire.hour"></scroll-list>
+        <scroll-list ref="minute" :list="minuteRange" :suffix="getSuffix('分')" v-model="time.minute" v-if="isRequire.minute"></scroll-list>
+        <scroll-list ref="second" :list="secondRange" :suffix="getSuffix('秒')" v-model="time.second" v-if="isRequire.second"></scroll-list>
       </scroll-box>
     </f-popup>
   </div>

@@ -71,7 +71,7 @@
                   v-model="pickerValues"></f-picker>
         <div class="item-title">时间选择器</div>
         <f-button @click="datePickerFlag=true">时间选择器</f-button>
-        <f-date-picker :show-flag.sync="datePickerFlag"></f-date-picker>
+        <f-date-picker type="hour" range limit-cur-month :show-flag.sync="datePickerFlag" v-model="time"></f-date-picker>
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
         <f-area-picker :show-flag.sync="areaPickerFlag" @change="areaChange"></f-area-picker>
@@ -87,7 +87,7 @@
         <div class="item-title">图片预览</div>
         <img src="../img/404.png" style="width: 1rem;" v-img-preview>
         <div class="item-title">图片裁切</div>
-        <input type="file" @change="handleSelectFile"></input>
+        <input type="file" @change="handleSelectFile"/>
         <img style="max-width: 100%" v-if="imgData" :src="imgData">
         <f-img-clip :img="imgData" :show-flag.sync="imgClipFlag" @submitClip="e=>imgData=e"></f-img-clip>
         <div class="item-title">上拉加载</div>
@@ -110,6 +110,7 @@
     components: {FView, fUpload},
     data() {
       return {
+        time:[],
         provinceList: province,
         cityList: city,
         areaList: area,

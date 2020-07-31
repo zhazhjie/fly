@@ -58,7 +58,7 @@
             defaultValue: '{value: "value", text: "text"}'
           },
           {
-            param: "format",
+            param: "formatNum",
             explain: "格式化数值，如：1=>'01'",
             type: "boolean",
             optionalValue: "true/false",

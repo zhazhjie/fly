@@ -29,7 +29,7 @@
       value: {
         type: [Number, String, Object],
       },
-      format: {
+      formatNum: {
         type: Boolean,
         default: true,
       },
@@ -52,7 +52,7 @@
     },
     methods: {
       formatNumber(val) {
-        if (!this.format) return val;
+        if (!this.formatNum) return val;
         let isNumber = !isNaN(val);
         if (isNumber) {
           val += "";

@@ -51,6 +51,13 @@
             defaultValue: "false"
           },
           {
+            param: "suffixFlag",
+            explain: "是否显示后缀，如2020 =》 2020年",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "true"
+          },
+          {
             param: "format",
             explain: "格式日期，如：yyyy-MM-dd",
             type: "string",
