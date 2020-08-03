@@ -1,6 +1,9 @@
 <template>
   <section :class="title?'view':''">
     <f-title v-if="!!title">
+      <template slot="left">
+        <slot name="title-left"></slot>
+      </template>
       <template>{{title}}</template>
       <template slot="right">
         <slot name="title-right"></slot>
