@@ -162,7 +162,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .cropper-modal {
     position: fixed;
     top: 0;
@@ -248,7 +248,7 @@
   }
 
   .modal-footer .submit-clip {
-    background: rgb(55, 173, 255);
+    background: $primary;
     color: white;
   }
 </style>
