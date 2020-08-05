@@ -17,25 +17,37 @@
 <script>
   import scrollList from "../scroll/scrollList";
   import elPopup from "../popup";
-  // import {province as provinceList, city as cityList, area as areaList} from "./areaData";
   import scrollBox from "../scroll/scrollBox";
+  import Vue from "vue";
 
   export default {
     name: "f-area-picker",
     components: {scrollBox, scrollList, elPopup},
     props: {
-      // provinceList: {
-      //   type: Array,
-      //   default: () => ([])
-      // },
-      // cityList: {
-      //   type: Array,
-      //   default: () => ([])
-      // },
-      // areaList: {
-      //   type: Array,
-      //   default: () => ([])
-      // },
+      provinceList: {
+        type: Array,
+        default: () => {
+          let {areaConfig = {}} = Vue.prototype.$fly;
+          let {provinceList = []} = areaConfig;
+          return provinceList;
+        }
+      },
+      cityList: {
+        type: Array,
+        default: () => {
+          let {areaConfig = {}} = Vue.prototype.$fly;
+          let {cityList = []} = areaConfig;
+          return cityList;
+        }
+      },
+      areaList: {
+        type: Array,
+        default: () => {
+          let {areaConfig = {}} = Vue.prototype.$fly;
+          let {areaList = []} = areaConfig;
+          return areaList;
+        }
+      },
       showFlag: {
         type: Boolean,
         default: false
@@ -47,7 +59,7 @@
       defaultProps: {
         type: Object,
         default: () => {
-          return {value: 'value', text: 'text'}
+          return {value: 'value', text: 'text', parentId: 'parentId'}
         }
       },
       requireArea: {
@@ -56,11 +68,11 @@
       }
     },
     data() {
-      let {provinceList = [], cityList = [], areaList = []} = this.$fly.areaConfig || {};
+      // let {provinceList = [], cityList = [], areaList = []} = this.$fly.areaConfig || {};
       return {
-        provinceList,
-        cityList,
-        areaList,
+        // provinceList,
+        // cityList,
+        // areaList,
         provinceFilterList: this.provinceList,
         cityFilterList: [],
         areaFilterList: [],
@@ -74,10 +86,10 @@
     },
     watch: {
       "result.province": function (province) {
-        this.setFilterList(this.cityList, "city", this.value[1], province.value);
+        this.setFilterList(this.cityList, "city", this.value[1], province ? province[this.defaultProps.value] : "");
       },
       "result.city": function (city) {
-        this.setFilterList(this.areaList, "area", this.value[2], city ? city.value : "");
+        this.setFilterList(this.areaList, "area", this.value[2], city ? city[this.defaultProps.value] : "");
       },
       showFlag: function (value) {
         if (value && !this.initFlag) {
@@ -99,32 +111,26 @@
       hidePopup() {
         this.$emit('update:showFlag', false);
       },
-      isObj(item) {
-        return Object.prototype.toString.call(item) === '[object Object]';
-      },
-      getValue(item, textFlag) {
-        return this.isObj(item) ? item[this.defaultProps[textFlag ? 'text' : 'value']] : item;
-      },
       setFilterList(list, key, value, parentId) {
-        let result = [];
+        let filterList = [];
         let hasValue = false;
         list.forEach(v => {
-          if (v.parentId === parentId) {
-            if (v.value === value) {
+          if (v[this.defaultProps.parentId] === parentId || parentId === void 0) {
+            if (v[this.defaultProps.value] === value) {
               this.result[key] = v;
               hasValue = true;
             }
-            result.push(v);
+            filterList.push(v);
           }
         });
-        this[key + "FilterList"] = result;
+        this[key + "FilterList"] = filterList;
         if (!hasValue) {
-          this.result[key] = result[0];
+          this.result[key] = filterList[0];
         }
       },
       init() {
         if (this.showFlag) {
-          this.setFilterList(this.provinceList, "province", this.value[0], 0);
+          this.setFilterList(this.provinceList, "province", this.value[0]);
           this.initFlag = true;
         }
       }

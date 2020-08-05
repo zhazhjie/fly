@@ -20,7 +20,8 @@
     name: "f-scroll-list",
     props: {
       list: {
-        type: [Array, Number]
+        type: [Array, Number],
+        default: () => ([])
       },
       suffix: {
         type: String,
