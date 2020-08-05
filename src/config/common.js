@@ -11,8 +11,8 @@ export default {
     action: ""
   },
   areaConfig: {
-    provinceList,
-    cityList,
-    areaList
+    // provinceList,
+    // cityList,
+    // areaList
   }
 };

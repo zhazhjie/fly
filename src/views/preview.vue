@@ -71,10 +71,12 @@
                   v-model="pickerValues"></f-picker>
         <div class="item-title">时间选择器</div>
         <f-button @click="datePickerFlag=true">时间选择器</f-button>
-        <f-date-picker type="hour" range limit-cur-month :show-flag.sync="datePickerFlag" v-model="time"></f-date-picker>
+        <f-date-picker type="hour" range limit-cur-month :show-flag.sync="datePickerFlag"
+                       v-model="time"></f-date-picker>
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
-        <f-area-picker :show-flag.sync="areaPickerFlag" @change="areaChange"></f-area-picker>
+        <f-area-picker :province-list="provinceList" :city-list="cityList" :area-list="areaList"
+                       :show-flag.sync="areaPickerFlag" :value="areaValues" @change="areaChange"></f-area-picker>
         <div class="item-title">支付盒子</div>
         <f-button @click="payBoxFlag=true">支付盒子</f-button>
         <f-pay-box :show-flag.sync="payBoxFlag"></f-pay-box>
@@ -110,15 +112,15 @@
     components: {FView, fUpload},
     data() {
       return {
-        time:[],
-        provinceList: province,
-        cityList: city,
-        areaList: area,
+        time: [],
+        provinceList: [],
+        cityList: [],
+        areaList: [],
         selectVal: 1,
         checkboxVal: [1],
         radioVal: 1,
         numVal: 1,
-        inputNumVal:0,
+        inputNumVal: 0,
         switchVal: true,
         popupFlag: false,
         dialogFlag: false,
@@ -139,7 +141,8 @@
         keyboardVal: "",
         keyboardFlag: false,
         pickerValues: [],
-        pickerFlag: false
+        pickerFlag: false,
+        areaValues: []
       }
     },
     methods: {
@@ -180,7 +183,11 @@
     computed: {},
     mounted() {
       setTimeout(() => {
-        this.imgList = [1,2,3,4];
+        this.imgList = [1, 2, 3, 4];
+        this.provinceList = province;
+        this.cityList = city;
+        this.areaList = area;
+        this.areaValues = [350000, 350500, 350521]
       }, 3000);
     }
   }
@@ -239,7 +246,7 @@
     background: #eee;
   }
 
-  .space{
+  .space {
     padding: 0.05rem;
   }
 </style>

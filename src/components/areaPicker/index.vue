@@ -6,9 +6,12 @@
         <f-button size="mini" type="text" @click="submit">确定</f-button>
       </div>
       <scroll-box>
-        <scroll-list :list="provinceFilterList" v-model="result.province" v-bind='$attrs'></scroll-list>
-        <scroll-list :list="cityFilterList" v-model="result.city" v-bind='$attrs'></scroll-list>
-        <scroll-list :list="areaFilterList" v-model="result.area" v-bind='$attrs' v-if="requireArea"></scroll-list>
+        <scroll-list :list="provinceFilterList" :default-props="defaultProps" v-model="result.province"
+                     v-bind='$attrs'></scroll-list>
+        <scroll-list :list="cityFilterList" :default-props="defaultProps" v-model="result.city"
+                     v-bind='$attrs'></scroll-list>
+        <scroll-list :list="areaFilterList" :default-props="defaultProps" v-model="result.area" v-bind='$attrs'
+                     v-if="requireArea"></scroll-list>
       </scroll-box>
     </f-popup>
   </div>
@@ -96,7 +99,31 @@
           this.init();
         }
       },
+      provinceList() {
+        this.setFilterList(this.provinceList, "province", this.value[0]);
+      },
+      cityList() {
+        let {province} = this.result;
+        this.setFilterList(this.cityList, "city", this.value[1], province ? province[this.defaultProps.value] : "");
+      },
+      areaList() {
+        let {city} = this.result;
+        this.setFilterList(this.areaList, "area", this.value[2], city ? city[this.defaultProps.value] : "");
+      }
     },
+    // computed: {
+    //   provinceFilterList() {
+    //     return this.provinceList;
+    //   },
+    //   cityFilterList() {
+    //     let {province}=this.result;
+    //     let parentId=province ? province[this.defaultProps.value] : "";
+    //     return this.getFilterList(this.cityList,parentId)
+    //   },
+    //   areaFilterList() {
+    //
+    //   }
+    // },
     methods: {
       submit() {
         let result = [];
@@ -127,6 +154,15 @@
         if (!hasValue) {
           this.result[key] = filterList[0];
         }
+      },
+      getFilterList(list, parentId) {
+        let filterList = [];
+        list.forEach(v => {
+          if (v[this.defaultProps.parentId] === parentId) {
+            filterList.push(v);
+          }
+        });
+        return filterList;
       },
       init() {
         if (this.showFlag) {
