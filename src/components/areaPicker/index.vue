@@ -76,9 +76,9 @@
         // provinceList,
         // cityList,
         // areaList,
-        provinceFilterList: this.provinceList,
-        cityFilterList: [],
-        areaFilterList: [],
+        // provinceFilterList: this.provinceList,
+        // cityFilterList: [],
+        // areaFilterList: [],
         result: {
           province: "",
           city: "",
@@ -89,41 +89,32 @@
     },
     watch: {
       "result.province": function (province) {
-        this.setFilterList(this.cityList, "city", this.value[1], province ? province[this.defaultProps.value] : "");
+        this.setResult(this.cityFilterList, "city", this.value[1]);
       },
       "result.city": function (city) {
-        this.setFilterList(this.areaList, "area", this.value[2], city ? city[this.defaultProps.value] : "");
+        this.setResult(this.areaFilterList, "area", this.value[2]);
       },
       showFlag: function (value) {
         if (value && !this.initFlag) {
           this.init();
         }
       },
-      provinceList() {
-        this.setFilterList(this.provinceList, "province", this.value[0]);
+    },
+    computed: {
+      provinceFilterList() {
+        return this.provinceList;
       },
-      cityList() {
+      cityFilterList() {
         let {province} = this.result;
-        this.setFilterList(this.cityList, "city", this.value[1], province ? province[this.defaultProps.value] : "");
+        let parentId = province ? province[this.defaultProps.value] : "";
+        return this.getFilterList(this.cityList, parentId);
       },
-      areaList() {
+      areaFilterList() {
         let {city} = this.result;
-        this.setFilterList(this.areaList, "area", this.value[2], city ? city[this.defaultProps.value] : "");
+        let parentId = city ? city[this.defaultProps.value] : "";
+        return this.getFilterList(this.areaList, parentId);
       }
     },
-    // computed: {
-    //   provinceFilterList() {
-    //     return this.provinceList;
-    //   },
-    //   cityFilterList() {
-    //     let {province}=this.result;
-    //     let parentId=province ? province[this.defaultProps.value] : "";
-    //     return this.getFilterList(this.cityList,parentId)
-    //   },
-    //   areaFilterList() {
-    //
-    //   }
-    // },
     methods: {
       submit() {
         let result = [];
@@ -138,35 +129,22 @@
       hidePopup() {
         this.$emit('update:showFlag', false);
       },
-      setFilterList(list, key, value, parentId) {
-        let filterList = [];
-        let hasValue = false;
-        list.forEach(v => {
-          if (v[this.defaultProps.parentId] === parentId || parentId === void 0) {
-            if (v[this.defaultProps.value] === value) {
-              this.result[key] = v;
-              hasValue = true;
-            }
-            filterList.push(v);
-          }
-        });
-        this[key + "FilterList"] = filterList;
-        if (!hasValue) {
-          this.result[key] = filterList[0];
+      setResult(list, key, value) {
+        if (!value) {
+          this.result[key] = list[0];
+        } else {
+          let curItem = list.find(v => v[this.defaultProps.value] === value);
+          this.result[key] = curItem || list[0];
         }
       },
       getFilterList(list, parentId) {
-        let filterList = [];
-        list.forEach(v => {
-          if (v[this.defaultProps.parentId] === parentId) {
-            filterList.push(v);
-          }
-        });
-        return filterList;
+        return list.filter(v => v[this.defaultProps.parentId] === parentId);
       },
       init() {
         if (this.showFlag) {
-          this.setFilterList(this.provinceList, "province", this.value[0]);
+          this.setResult(this.provinceList, "province", this.value[0]);
+          this.setResult(this.cityList, "city", this.value[1]);
+          this.setResult(this.areaList, "area", this.value[2]);
           this.initFlag = true;
         }
       }

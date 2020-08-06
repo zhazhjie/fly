@@ -71,7 +71,7 @@
                   v-model="pickerValues"></f-picker>
         <div class="item-title">时间选择器</div>
         <f-button @click="datePickerFlag=true">时间选择器</f-button>
-        <f-date-picker type="hour" range limit-cur-month :show-flag.sync="datePickerFlag"
+        <f-date-picker range :show-flag.sync="datePickerFlag"
                        v-model="time"></f-date-picker>
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
