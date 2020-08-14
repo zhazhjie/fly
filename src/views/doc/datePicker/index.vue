@@ -40,7 +40,7 @@
             param: "type",
             explain: "类型",
             type: "string",
-            optionalValue: "date/year/month/datetime/time/minute/hour",
+            optionalValue: "date/year-month/month-date/datetime/time/hour-minute/minute-second",
             defaultValue: "date"
           },
           {

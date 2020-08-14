@@ -61,12 +61,12 @@
   import fSelect from "../select";
   import scrollBox from "../scroll/scrollBox";
 
-  const timeType = ["date", "year", "month", "datetime", "time", "minute", "hour"];
+  const timeType = ["date", "year-month", "month-date", "datetime", "time", "hour-minute", "minute-second"];
   export default {
     name: "f-date-picker",
     components: {scrollBox, scrollList, fPopup, fInput, fSelect},
     props: {
-      //可选值：date,year,month,datetime,time,minute,hour
+      //可选值：date,year-month,month-date,datetime,time,hour-minute,minute-second
       type: {
         type: String,
         default: "date"
@@ -262,18 +262,18 @@
         switch (this.curType) {
           case "date":
             return "yyyy-MM-dd";
-          case "month":
+          case "year-month":
             return "yyyy-MM";
-          case "year":
-            return "yyyy";
+          case "month-date":
+            return "MM-dd";
           case "datetime":
             return "yyyy-MM-dd hh:mm:ss";
           case "time":
             return "hh:mm:ss";
-          case "minute":
+          case "hour-minute":
             return "hh:mm";
-          case "hour":
-            return "hh";
+          case "minute-second":
+            return "mm:ss";
         }
       },
       curTime() {
@@ -310,11 +310,11 @@
           case "date":
             year = month = date = true;
             break;
-          case "month":
+          case "year-month":
             year = month = true;
             break;
-          case "year":
-            year = true;
+          case "month-date":
+            month = date = true;
             break;
           case "datetime":
             year = month = date = hour = minute = second = true;
@@ -322,11 +322,11 @@
           case "time":
             hour = minute = second = true;
             break;
-          case "minute":
+          case "hour-minute":
             hour = minute = true;
             break;
-          case "hour":
-            hour = true;
+          case "minute-second":
+            minute = second = true;
             break;
         }
         return {
@@ -418,21 +418,22 @@
           let year = d.getFullYear();
           let month = d.getMonth();
           let date = d.getDate();
+          let hour = d.getHours();
           switch (this.curType) {
             case "date":
               return new Date(arr[0], arr[1] - 1, arr[2]);
-            case "month":
+            case "year-month":
               return new Date(arr[0], arr[1] - 1, 1);
-            case "year":
-              return new Date(arr[0], 0, 1);
+            case "month-date":
+              return new Date(year, arr[0]-1, arr[1]);
             case "datetime":
               return new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
             case "time":
               return new Date(year, month, date, arr[0], arr[1], arr[2]);
-            case "minute":
+            case "hour-minute":
               return new Date(year, month, date, arr[0], arr[1], 0);
-            case "hour":
-              return new Date(year, month, date, arr[0], 0, 0);
+            case "minute-second":
+              return new Date(year, month, date, hour, arr[0], arr[1]);
           }
         } else {
           return new Date();

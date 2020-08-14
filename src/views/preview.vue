@@ -71,8 +71,8 @@
                   v-model="pickerValues"></f-picker>
         <div class="item-title">时间选择器</div>
         <f-button @click="datePickerFlag=true">时间选择器</f-button>
-        <f-date-picker range :show-flag.sync="datePickerFlag"
-                       v-model="time"></f-date-picker>
+        <f-date-picker type="month-date"  range :show-flag.sync="datePickerFlag"
+                       v-model="time" @submit="submit"></f-date-picker>
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
         <f-area-picker :province-list="provinceList" :city-list="cityList" :area-list="areaList"
@@ -178,6 +178,9 @@
           this.loading = false;
           this.params.curPage++;
         }, 1000)
+      },
+      submit(date){
+        console.log(date)
       }
     },
     computed: {},
