@@ -8,7 +8,7 @@
     <span class="mid"><slot/></span>
     <span class="right">
       <slot name="right">
-      <i @click="routeTo('/')" class="home-icon">&#xe665;</i>
+<!--      <i @click="routeTo('/')" class="home-icon">&#xe665;</i>-->
     </slot>
     </span>
   </div>
