@@ -45,6 +45,10 @@
       size: {
         type: String,
         default: ""
+      },
+      indeterminate:{
+        type: Boolean,
+        default: false
       }
     },
     data() {
@@ -64,8 +68,10 @@
           } else {
             this.value.push(this.label);
           }
+          this.$emit('change', this.label);
         } else {
           this.$emit('input', e.target.checked);
+          this.$emit('change', e.target.checked);
         }
       }
     },
