@@ -25,6 +25,7 @@
         <f-checkbox :label="1" v-model="checkboxVal">1</f-checkbox>
         <f-checkbox :label="2" v-model="checkboxVal">2</f-checkbox>
         <f-checkbox :label="3" v-model="checkboxVal" disabled>3</f-checkbox>
+        <f-checkbox v-model="checkboxVal2" color="red" :indeterminate="true">3</f-checkbox>
         <div class="item-title">单选框</div>
         <f-radio :label="1" v-model="radioVal">1</f-radio>
         <f-radio :label="2" v-model="radioVal">2</f-radio>
@@ -118,6 +119,7 @@
         areaList: [],
         selectVal: 1,
         checkboxVal: [1],
+        checkboxVal2: false,
         radioVal: 1,
         numVal: 1,
         inputNumVal: 0,

@@ -14,7 +14,7 @@
       :checked="isChecked"
       @change='change'
       :disabled='disabled'>
-    <i class="icon" :class="[color]"></i>
+    <i class="icon" :class="[color,{indeterminate}]"></i>
     <span class="slot" v-if="$slots.default">
       <slot/>
     </span>

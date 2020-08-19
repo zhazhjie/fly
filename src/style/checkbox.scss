@@ -56,37 +56,56 @@
   transform-origin: center;
 }
 
+.checkbox .input:not(:checked) + .indeterminate::before {
+  box-sizing: border-box;
+  content: "";
+  width: 50%;
+  height: 0.02rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #fff;
+  transform: rotate(0) scaleY(1) translate(-50%, -50%);
+}
+
+
 .checkbox.mini .input + .icon::before {
   height: 0.1rem;
   width: 0.05rem;
 }
 
+.checkbox .input + .indeterminate,
 .checkbox .input:checked + .icon {
   border-color: $primary;
   background-color: $primary;
   transition: all 0.2s;
 }
 
+.checkbox .input + .indeterminate.red,
 .checkbox .input:checked + .red {
   border-color: $red;
   background-color: $red;
 }
 
+.checkbox .input + .indeterminate.blue,
 .checkbox .input:checked + .blue {
   border-color: $blue;
   background-color: $blue;
 }
 
+.checkbox .input + .indeterminate.green,
 .checkbox .input:checked + .green {
   border-color: $green;
   background-color: $green;
 }
 
+.checkbox .input + .indeterminate.orange,
 .checkbox .input:checked + .orange {
   border-color: $orange;
   background-color: $orange;
 }
 
+.checkbox .input + .indeterminate.yellow,
 .checkbox .input:checked + .yellow {
   border-color: $yellow;
   background-color: $yellow;
