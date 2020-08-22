@@ -67,6 +67,7 @@
         let checked = e.target.checked;
         let value = checked ? (this.trueValue === undefined ? true : this.trueValue) : (this.falseValue === undefined ? false : this.falseValue);
         this.$emit('input', value);
+        this.$emit('change', value);
       }
     },
   }
