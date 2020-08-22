@@ -37,6 +37,6 @@
     "not ie <= 11"
   ],
   "_from": "fly-components@git+http://git.tigoyun.com/zzhijie/fly-components.git",
-  "_resolved": "http://git.tigoyun.com/zzhijie/fly-components.git#16a1c02313d38a793088b43eed90ae24b72f23aa",
-  "__npminstall_done": "Wed Aug 19 2020 13:47:51 GMT+0800 (中国标准时间)"
+  "_resolved": "http://git.tigoyun.com/zzhijie/fly-components.git#0f0179b34c31efe359a7c403977de08d8e28fbc0",
+  "__npminstall_done": "Sat Aug 22 2020 17:24:07 GMT+0800 (中国标准时间)"
 }
