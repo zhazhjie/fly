@@ -34,7 +34,7 @@
         <f-switch v-model="switchVal">{{switchVal}}</f-switch>
         <f-switch v-model="switchVal" disabled>{{switchVal}}</f-switch>
         <div class="item-title">输入框</div>
-        <f-input placeholder="请输入" :max-length="10"></f-input>
+        <f-input type="tel" clearable placeholder="请输入" :max-length="10" v-model="inputVal"></f-input>
         <div class="item-title">输入框2</div>
         <f-input-2 placeholder="请输入"></f-input-2>
         <div class="item-title">加减</div>
@@ -144,7 +144,8 @@
         keyboardFlag: false,
         pickerValues: [],
         pickerFlag: false,
-        areaValues: []
+        areaValues: [],
+        inputVal:""
       }
     },
     methods: {
