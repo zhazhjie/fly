@@ -15,8 +15,8 @@
 
 <script>
 
-  import FScrollBox from "@/components/scroll/scroll-box";
-  import FScrollList from "@/components/scroll/scroll-list";
+  import FScrollBox from "./scroll/scroll-box";
+  import FScrollList from "./scroll/scroll-list";
   export default {
     name: "f-picker",
     components: {FScrollList, FScrollBox},

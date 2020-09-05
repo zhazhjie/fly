@@ -56,8 +56,8 @@
 
 <script>
 
-  import FScrollBox from "@/components/scroll/scroll-box";
-  import FScrollList from "@/components/scroll/scroll-list";
+  import FScrollBox from "../scroll/scroll-box";
+  import FScrollList from "../scroll/scroll-list";
   const timeType = ["date", "year-month", "month-date", "datetime", "time", "hour-minute", "minute-second"];
   export default {
     name: "f-date-picker",

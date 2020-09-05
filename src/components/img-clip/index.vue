@@ -25,7 +25,7 @@
 
 <script>
 
-  import FSelectBox from "@/components/img-clip/select-box";
+  import FSelectBox from "./select-box";
   export default {
     name: "f-img-clip",
     props: {
