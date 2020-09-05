@@ -10,7 +10,7 @@
             <div class="img-container">
               <img id="clip_src_img" @load="srcImgLoaded" :src="img">
               <div class="shadow-box"></div>
-              <select-box ref="box" :srcSize="imgSize" :ratio="ratio" :img="img"></select-box>
+              <f-select-box ref="box" :srcSize="imgSize" :ratio="ratio" :img="img"></f-select-box>
             </div>
           </div>
         </div>
@@ -24,8 +24,8 @@
 </template>
 
 <script>
-  import selectBox from './selectBox.vue'
 
+  import FSelectBox from "@/components/img-clip/select-box";
   export default {
     name: "f-img-clip",
     props: {
@@ -47,7 +47,8 @@
 			},
     },
     components: {
-      selectBox
+      FSelectBox
+
     },
     data() {
       return {

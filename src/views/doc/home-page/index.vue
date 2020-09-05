@@ -17,7 +17,7 @@
   import FCode from "../code";
 
   export default {
-    name: "homePage",
+    name: "home-page",
     components: {FCode},
     data() {
       return {

@@ -84,5 +84,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../style/inputNumber";
+  @import "../style/input-number";
 </style>

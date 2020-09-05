@@ -5,27 +5,27 @@
         <f-button size="mini" type="text" @click="hidePopup">取消</f-button>
         <f-button size="mini" type="text" @click="submit">确定</f-button>
       </div>
-      <scroll-box>
-        <scroll-list :list="provinceFilterList" :default-props="defaultProps" v-model="result.province"
-                     v-bind='$attrs'></scroll-list>
-        <scroll-list :list="cityFilterList" :default-props="defaultProps" v-model="result.city"
-                     v-bind='$attrs'></scroll-list>
-        <scroll-list :list="areaFilterList" :default-props="defaultProps" v-model="result.area" v-bind='$attrs'
-                     v-if="requireArea"></scroll-list>
-      </scroll-box>
+      <f-scroll-box>
+        <f-scroll-list :list="provinceFilterList" :default-props="defaultProps" v-model="result.province"
+                     v-bind='$attrs'></f-scroll-list>
+        <f-scroll-list :list="cityFilterList" :default-props="defaultProps" v-model="result.city"
+                     v-bind='$attrs'></f-scroll-list>
+        <f-scroll-list :list="areaFilterList" :default-props="defaultProps" v-model="result.area" v-bind='$attrs'
+                     v-if="requireArea"></f-scroll-list>
+      </f-scroll-box>
     </f-popup>
   </div>
 </template>
 
 <script>
-  import scrollList from "../scroll/scrollList";
-  import elPopup from "../popup";
-  import scrollBox from "../scroll/scrollBox";
+
   import Vue from "vue";
+  import FScrollBox from "@/components/scroll/scroll-box";
+  import FScrollList from "@/components/scroll/scroll-list";
 
   export default {
     name: "f-area-picker",
-    components: {scrollBox, scrollList, elPopup},
+    components: {FScrollList, FScrollBox},
     props: {
       provinceList: {
         type: Array,

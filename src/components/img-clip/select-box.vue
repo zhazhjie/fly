@@ -14,6 +14,7 @@
 
 <script>
   export default {
+    name: "f-select-box",
     props: {
       ratio: {},
       img: {},

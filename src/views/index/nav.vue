@@ -47,11 +47,11 @@
           },
           {
             title: "DatePicker 日期选择器",
-            path: "/datePicker"
+            path: "/date-picker"
           },
           {
             title: "AreaPicker 地区选择器",
-            path: "/areaPicker"
+            path: "/area-picker"
           },
           {
             title: "Carousel 轮播图",
@@ -59,7 +59,7 @@
           },
           {
             title: "ImgClip 图片裁剪",
-            path: "/imgClip"
+            path: "/img-clip"
           },
           {
             title: "Loading 加载",
@@ -79,7 +79,7 @@
           },
           {
             title: "InfiniteLoad 无限加载",
-            path: "/infiniteLoad"
+            path: "/infinite-load"
           },
           {
             title: "List 列表",
@@ -91,7 +91,7 @@
           },
           {
             title: "NumberKeyboard 数字小键盘",
-            path: "/numberKeyboard"
+            path: "/number-keyboard"
           },
           {
             title: "Rate 评分",
@@ -107,7 +107,7 @@
           },
           {
             title: "PayBox 支付选择框",
-            path: "/payBox"
+            path: "/pay-box"
           },
           {
             title: "Title 标题",

@@ -95,5 +95,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../style/payBox";
+  @import "../style/pay-box";
 </style>

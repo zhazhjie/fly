@@ -88,5 +88,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../style/numberKeyboard";
+  @import "../style/number-keyboard";
 </style>

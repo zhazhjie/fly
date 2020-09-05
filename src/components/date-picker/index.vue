@@ -42,29 +42,26 @@
       <div class="cur-time" v-else>
         <span class="cur-time-item active">{{formatDate(startTime)}}</span>
       </div>
-      <scroll-box>
-        <scroll-list ref="year" :list="yearRange" :suffix="getSuffix('年')" v-model="time.year" v-if="isRequire.year"></scroll-list>
-        <scroll-list ref="month" :list="monthRange" :suffix="getSuffix('月')" v-model="time.month" v-if="isRequire.month"></scroll-list>
-        <scroll-list ref="date" :list="dateRange" :suffix="getSuffix('日')" v-model="time.date" v-if="isRequire.date"></scroll-list>
-        <scroll-list ref="hour" :list="hourRange" :suffix="getSuffix('时')" v-model="time.hour" v-if="isRequire.hour"></scroll-list>
-        <scroll-list ref="minute" :list="minuteRange" :suffix="getSuffix('分')" v-model="time.minute" v-if="isRequire.minute"></scroll-list>
-        <scroll-list ref="second" :list="secondRange" :suffix="getSuffix('秒')" v-model="time.second" v-if="isRequire.second"></scroll-list>
-      </scroll-box>
+      <f-scroll-box>
+        <f-scroll-list ref="year" :list="yearRange" :suffix="getSuffix('年')" v-model="time.year" v-if="isRequire.year"></f-scroll-list>
+        <f-scroll-list ref="month" :list="monthRange" :suffix="getSuffix('月')" v-model="time.month" v-if="isRequire.month"></f-scroll-list>
+        <f-scroll-list ref="date" :list="dateRange" :suffix="getSuffix('日')" v-model="time.date" v-if="isRequire.date"></f-scroll-list>
+        <f-scroll-list ref="hour" :list="hourRange" :suffix="getSuffix('时')" v-model="time.hour" v-if="isRequire.hour"></f-scroll-list>
+        <f-scroll-list ref="minute" :list="minuteRange" :suffix="getSuffix('分')" v-model="time.minute" v-if="isRequire.minute"></f-scroll-list>
+        <f-scroll-list ref="second" :list="secondRange" :suffix="getSuffix('秒')" v-model="time.second" v-if="isRequire.second"></f-scroll-list>
+      </f-scroll-box>
     </f-popup>
   </div>
 </template>
 
 <script>
-  import scrollList from "../scroll/scrollList";
-  import fPopup from "../popup";
-  import fInput from "../input";
-  import fSelect from "../select";
-  import scrollBox from "../scroll/scrollBox";
 
+  import FScrollBox from "@/components/scroll/scroll-box";
+  import FScrollList from "@/components/scroll/scroll-list";
   const timeType = ["date", "year-month", "month-date", "datetime", "time", "hour-minute", "minute-second"];
   export default {
     name: "f-date-picker",
-    components: {scrollBox, scrollList, fPopup, fInput, fSelect},
+    components: {FScrollList, FScrollBox},
     props: {
       //可选值：date,year-month,month-date,datetime,time,hour-minute,minute-second
       type: {
