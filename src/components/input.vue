@@ -50,6 +50,7 @@
 
 <script>
 import {mixins} from "./mixins";
+import {Validate} from "js-utils/validate";
 
 export default {
   name: "f-input",
@@ -112,12 +113,13 @@ export default {
       style: {
         paddingLeft: null,
         paddingRight: null,
+        prevValue: ""
       }
     }
   },
   computed: {
     realType() {
-      return this.fractionDigits === void 0 ? this.type : "tel";
+      return (this.fractionDigits === void 0 || Validate.isIOS()) ? this.type : "tel";
     }
   },
   methods: {
@@ -144,7 +146,7 @@ export default {
       this.$emit("keydown", e);
     },
     emitInput(e) {
-      let {value = ""} = e.target;
+      let {value = "", validity = {}} = e.target;
       if (this.fractionDigits !== void 0) {
         let match;
         if (this.fractionDigits === 0) {
@@ -152,9 +154,15 @@ export default {
         } else {
           match = value.match(new RegExp(`([1-9]\\d*\\.?|0\\.)\\d{0,${this.fractionDigits}}|0`, 'g'));
         }
-        // console.log(match);
+        // console.log(match, this.prevValue);
         let [val = ""] = match || [];
-        e.target.value = val;
+        let {badInput} = validity;
+        if (!badInput) {
+          e.target.value = val;
+          this.prevValue = val;
+        } else {
+          e.target.value = this.prevValue;
+        }
       }
       if (this.maxLength && value.length > this.maxLength) {
         e.target.value = value.slice(0, -1);
