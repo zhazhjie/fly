@@ -152,7 +152,7 @@ export default {
         } else {
           match = value.match(new RegExp(`([1-9]\\d*\\.?|0\\.)\\d{0,${this.fractionDigits}}|0`, 'g'));
         }
-        console.log(match);
+        // console.log(match);
         let [val = ""] = match || [];
         e.target.value = val;
       }
