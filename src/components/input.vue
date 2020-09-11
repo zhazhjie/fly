@@ -26,7 +26,7 @@
       v-else
       class="input"
       :style="style"
-      :type="type"
+      :type="realType"
       :placeholder="placeholder"
       :class="[getSize,color,{round}]"
       @click="emitClick"
@@ -150,9 +150,9 @@ export default {
         if (this.fractionDigits === 0) {
           match = value.match(new RegExp(`[1-9]+\\d*|0`, 'g'));
         } else {
-          match = value.match(new RegExp(`([1-9]+\\.?|0\\.)\\d{0,${this.fractionDigits}}|0`, 'g'));
+          match = value.match(new RegExp(`([1-9]\\d*\\.?|0\\.)\\d{0,${this.fractionDigits}}|0`, 'g'));
         }
-        // console.log(match);
+        console.log(match);
         let [val = ""] = match || [];
         e.target.value = val;
       }
