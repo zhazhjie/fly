@@ -33,8 +33,8 @@
             param: "value/v-model",
             explain: "绑定值",
             type: "string/number",
-            optionalValue: "",
-            defaultValue: ""
+            optionalValue: "-",
+            defaultValue: "-"
           },
           {
             param: "type",
@@ -89,6 +89,13 @@
             param: "placeholder",
             explain: "占位文本",
             type: "string",
+            optionalValue: "-",
+            defaultValue: "-"
+          },
+          {
+            param: "fractionDigits",
+            explain: "保留小数位，输入金额专用",
+            type: "number",
             optionalValue: "-",
             defaultValue: "-"
           },

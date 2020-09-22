@@ -9,17 +9,17 @@
     </div>
     <input ref="file" type="file" accept="image/*" :capture="capture" style="display: none" @change="uploadFile"/>
     <!--<div class="font10 gray">微信分身请用拍照上传</div>-->
-    <img-clip :width="maxWidth" :height="maxHeight" :show-flag.sync="showFlag" :img="imgData" @submitClip="submitClip"></img-clip>
+    <f-img-clip :width="maxWidth" :height="maxHeight" :show-flag.sync="showFlag" :img="imgData" @submitClip="submitClip"></f-img-clip>
   </div>
 </template>
 
 <script>
   import {fileToDataURL, dataURLtoFile, compressImg} from "js-utils";
-  import ImgClip from "./imgClip/index";
+  import FImgClip from "./img-clip/index";
 
   export default {
     name: "f-upload",
-    components: {ImgClip},
+    components: {FImgClip},
     props: {
       maxWidth: {
         type: Number,

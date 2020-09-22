@@ -10,6 +10,10 @@
       <div class="box-title">Props</div>
       <f-table :data="propList" type="prop"></f-table>
     </div>
+    <div class="box">
+      <div class="box-title">Events</div>
+      <f-table :data="eventList" type="event"></f-table>
+    </div>
   </section>
 </template>
 
@@ -59,6 +63,20 @@
             type: "boolean",
             optionalValue: "true/false",
             defaultValue: "false"
+          },
+          {
+            param: "indeterminate",
+            explain: "半选中状态",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "false"
+          },
+        ],
+        eventList: [
+          {
+            event: "change",
+            explain: "值改变事件",
+            cb: "Function(val)，参数说明：[当前值]"
           },
         ]
       }

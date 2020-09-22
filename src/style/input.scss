@@ -90,8 +90,9 @@ input[type="number"] {
 
 .clear-btn {
   color: #999;
+  font-size: 0.1rem;
 }
 
 .clear-btn:active {
-  color: $red;
+  opacity: 0.7;
 }

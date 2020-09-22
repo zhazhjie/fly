@@ -13,7 +13,7 @@ module.exports = {
       'vuex': 'Vuex',
       'vue-router': 'VueRouter',
       'axios': 'axios',
-      './areaData': 'areaData'
+      './area-data': 'areaData'
     },
     output: {
       libraryExport: 'default'

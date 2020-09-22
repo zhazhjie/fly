@@ -17,7 +17,7 @@ export default new Router({
           meta: {
             title: '首页'
           },
-          component: () => import('./views/doc/homePage'),
+          component: () => import('./views/doc/home-page'),
         },
         {
           path: '/button',
@@ -69,18 +69,18 @@ export default new Router({
           component: () => import('./views/doc/picker'),
         },
         {
-          path: '/datePicker',
+          path: '/date-picker',
           meta: {
             title: '日期选择器'
           },
-          component: () => import('./views/doc/datePicker'),
+          component: () => import('./views/doc/date-picker'),
         },
         {
-          path: '/areaPicker',
+          path: '/area-picker',
           meta: {
             title: '地区选择器'
           },
-          component: () => import('./views/doc/areaPicker'),
+          component: () => import('./views/doc/area-picker'),
         },
         {
           path: '/carousel',
@@ -90,11 +90,11 @@ export default new Router({
           component: () => import('./views/doc/carousel'),
         },
         {
-          path: '/imgClip',
+          path: '/img-clip',
           meta: {
             title: '图片裁切'
           },
-          component: () => import('./views/doc/imgClip'),
+          component: () => import('./views/doc/img-clip'),
         },
         {
           path: '/loading',
@@ -125,11 +125,11 @@ export default new Router({
           component: () => import('./views/doc/dialog'),
         },
         {
-          path: '/infiniteLoad',
+          path: '/infinite-load',
           meta: {
             title: '无限加载'
           },
-          component: () => import('./views/doc/infiniteLoad'),
+          component: () => import('./views/doc/infinite-load'),
         },
         {
           path: '/list',
@@ -146,11 +146,11 @@ export default new Router({
           component: () => import('./views/doc/number'),
         },
         {
-          path: '/numberKeyboard',
+          path: '/number-keyboard',
           meta: {
             title: '数字小键盘'
           },
-          component: () => import('./views/doc/numberKeyboard'),
+          component: () => import('./views/doc/number-keyboard'),
         },
         {
           path: '/rate',
@@ -174,11 +174,11 @@ export default new Router({
           component: () => import('./views/doc/skeleton'),
         },
         {
-          path: '/payBox',
+          path: '/pay-box',
           meta: {
             title: '支付选择框'
           },
-          component: () => import('./views/doc/payBox'),
+          component: () => import('./views/doc/pay-box'),
         },
         {
           path: '/title',
