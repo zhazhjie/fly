@@ -5,21 +5,21 @@
         <f-button size="mini" type="text" @click="hidePopup">取消</f-button>
         <f-button size="mini" type="text" @click="submit">确定</f-button>
       </div>
-      <f-scroll-box>
-        <f-scroll-list v-for="(list,index) in dataList" :key="index" :list="list" v-model="values[index]"
-                     v-bind='$attrs'></f-scroll-list>
-      </f-scroll-box>
+      <scroll-box>
+        <scroll-list v-for="(list,index) in dataList" :key="index" :list="list" v-model="values[index]"
+                     v-bind='$attrs'></scroll-list>
+      </scroll-box>
     </f-popup>
   </div>
 </template>
 
 <script>
+  import ScrollList from "./scroll/scrollList";
+  import ScrollBox from "./scroll/scrollBox";
 
-  import FScrollBox from "./scroll/scroll-box";
-  import FScrollList from "./scroll/scroll-list";
   export default {
     name: "f-picker",
-    components: {FScrollList, FScrollBox},
+    components: {ScrollBox, ScrollList},
     props: {
       dataList: {
         type: Array
