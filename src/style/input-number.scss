@@ -1,0 +1,70 @@
+@import "../css/var";
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.num-box {
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.num-box .big {
+  font-size: 0.4rem;
+}
+
+.num-box .normal {
+  font-size: 0.35rem;
+}
+
+.num-box .small {
+  font-size: 0.3rem;
+}
+
+.num-box .mini {
+  font-size: 0.25rem;
+}
+
+.num-box button {
+  font-family: iconfont-common;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  color: $primary;
+  /*padding: 0.02rem;*/
+}
+
+.num-box button:active {
+  opacity: 0.8;
+}
+
+.num-box button:disabled {
+  color: $gray;
+}
+
+.num-box .value {
+  width: 0.25rem;
+  height: 100%;
+  text-align: center;
+  font-size: 0.16rem;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  //padding: 0 0.03rem;
+}
+
+.rotate-out-leave-active,
+.rotate-out-enter-active {
+  transition: all .3s;
+}
+
+.rotate-out-enter,
+.rotate-out-leave-to {
+  opacity: 0;
+  transform: translateX(200%) rotateZ(360deg);
+}
