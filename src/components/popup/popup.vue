@@ -33,6 +33,7 @@
 
 <script>
 import fButton from '../button';
+import {Validate} from "js-utils/validate";
 
 export default {
   name: 'f-popup',
@@ -106,7 +107,9 @@ export default {
       this.$emit('submit');
     },
     setBodyScroll(flag) {
-      // document.body.style.overflow = flag ? "auto" : "hidden";
+      if (!Validate.isWeiXin()) {
+        document.body.style.overflow = flag ? "auto" : "hidden";
+      }
     },
     init() {
       if (this.appendToBody) {
