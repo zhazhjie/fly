@@ -49,6 +49,13 @@
             defaultValue: "false"
           },
           {
+            param: "pointFlag",
+            explain: "是否显示小数点",
+            type: "boolean",
+            optionalValue: "true/false",
+            defaultValue: "true"
+          },
+          {
             param: "maxLength",
             explain: "最大长度，默认不限制",
             type: "number",

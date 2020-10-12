@@ -13,6 +13,8 @@
 .num-list {
   width: 100%;
   border-collapse: collapse;
+  position: relative;
+  z-index: 2;
 }
 
 .num-list td {
@@ -40,4 +42,13 @@
 .num-list .complete-btn:active {
   background: $primary;
   opacity: 0.8;
+}
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
