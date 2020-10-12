@@ -72,8 +72,8 @@
                   v-model="pickerValues"></f-picker>
         <div class="item-title">时间选择器</div>
         <f-button @click="datePickerFlag=true">时间选择器</f-button>
-        <f-date-picker type="datetime" :show-flag.sync="datePickerFlag"
-                       v-model="time" @submit="submit"></f-date-picker>
+        <f-date-picker type="date" range :show-flag.sync="datePickerFlag"
+                       v-model="time" :max-time="new Date()" limit-cur-month @submit="submit"></f-date-picker>
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
         <f-area-picker :province-list="provinceList" :city-list="cityList" :area-list="areaList"
@@ -113,7 +113,7 @@
     components: {FView, fUpload},
     data() {
       return {
-        time: [],
+        time: ["2020-08-01","2020-08-10"],
         provinceList: [],
         cityList: [],
         areaList: [],

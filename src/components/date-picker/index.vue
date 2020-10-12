@@ -189,7 +189,9 @@
               this.startTime = this.endTime;
             }
           } else if (this.limitCurMonth) {
-            if (this.activeTime === "startTime") {
+            let sameYear = this.startTime.getFullYear() === this.endTime.getFullYear();
+            let sameMonth = this.startTime.getMonth() === this.endTime.getMonth();
+            if (!sameYear || !sameMonth) {
               this.endTime = this.startTime;
             }
           }
