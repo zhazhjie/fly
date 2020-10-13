@@ -66,6 +66,7 @@
 </noscript>
 <script>
   window.addEventListener('error', function (e) {
+    console.error(e);
     var target = e.target || {};
     var src = target.src || target.href;
     var tagName = target.tagName;

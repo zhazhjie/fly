@@ -3,6 +3,8 @@
  * @date: 2020-05-09 08:58:40
  * @version: 1.0
  */
+import {Validate} from "js-utils/validate";
+
 export const mixins = {
   methods: {
     changeNum(isAdd, e) {
@@ -18,8 +20,8 @@ export const mixins = {
       this.$emit('input', value);
     },
     setValue(e) {
-      let value = +e.target.value;
-      if (value >= this.minValue && value <= this.maxValue) {
+      let value = e.target.value;
+      if (!Validate.isEmpty(value) && value >= this.minValue && value <= this.maxValue) {
         let fold = value.divide(this.step);
         if (fold % 1 === 0) {
           this.$emit('input', value);
