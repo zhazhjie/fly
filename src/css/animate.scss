@@ -20,11 +20,6 @@
   transform: translateY(100%);
 }
 
-.fade-right-leave-to {
-  opacity: 0;
-  transform: translateX(50px);
-}
-
 .zoom-enter-active,
 .zoom-leave-active {
   transition: all .25s;
