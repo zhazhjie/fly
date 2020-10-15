@@ -40,7 +40,7 @@
       :readonly="readonly"
       :value="value"/>
     <div class="suffix" ref="suffix" v-if="clearable||$slots.suffix">
-      <i class="icon-common clear-btn" v-if="clearable" v-show="value" @click="handleClear">&#xe601;</i>
+      <i class="icon-common clear-btn" v-if="clearable" v-show="value" @click="handleClear">&#xe712;</i>
       <span v-if="$slots.suffix">
         <slot name="suffix"></slot>
       </span>
@@ -110,10 +110,11 @@ export default {
   },
   data() {
     return {
+      isFocus: false,
+      prevValue: "",
       style: {
         paddingLeft: null,
         paddingRight: null,
-        prevValue: ""
       }
     }
   },
@@ -133,9 +134,11 @@ export default {
       this.$emit("click", e);
     },
     emitFocus(e) {
+      this.isFocus = true;
       this.$emit("focus", e);
     },
     emitBlur(e) {
+      this.isFocus = false;
       this.$emit("blur", e);
     },
     emitKeyup(e) {
