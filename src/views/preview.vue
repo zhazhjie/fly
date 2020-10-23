@@ -31,10 +31,11 @@
         <f-radio :label="2" v-model="radioVal">2</f-radio>
         <f-radio :label="3" v-model="radioVal" disabled>3</f-radio>
         <div class="item-title">开关</div>
-        <f-switch v-model="switchVal">{{switchVal}}</f-switch>
-        <f-switch v-model="switchVal" disabled>{{switchVal}}</f-switch>
+        <f-switch v-model="switchVal">{{ switchVal }}</f-switch>
+        <f-switch v-model="switchVal" disabled>{{ switchVal }}</f-switch>
         <div class="item-title">输入框</div>
-        <f-input type="number" :fractionDigits="2" clearable placeholder="请输入" :max-length="10" v-model="inputVal"></f-input>
+        <f-input type="number" :fractionDigits="2" clearable placeholder="请输入" :max-length="10"
+                 v-model="inputVal"></f-input>
         <div class="item-title">输入框2</div>
         <f-input-2 placeholder="请输入"></f-input-2>
         <div class="item-title">加减</div>
@@ -82,20 +83,21 @@
         <f-button @click="payBoxFlag=true">支付盒子</f-button>
         <f-pay-box :show-flag.sync="payBoxFlag"></f-pay-box>
         <div class="item-title">轮播图</div>
-        <f-carousel>
+        <f-carousel :auto-play="false">
           <f-carousel-item v-for="(item,index) in imgList" :key="index">
-            <div class="item" :style="{background:item%2===0?'#ccc':'#eee'}">{{item}}</div>
+            <div class="item" :style="{background:item%2===0?'#ccc':'#eee'}">{{ item }}</div>
           </f-carousel-item>
         </f-carousel>
         <div class="item-title">图片预览</div>
         <img src="../img/404.png" style="width: 1rem;" v-img-preview>
+        <f-button @click="preview">图片预览(多图)</f-button>
         <div class="item-title">图片裁切</div>
         <input type="file" @change="handleSelectFile"/>
         <img style="max-width: 100%" v-if="imgData" :src="imgData">
         <f-img-clip :img="imgData" :show-flag.sync="imgClipFlag" @submitClip="e=>imgData=e"></f-img-clip>
         <div class="item-title">上拉加载</div>
         <ul class="data-list">
-          <li v-for="item in dataList">{{item}}</li>
+          <li v-for="item in dataList">{{ item }}</li>
         </ul>
       </div>
     </f-list>
@@ -103,156 +105,162 @@
 </template>
 
 <script>
-  import fUpload from "../components/upload";
-  import {fileToDataURL} from "js-utils";
-  import {province, city, area} from "../components/area-picker/area-data";
-  import FView from "../components/view";
+import fUpload from "../components/upload";
+import {fileToDataURL} from "js-utils";
+import {province, city, area} from "../components/area-picker/area-data";
+import FView from "../components/view";
 
-  export default {
-    name: 'f-preview',
-    components: {FView, fUpload},
-    data() {
-      return {
-        time: ["2020-08-01","2020-08-10"],
-        provinceList: [],
-        cityList: [],
-        areaList: [],
-        selectVal: 1,
-        checkboxVal: [1],
-        checkboxVal2: false,
-        radioVal: 1,
-        numVal: 1,
-        inputNumVal: 0,
-        switchVal: true,
-        popupFlag: false,
-        dialogFlag: false,
-        datePickerFlag: false,
-        areaPickerFlag: false,
-        payBoxFlag: false,
-        imgList: [],
-        imgClipFlag: false,
-        imgData: "",
-        score: 2,
-        loading: false,
-        eof: false,
-        dataList: [],
-        params: {
-          curPage: 1,
-          pageSize: 10
-        },
-        keyboardVal: "",
-        keyboardFlag: false,
-        pickerValues: [],
-        pickerFlag: false,
-        areaValues: [],
-        inputVal:""
-      }
-    },
-    methods: {
-      areaChange(val) {
-        alert(JSON.stringify(val))
+export default {
+  name: 'f-preview',
+  components: {FView, fUpload},
+  data() {
+    return {
+      img1: [require('../img/404.png'), require('../img/defaultImg.png')],
+      time: ["2020-08-01", "2020-08-10"],
+      provinceList: [],
+      cityList: [],
+      areaList: [],
+      selectVal: 1,
+      checkboxVal: [1],
+      checkboxVal2: false,
+      radioVal: 1,
+      numVal: 1,
+      inputNumVal: 0,
+      switchVal: true,
+      popupFlag: false,
+      dialogFlag: false,
+      datePickerFlag: false,
+      areaPickerFlag: false,
+      payBoxFlag: false,
+      imgList: [],
+      imgClipFlag: false,
+      imgData: "",
+      score: 2,
+      loading: false,
+      eof: false,
+      dataList: [],
+      params: {
+        curPage: 1,
+        pageSize: 10
       },
-      handleShowLoading() {
-        this.showLoading();
-        setTimeout(() => {
-          this.hideLoading();
-        }, 1000)
-      },
-      handleSelectFile(e) {
-        let file = e.target.files[0];
-        fileToDataURL(file).then(data => {
-          this.imgData = data;
-          this.imgClipFlag = true;
-        })
-      },
-      refresh() {
-        this.loading = true;
-        this.params.curPage = 1;
-        setTimeout(() => {
-          this.dataList = [];
-          this.loading = false;
-        }, 1000)
-      },
-      loadMore() {
-        this.loading = true;
-        setTimeout(() => {
-          let arr = Array.apply(null, {length: 10}).map((v, i) => this.params.curPage * this.params.pageSize + i);
-          this.dataList.push(...arr);
-          this.loading = false;
-          this.params.curPage++;
-        }, 1000)
-      },
-      submit(date){
-        console.log(date)
-      }
-    },
-    computed: {},
-    mounted() {
-      setTimeout(() => {
-        this.imgList = [1, 2, 3, 4];
-        this.provinceList = province;
-        this.cityList = city;
-        this.areaList = area;
-        this.areaValues = [350000, 350500, 350521]
-      }, 3000);
+      keyboardVal: "",
+      keyboardFlag: false,
+      pickerValues: [],
+      pickerFlag: false,
+      areaValues: [],
+      inputVal: ""
     }
+  },
+  methods: {
+    preview() {
+      this.imgPreview({
+        imgList: this.img1
+      })
+    },
+    areaChange(val) {
+      alert(JSON.stringify(val))
+    },
+    handleShowLoading() {
+      this.showLoading();
+      setTimeout(() => {
+        this.hideLoading();
+      }, 1000)
+    },
+    handleSelectFile(e) {
+      let file = e.target.files[0];
+      fileToDataURL(file).then(data => {
+        this.imgData = data;
+        this.imgClipFlag = true;
+      })
+    },
+    refresh() {
+      this.loading = true;
+      this.params.curPage = 1;
+      setTimeout(() => {
+        this.dataList = [];
+        this.loading = false;
+      }, 1000)
+    },
+    loadMore() {
+      this.loading = true;
+      setTimeout(() => {
+        let arr = Array.apply(null, {length: 10}).map((v, i) => this.params.curPage * this.params.pageSize + i);
+        this.dataList.push(...arr);
+        this.loading = false;
+        this.params.curPage++;
+      }, 1000)
+    },
+    submit(date) {
+      console.log(date)
+    }
+  },
+  computed: {},
+  mounted() {
+    setTimeout(() => {
+      this.imgList = [1, 2, 3, 4];
+      this.provinceList = province;
+      this.cityList = city;
+      this.areaList = area;
+      this.areaValues = [350000, 350500, 350521]
+    }, 3000);
   }
+}
 </script>
 
 <style scoped>
 
-  .preview {
-    /*height: 100vh;*/
-    background: #fff;
-  }
+.preview {
+  /*height: 100vh;*/
+  background: #fff;
+}
 
-  .content {
-    padding: 0.15rem;
-  }
+.content {
+  padding: 0.15rem;
+}
 
-  .item-title {
-    height: 0.4rem;
-    line-height: 0.4rem;
-    display: flex;
-    align-items: center;
-    /* margin-bottom: .1rem; */
-    color: rgb(191, 203, 217);
-  }
+.item-title {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  display: flex;
+  align-items: center;
+  /* margin-bottom: .1rem; */
+  color: rgb(191, 203, 217);
+}
 
-  .item-title::before {
-    width: 0.2rem;
-    content: '';
-    height: 0.01rem;
-    border-bottom: 1px dashed #dcdfe6;
-    margin-right: 0.1rem;
-  }
+.item-title::before {
+  width: 0.2rem;
+  content: '';
+  height: 0.01rem;
+  border-bottom: 1px dashed #dcdfe6;
+  margin-right: 0.1rem;
+}
 
-  .item-title::after {
-    flex: 1;
-    content: '';
-    height: 0.01rem;
-    border-bottom: 1px dashed #dcdfe6;
-    margin-left: 0.1rem;
-  }
+.item-title::after {
+  flex: 1;
+  content: '';
+  height: 0.01rem;
+  border-bottom: 1px dashed #dcdfe6;
+  margin-left: 0.1rem;
+}
 
-  .data-list li {
-    height: 0.4rem;
-    line-height: 0.4rem;
-    padding: 0 0.15rem;
-  }
+.data-list li {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  padding: 0 0.15rem;
+}
 
-  .data-list li:nth-child(even) {
-    background: #eee;
-  }
+.data-list li:nth-child(even) {
+  background: #eee;
+}
 
-  .item {
-    height: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    background: #eee;
-  }
+.item {
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  background: #eee;
+}
 
-  .space {
-    padding: 0.05rem;
-  }
+.space {
+  padding: 0.05rem;
+}
 </style>

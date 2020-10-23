@@ -35,6 +35,7 @@ import Upload from './upload';
 import Loading1 from './loading/loading-1';
 import Loading2 from './loading/loading-2';
 import Loading3 from './loading/loading-3';
+import ImgPreview from './img-preview';
 import './msg';
 import './loading';
 import '../css/common.scss';
@@ -74,6 +75,7 @@ flyUI.install = function (Vue, options) {
   Vue.component(Loading1.name, Loading1);
   Vue.component(Loading2.name, Loading2);
   Vue.component(Loading3.name, Loading3);
+  Vue.component(ImgPreview.name, ImgPreview);
 };
 
 export default flyUI;

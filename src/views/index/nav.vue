@@ -58,6 +58,10 @@
             path: "/carousel"
           },
           {
+            title: "ImgPreview 图片预览",
+            path: "/img-preview"
+          },
+          {
             title: "ImgClip 图片裁剪",
             path: "/img-clip"
           },

@@ -90,6 +90,13 @@ export default new Router({
           component: () => import('./views/doc/carousel'),
         },
         {
+          path: '/img-preview',
+          meta: {
+            title: '图片预览'
+          },
+          component: () => import('./views/doc/img-preview'),
+        },
+        {
           path: '/img-clip',
           meta: {
             title: '图片裁切'
