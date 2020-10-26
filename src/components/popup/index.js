@@ -6,6 +6,7 @@
 
 import Vue from 'vue';
 import Popup from './popup.vue';
+import {getInstance} from "../util";
 
 function destroy(instance) {
   instance.showFlag = false;
@@ -44,10 +45,7 @@ Vue.prototype.$confirm = function (data) {
     throw new Error("options must be a string or object.");
   }
   return new Promise((resolve, reject) => {
-    let PopupConstructor = Vue.extend(Popup);
-    let instance = new PopupConstructor(options);
-    instance.$mount();
-    document.body.appendChild(instance.$el);
+    let instance = getInstance(Popup);
     instance.$on("submit", function () {
       if (loading) {
         this.loading = true;

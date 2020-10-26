@@ -6,11 +6,9 @@
 
 import Vue from 'vue';
 import Msg from './msg.vue';
+import {getInstance} from "../util";
 
-let MsgConstructor = Vue.extend(Msg);
-let instance = new MsgConstructor();
-instance.$mount();
-document.body.appendChild(instance.$el);
+let instance = getInstance(Msg);
 Vue.prototype.showMsg = function (data) {
   instance.showMsg(data);
 };

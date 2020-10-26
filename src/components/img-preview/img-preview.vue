@@ -7,7 +7,7 @@
 <template>
   <div class="img-preview" v-if="showFlag" @click="showFlag=false">
     <f-carousel :auto-play="false" indicator-type="number" :init-index="initIndex">
-      <f-carousel-item v-for="(item,index) in imgList" :key="index">
+      <f-carousel-item v-for="(item,index) in urlList" :key="index">
         <img class="item" :src="item"/>
       </f-carousel-item>
     </f-carousel>
@@ -21,7 +21,7 @@ import FCarouselItem from "../carousel/carousel-item";
 export default {
   name: "f-img-preview",
   props: {
-    imgList: {
+    urlList: {
       type: Array
     },
     initIndex: {
@@ -38,8 +38,8 @@ export default {
     }
   },
   methods: {
-    init({imgList, initIndex}) {
-      this.imgList = imgList;
+    init({urlList, initIndex}) {
+      this.urlList = urlList;
       this.initIndex = initIndex;
       this.showFlag = true;
     }

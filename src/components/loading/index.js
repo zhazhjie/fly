@@ -6,11 +6,9 @@
 
 import Vue from 'vue';
 import Loading from './loading-1.vue';
+import {getInstance} from "../util";
 
-let LoadingConstructor = Vue.extend(Loading);
-let instance = new LoadingConstructor();
-instance.$mount();
-document.body.appendChild(instance.$el);
+let instance = getInstance(Loading);
 Vue.prototype.showLoading = function () {
   instance.showFlag = true;
 };

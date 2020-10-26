@@ -6,7 +6,7 @@
 export const base =
   `
 this.imgPreview({
-  imgList: [],  // 图片url列表
+  urlList: [],  // 图片url列表
   initIndex: 0  // 初始显示的图片索引
 })
   `;

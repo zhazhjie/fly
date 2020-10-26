@@ -6,11 +6,9 @@
 
 import Vue from 'vue';
 import ImgPreview from './img-preview.vue';
+import {getInstance} from "../util";
 
-let ImgPreviewConstructor = Vue.extend(ImgPreview);
-let instance = new ImgPreviewConstructor();
-instance.$mount();
-document.body.appendChild(instance.$el);
+let instance = getInstance(ImgPreview);
 Vue.prototype.imgPreview = function (data) {
   instance.init(data);
 };
