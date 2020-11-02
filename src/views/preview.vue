@@ -57,7 +57,7 @@
           <div>弹出层</div>
         </f-popup>
         <div class="item-title">弹出层扩展-确认框</div>
-        <f-button @click="$confirm('666')">确认框</f-button>
+        <f-button @click="$confirm({content:'666',zIndex:9999})">确认框</f-button>
         <div class="item-title">对话框</div>
         <f-button @click="dialogFlag=true">对话框</f-button>
         <f-dialog :width="300" :height="250" reset :show-flag.sync="dialogFlag">
