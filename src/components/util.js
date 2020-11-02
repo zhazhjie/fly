@@ -5,9 +5,9 @@
  */
 import Vue from "vue";
 
-export function getInstance(component){
+export function getInstance(component, options) {
   let Constructor = Vue.extend(component);
-  let instance = new Constructor();
+  let instance = new Constructor(options);
   instance.$mount();
   document.body.appendChild(instance.$el);
   return instance;

@@ -45,7 +45,7 @@ Vue.prototype.$confirm = function (data) {
     throw new Error("options must be a string or object.");
   }
   return new Promise((resolve, reject) => {
-    let instance = getInstance(Popup);
+    let instance = getInstance(Popup, options);
     instance.$on("submit", function () {
       if (loading) {
         this.loading = true;
