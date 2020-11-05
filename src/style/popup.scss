@@ -40,6 +40,19 @@
   }
 }
 
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 0 0 0.1rem 0.1rem;
+  border: 0;
+
+  .close {
+    display: none;
+  }
+}
+
 .left,
 .right {
   width: 70vw;
@@ -118,6 +131,11 @@
 .fade-enter .bottom,
 .fade-leave-to .bottom {
   transform: translateY(100%);
+}
+
+.fade-enter .top,
+.fade-leave-to .top {
+  transform: translateY(-100%);
 }
 
 .fade-enter .left,

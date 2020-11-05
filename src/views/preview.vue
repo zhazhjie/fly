@@ -53,7 +53,7 @@
         <f-button @click="handleShowLoading">全局加载</f-button>
         <div class="item-title">弹出层</div>
         <f-button @click="popupFlag=true">弹出层</f-button>
-        <f-popup :show-flag.sync="popupFlag">
+        <f-popup position="top" :z-index="0" :show-flag.sync="popupFlag">
           <div>弹出层</div>
         </f-popup>
         <div class="item-title">弹出层扩展-确认框</div>
