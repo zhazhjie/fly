@@ -154,7 +154,7 @@ export default {
   methods: {
     preview() {
       this.imgPreview({
-        imgList: this.img1
+        urlList: this.img1
       })
     },
     areaChange(val) {
