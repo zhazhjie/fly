@@ -73,7 +73,7 @@
                   v-model="pickerValues"></f-picker>
         <div class="item-title">时间选择器</div>
         <f-button @click="datePickerFlag=true">时间选择器</f-button>
-        <f-date-picker type="date" range :show-flag.sync="datePickerFlag"
+        <f-date-picker type="datetime" :show-flag.sync="datePickerFlag"
                        v-model="time" :max-time="new Date()" limit-cur-month @submit="submit"></f-date-picker>
         <div class="item-title">地区选择器</div>
         <f-button @click="areaPickerFlag=true">地区选择器</f-button>
@@ -116,7 +116,7 @@ export default {
   data() {
     return {
       img1: [require('../img/404.png'), require('../img/defaultImg.png')],
-      time: ["2020-08-01", "2020-08-10"],
+      time: "2020-08-01 12:12:12",
       provinceList: [],
       cityList: [],
       areaList: [],

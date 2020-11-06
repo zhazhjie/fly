@@ -291,7 +291,7 @@
           curMonth: curTime.month,
           minDate: minTime.getDate(),
           maxDate: maxTime.getDate(),
-          curDate: curTime.curDate,
+          curDate: curTime.date,
           minHour: minTime.getHours(),
           maxHour: maxTime.getHours(),
           curHour: curTime.hour,
