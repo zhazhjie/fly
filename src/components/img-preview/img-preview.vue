@@ -5,7 +5,7 @@
 */
 
 <template>
-  <div class="img-preview" v-if="showFlag" @click="showFlag=false">
+  <div class="img-preview" v-if="showFlag" @click="close">
     <f-carousel :auto-play="false" indicator-type="number" :init-index="initIndex">
       <f-carousel-item v-for="(item,index) in urlList" :key="index">
         <img class="item" :src="item"/>
@@ -42,6 +42,9 @@ export default {
       this.urlList = urlList;
       this.initIndex = initIndex;
       this.showFlag = true;
+    },
+    close() {
+      this.showFlag = false;
     }
   },
   mounted() {

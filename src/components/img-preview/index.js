@@ -11,6 +11,7 @@ import {getInstance} from "../util";
 let instance = getInstance(ImgPreview);
 Vue.prototype.imgPreview = function (data) {
   instance.init(data);
+  return instance;
 };
 
 export default ImgPreview;
