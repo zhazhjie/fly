@@ -1,6 +1,6 @@
 {
   "name": "fly-components",
-  "version": "1.0.68",
+  "version": "1.0.69",
   "main": "./src/components/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",

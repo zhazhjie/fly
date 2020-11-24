@@ -57,8 +57,6 @@ export default {
       tId: 0,
       translateId: 0,
       index: 0,
-      resetItem: false,
-      isMoving: false,
       movable: true,
       firstChange: true,
     }
@@ -84,18 +82,24 @@ export default {
         return total + cur.offsetWidth;
       }, 0);
     },
+    getCumSumWidth() {
+      let total = 0;
+      let items = this.getItems();
+      for (let i = 0; i < this.index; i++) {
+        total += items[i].offsetWidth;
+      }
+      return total;
+    },
     handleStart(e) {
-      // if (this.isMoving) return;
-      if (this.getItems().length <= 1) return;
       this.stop();
+      this.startTranslateX = this.getTranslateX();
+      this.setTranslateX(this.startTranslateX);
       this.removeTransition();
       this.startX = e.changedTouches[0].pageX;
       this.startY = e.changedTouches[0].pageY;
-      this.startTranslateX = this.getTranslateX();
       this.startTime = Date.now();
     },
     handleMove(e) {
-      if (this.getItems().length <= 1) return;
       if (!this.movable) return;
       let curX = e.changedTouches[0].pageX;
       let curY = e.changedTouches[0].pageY;
@@ -108,37 +112,51 @@ export default {
       this.firstChange = false;
       e.preventDefault();
       let lastIndex = this.getItems().length - 1;
-      if (!this.resetItem && this.loop) {
-        this.resetItem = true;
+      if (this.loop && lastIndex) {
         let totalWidth = this.getTotalWidth();
-        if (this.index >= lastIndex && curX < this.startX) {
-          let firstItem = this.getItems(0);
-          firstItem.style.left = totalWidth + "px";
-          // this.setNextItem(1);
-        } else if (this.index <= 0 && curX > this.startX) {
-          let lastItem = this.getItems(lastIndex);
-          lastItem.style.left = -totalWidth + "px";
-          // this.setPrevItem(lastIndex-1);
+        let lastTransformX = totalWidth - this.getItemWidth(lastIndex);
+        let curTransformX = -this.getTranslateX();
+        let firstItem = this.getItems(0);
+        let lastItem = this.getItems(lastIndex);
+        if (curX < this.startX) {
+          if (this.index !== lastIndex) {
+            lastItem.style.left = 0;
+          }
+          if (this.index >= lastIndex && curTransformX > lastTransformX) {
+            firstItem.style.left = totalWidth + "px";
+          } else if (this.index === 0 && curTransformX > lastTransformX) {
+            firstItem.style.left = 0;
+            this.setTranslateX(0, false);
+            this.startTranslateX = 0;
+          }
+        } else if (curX > this.startX) {
+          if (this.index !== 0) {
+            firstItem.style.left = 0;
+          }
+          if (this.index <= 0 && curTransformX < 0) {
+            lastItem.style.left = -totalWidth + "px";
+          } else if (this.index === lastIndex && curTransformX < 0) {
+            lastItem.style.left = 0;
+            this.setTranslateX(-lastTransformX, false);
+            this.startTranslateX = -lastTransformX;
+          }
         }
       }
-      if (this.sideSwitch(curX) && !this.loop) {
+      if ((this.sideSwitch(curX) && !this.loop) || lastIndex === 0) {
         translateX /= 2;
       }
       let curTranslateX = this.startTranslateX + translateX;
-      this.setTranslateX(curTranslateX, null, false);
+      this.setTranslateX(curTranslateX, false);
     },
     handleEnd(e) {
-      // if(this.isMoving) return;
-      if (this.getItems().length <= 1) return;
       this.movable = true;
       this.firstChange = true;
       let curX = e.changedTouches[0].pageX;
-      if (curX === this.startX) return;
-      // this.isMoving=true;
       let offset = 20;
       let inOffset = curX < this.startX + offset && curX > this.startX - offset;
+      let length = this.getItems().length;
       if (Date.now() - this.startTime < this.interval && !inOffset) {
-        if (this.sideSwitch(curX) && !this.loop) {
+        if ((this.sideSwitch(curX) && !this.loop) || length <= 1) {
           this.moveBack();
         } else {
           if (curX < this.startX) {
@@ -148,69 +166,35 @@ export default {
           }
         }
       } else {
-        this.moveBack();
+        let itemWidth = this.getItemWidth(this.index);
+        let halfWidth = itemWidth >> 1;
+        if (curX - this.startX > halfWidth) {
+          this.previous();
+        } else if (this.startX - curX > halfWidth) {
+          this.next();
+        } else {
+          this.moveBack();
+        }
       }
       this.play();
     },
-    setNextItem(index) {
-      let totalWidth = this.getTotalWidth();
-      let items = this.getItems();
-      for (let i = 0; i <= index; i++) {
-        if (!items[i]) break;
-        items[i].style.left = totalWidth + "px";
-      }
-    },
-    setPrevItem(index) {
-      let totalWidth = this.getTotalWidth();
-      let items = this.getItems();
-      let len = items.length;
-      for (let i = len - 1; i >= index; i--) {
-        if (!items[i]) break;
-        items[i].style.left = -(totalWidth) + "px";
-      }
-    },
-    clearItemStyle() {
-      let items = this.getItems();
-      let len = items.length;
-      for (let i = 0; i < len; i++) {
-        items[i].style.left = 0;
-      }
-    },
     getTranslateX() {
-      return +this.carousel.style.transform.replace(/[^0-9\-.]/ig, "") || 0;
+      let transform = window.getComputedStyle(this.carousel).transform;
+      return +transform.split(",")[4] || 0;
     },
-    setTranslateX(translateX, cb, emitChange = true) {
+    setTranslateX(translateX, emitChange = true) {
       this.carousel.style.transform = `translateX(${translateX}px)`;
-      setTimeout(() => {
-        if (cb) cb();
-        if (emitChange) this.$emit("change", this.index);
-        this.resetItem = false;
-      }, this.duration);
+      if (emitChange) {
+        setTimeout(() => {
+          if (emitChange) this.$emit("change", this.index);
+        }, this.duration);
+      }
     },
     setTransition() {
       this.carousel.style.transition = `all ${this.duration / 1000}s`;
     },
     removeTransition() {
       this.carousel.style.transition = "";
-    },
-    findCurPosition(index = 0, addWidth = 0) {
-      let itemWidth = this.getItemWidth(index);
-      let translateX = -this.getTranslateX();
-      switch (true) {
-        case translateX < 0:
-        case index >= this.getItems().length - 1:
-          return {addWidth, index};
-        case translateX > addWidth + itemWidth:
-          return this.findCurPosition(++index, addWidth + itemWidth);
-        default:
-          if (translateX > addWidth + (itemWidth >> 1)) {
-            addWidth += itemWidth;
-            index++;
-            return {addWidth, index};
-          } else {
-            return {addWidth, index};
-          }
-      }
     },
     sideSwitch(curX) {
       let lastIndex = this.getItems().length - 1;
@@ -219,92 +203,65 @@ export default {
       let translate = curX - this.startX;
       return ((isFirst && translate > 0) || (isLast && translate < 0));
     },
-    canToLast() {
-      let {addWidth, index} = this.findCurPosition();
-      let translateX = this.getTranslateX();
-      let firstItemWidth = this.getItemWidth(0);
-      return this.index === index && index === 0 && translateX > (firstItemWidth >> 1);
-    },
-    canToFirst() {
-      let {addWidth, index} = this.findCurPosition();
-      let lastIndex = this.getItems().length - 1;
-      let translateX = this.getTranslateX();
-      let lastItemWidth = this.getItemWidth(lastIndex);
-      let totalWidth = this.getTotalWidth();
-      return this.index === index && index === lastIndex && -translateX > (totalWidth - (lastItemWidth >> 1));
-    },
     moveBack() {
-      let {addWidth, index} = this.findCurPosition();
-      if (this.canToLast() && this.loop) {
-        this.previous();
-      } else if (this.canToFirst() && this.loop) {
-        this.next();
-      } else {
-        this.index = index;
-        this.setTransition();
-        this.setTranslateX(-addWidth);
-      }
+      let translateX = this.getCumSumWidth();
+      this.setTransition();
+      this.setTranslateX(-translateX);
     },
     next() {
-      let len = this.getItems().length;
-      if (len <= 1) return;
-      let {addWidth, index} = this.findCurPosition();
-      let isLast = index >= len - 1;
+      let items = this.getItems();
+      let length = items.length;
+      if (length <= 1) return;
+      let isLast = this.index >= length - 1;
       if (isLast) {
         this.setTransition();
         this.index = 0;
         if (this.loop) {
+          let left = +items[length - 1].style.left.replace("px", "");
           let totalWidth = this.getTotalWidth();
-          let firstItem = this.getItems(0);
-          firstItem.style.left = totalWidth + "px";
-          // this.setNextItem(1);
-          this.setTranslateX(-totalWidth, () => {
-            this.removeTransition();
-            firstItem.style.left = 0;
-            // this.clearItemStyle();
-            this.setTranslateX(0, null, false);
-          });
+          if (!left) {
+            let firstItem = items[0];
+            firstItem.style.left = totalWidth + "px";
+            this.setTranslateX(-totalWidth);
+          } else {
+            this.setTranslateX(0);
+          }
         } else {
           this.setTranslateX(0);
         }
       } else {
-        this.index = index + 1;
-        let nextItemWidth = this.getItemWidth(this.index);
-        addWidth += nextItemWidth;
+        this.index++;
+        let translateX = this.getCumSumWidth();
         this.setTransition();
-        this.setTranslateX(-addWidth);
+        this.setTranslateX(-translateX);
       }
     },
     previous() {
-      let {addWidth, index} = this.findCurPosition();
-      let isFirst = index <= 0;
+      let isFirst = this.index <= 0;
       if (isFirst) {
         this.setTransition();
         let items = this.getItems();
         let lastIndex = items.length - 1;
-        let curWidth = this.getTotalWidth() - this.getItemWidth(lastIndex);
+        let totalWidth = this.getTotalWidth();
+        let transformX = totalWidth - this.getItemWidth(lastIndex);
         this.index = lastIndex;
         if (this.loop) {
-          let totalWidth = this.getTotalWidth();
-          let lastItem = items[lastIndex];
-          let lastItemWidth = lastItem.offsetWidth;
-          lastItem.style.left = -totalWidth + "px";
-          // this.setPrevItem(this.index-1);
-          this.setTranslateX(lastItemWidth, () => {
-            this.removeTransition();
-            lastItem.style.left = 0;
-            // this.clearItemStyle();
-            this.setTranslateX(-curWidth, null, false);
-          });
+          let left = +items[0].style.left.replace("px", "");
+          if (!left) {
+            let lastItem = items[lastIndex];
+            lastItem.style.left = -totalWidth + "px";
+            this.setTranslateX(this.getItemWidth(0));
+          } else {
+            this.setTranslateX(-transformX);
+          }
         } else {
-          this.setTranslateX(-curWidth);
+          this.setTranslateX(-transformX);
         }
       } else {
-        this.index = index - 1;
-        let nextItemWidth = this.getItemWidth(this.index);
-        addWidth -= nextItemWidth;
+        this.index--;
+        let nextItemWidth = this.getCumSumWidth();
         this.setTransition();
-        this.setTranslateX(-addWidth);
+        this.setTranslateX(-nextItemWidth);
       }
     },
     stop() {
@@ -318,7 +275,7 @@ export default {
     init() {
       if (this.initIndex) {
         let {offsetWidth} = this.carousel;
-        this.carousel.style.transform = `translateX(${-(this.initIndex * offsetWidth)}px)`;
+        this.setTranslateX(-this.initIndex * offsetWidth);
         this.index = this.initIndex;
       }
     }
