@@ -204,9 +204,11 @@ export default {
       return ((isFirst && translate > 0) || (isLast && translate < 0));
     },
     moveBack() {
-      let translateX = this.getCumSumWidth();
+      let translateX = this.getTranslateX();
+      let itemWidth = this.getItemWidth(0);
+      let num = Math.round(translateX / itemWidth);
       this.setTransition();
-      this.setTranslateX(-translateX);
+      this.setTranslateX(itemWidth * num);
     },
     next() {
       let items = this.getItems();
