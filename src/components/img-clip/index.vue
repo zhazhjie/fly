@@ -43,8 +43,8 @@ export default {
       } else {
         file = this.img;
       }
-      this.crop.load(file);
       this.crop.show();
+      this.crop.load(file);
     },
     initCrop() {
       this.crop = new Crop({
