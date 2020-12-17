@@ -4,12 +4,13 @@
 
 <script>
 import Crop from "xcrop";
+import {dataURLtoFile} from "js-utils";
 
 export default {
   name: "f-img-clip",
   props: {
-    file: {
-      type: File,
+    img: {
+      type: [File, String],
     },
     showFlag: {
       type: Boolean,
@@ -36,8 +37,13 @@ export default {
   },
   methods: {
     loadImg() {
-      this.crop.load(this.file);
-
+      let file;
+      if (typeof this.img === "string") {
+        file = dataURLtoFile(this.img,"");
+      } else {
+        file = this.img;
+      }
+      this.crop.load(file);
     },
     initCrop() {
       this.crop = new Crop({
