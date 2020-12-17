@@ -44,6 +44,7 @@ export default {
         file = this.img;
       }
       this.crop.load(file);
+      this.crop.show();
     },
     initCrop() {
       this.crop = new Crop({
@@ -51,7 +52,7 @@ export default {
       });
       this.crop.on('cancle', crop => {
         crop.hide();
-        this.$emit('cancelClip');
+        this.$emit('update:showFlag', false);
       })
       this.crop.on('confirm', crop => {
         crop.hide();
@@ -60,6 +61,7 @@ export default {
           height: this.height,
           type: this.fileType
         })
+        this.$emit('update:showFlag', false);
         this.$emit('submitClip', file);
       })
     }
