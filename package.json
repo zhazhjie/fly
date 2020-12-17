@@ -1,6 +1,6 @@
 {
   "name": "fly-components",
-  "version": "1.0.70",
+  "version": "1.0.71",
   "main": "./src/components/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,7 +14,8 @@
     "js-utils": "git+https://github.com/zhazhjie/js-utils.git",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "xcrop": "^1.1.16"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",

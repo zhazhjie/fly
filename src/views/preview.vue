@@ -92,9 +92,10 @@
         <img src="../img/404.png" style="width: 1rem;" v-img-preview>
         <f-button @click="preview">图片预览(多图)</f-button>
         <div class="item-title">图片裁切</div>
+        <f-upload :clip="true"></f-upload>
         <input type="file" @change="handleSelectFile"/>
         <img style="max-width: 100%" v-if="imgData" :src="imgData">
-        <f-img-clip :img="imgData" :show-flag.sync="imgClipFlag" @submitClip="e=>imgData=e"></f-img-clip>
+        <f-img-clip :file="file" :show-flag.sync="imgClipFlag" @submitCrop="e=>imgData=e"></f-img-clip>
         <div class="item-title">上拉加载</div>
         <ul class="data-list">
           <li v-for="item in dataList">{{ item }}</li>
@@ -105,16 +106,17 @@
 </template>
 
 <script>
-import fUpload from "../components/upload";
+import FUpload from "../components/upload";
 import {fileToDataURL} from "js-utils";
 import {province, city, area} from "../components/area-picker/area-data";
 import FView from "../components/view";
 
 export default {
   name: 'f-preview',
-  components: {FView, fUpload},
+  components: {FView, FUpload},
   data() {
     return {
+      file:null,
       img1: [require('../img/404.png'), require('../img/defaultImg.png')],
       time: "2020-08-01 12:12:12",
       provinceList: [],
@@ -167,11 +169,8 @@ export default {
       }, 1000)
     },
     handleSelectFile(e) {
-      let file = e.target.files[0];
-      fileToDataURL(file).then(data => {
-        this.imgData = data;
-        this.imgClipFlag = true;
-      })
+      this.file = e.target.files[0];
+      this.imgClipFlag = true;
     },
     refresh() {
       this.loading = true;
