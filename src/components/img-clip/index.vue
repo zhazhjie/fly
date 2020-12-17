@@ -51,7 +51,7 @@ export default {
       });
       this.crop.on('cancle', crop => {
         crop.hide();
-        this.$emit('cancleCrop');
+        this.$emit('cancelClip');
       })
       this.crop.on('confirm', crop => {
         crop.hide();
@@ -60,7 +60,7 @@ export default {
           height: this.height,
           type: this.fileType
         })
-        this.$emit('submitCrop', file);
+        this.$emit('submitClip', file);
       })
     }
   },
