@@ -37,14 +37,16 @@ export default {
   },
   methods: {
     loadImg() {
+      this.showLoading();
       let file;
       if (typeof this.img === "string") {
         file = dataURLtoFile(this.img, "");
       } else {
         file = this.img;
       }
-      this.crop.show();
       this.crop.load(file);
+      this.crop.show();
+      this.hideLoading();
     },
     initCrop() {
       this.crop = new Crop({
