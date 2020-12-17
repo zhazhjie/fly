@@ -39,7 +39,7 @@ export default {
     loadImg() {
       let file;
       if (typeof this.img === "string") {
-        file = dataURLtoFile(this.img,"");
+        file = dataURLtoFile(this.img, "");
       } else {
         file = this.img;
       }
