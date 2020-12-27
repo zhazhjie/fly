@@ -74,7 +74,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+.crop__handle {
+  position: fixed !important;
+}
 </style>
 

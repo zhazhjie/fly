@@ -187,3 +187,8 @@ export default {
   justify-content: center;
 }
 </style>
+<style>
+.crop__handle {
+  position: fixed !important;
+}
+</style>
