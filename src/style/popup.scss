@@ -106,6 +106,7 @@
   flex: 1;
   /*max-height: calc(100vh - 1.5rem);*/
   overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .bottom .popup-content {
