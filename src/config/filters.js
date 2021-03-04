@@ -4,7 +4,7 @@
  * @version: 1.0
  */
 import Vue from 'vue'
-import {formatAmount, formatPhone} from "js-utils";
+import {Formatter} from "js-utils/formatter";
 
-Vue.filter('formatAmount', formatAmount);
-Vue.filter('formatPhone', formatPhone);
+Vue.filter('formatAmount', Formatter.amount);
+Vue.filter('formatPhone', Formatter.phone);
