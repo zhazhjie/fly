@@ -49,10 +49,21 @@ export default {
       this.hideLoading();
     },
     initCrop() {
+      let {innerWidth} = window;
+      let width = innerWidth * 0.9;
+      let height = width / (this.width / this.height);
       this.crop = new Crop({
-        confirmText: "裁剪"
+        confirmText: "裁剪",
+        border: {
+          width,
+          height
+        }
       });
       this.crop.on('cancle', crop => {
+        crop.hide();
+        this.$emit('update:showFlag', false);
+      })
+      this.crop.on('cancel', crop => {
         crop.hide();
         this.$emit('update:showFlag', false);
       })

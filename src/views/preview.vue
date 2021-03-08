@@ -95,7 +95,7 @@
         <f-upload :clip="true"></f-upload>
         <input type="file" @change="handleSelectFile"/>
         <img style="max-width: 100%" v-if="imgData" :src="imgData">
-        <f-img-clip :img="file" :show-flag.sync="imgClipFlag" @submitClip="e=>imgData=e"></f-img-clip>
+        <f-img-clip :img="file" :show-flag.sync="imgClipFlag" :width="500" :height="200" @submitClip="e=>imgData=e"></f-img-clip>
         <div class="item-title">上拉加载</div>
         <ul class="data-list">
           <li v-for="item in dataList">{{ item }}</li>
