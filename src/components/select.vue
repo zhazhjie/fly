@@ -75,6 +75,9 @@
       size: {
         type: String,
         default: 'small'
+      },
+      rules: {
+        type: Array,
       }
     },
     data() {

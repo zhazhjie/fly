@@ -106,6 +106,9 @@ export default {
       validator: function (value) {
         return value >= 0;
       }
+    },
+    rules: {
+      type: Array,
     }
   },
   data() {

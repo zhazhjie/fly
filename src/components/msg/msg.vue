@@ -120,6 +120,7 @@
 
   .success i::before {
     content: '\e8e4';
+    color: $green;
   }
 
   .warning {

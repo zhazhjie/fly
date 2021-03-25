@@ -48,6 +48,9 @@
       size: {
         type: String,
         default: ""
+      },
+      rules: {
+        type: Array,
       }
     },
     data() {

@@ -19,29 +19,33 @@
         <f-button color="blue">按钮</f-button>
         <f-button color="orange">按钮</f-button>
         <f-button color="#999">按钮</f-button>
-        <div class="item-title">下拉选择框</div>
-        <f-select :list="[1,2,3]" v-model="selectVal"></f-select>
-        <div class="item-title">复选框</div>
-        <f-checkbox :label="1" v-model="checkboxVal">1</f-checkbox>
-        <f-checkbox :label="2" v-model="checkboxVal">2</f-checkbox>
-        <f-checkbox :label="3" v-model="checkboxVal" disabled>3</f-checkbox>
-        <f-checkbox v-model="checkboxVal2" color="red" :indeterminate="true">3</f-checkbox>
-        <div class="item-title">单选框</div>
-        <f-radio :label="1" v-model="radioVal">1</f-radio>
-        <f-radio :label="2" v-model="radioVal">2</f-radio>
-        <f-radio :label="3" v-model="radioVal" disabled>3</f-radio>
-        <div class="item-title">开关</div>
-        <f-switch v-model="switchVal">{{ switchVal }}</f-switch>
-        <f-switch v-model="switchVal" disabled>{{ switchVal }}</f-switch>
-        <div class="item-title">输入框</div>
-        <f-input type="number" :fractionDigits="2" clearable placeholder="请输入" :max-length="10"
-                 v-model="inputVal"></f-input>
-        <div class="item-title">输入框2</div>
-        <f-input-2 placeholder="请输入"></f-input-2>
-        <div class="item-title">加减</div>
-        <f-number v-model="numVal" :step="0.1"></f-number>
-        <div class="space"></div>
-        <f-input-number v-model="inputNumVal" editable display size="mini" :max-value="10"></f-input-number>
+        <f-form ref="form">
+          <div class="item-title">下拉选择框</div>
+          <f-select :list="[1,2,3]" v-model="selectVal"></f-select>
+          <div class="item-title">复选框</div>
+          <f-checkbox :label="1" v-model="checkboxVal" :rules="checkboxRules">1</f-checkbox>
+          <f-checkbox :label="2" v-model="checkboxVal">2</f-checkbox>
+          <f-checkbox :label="3" v-model="checkboxVal" disabled>3</f-checkbox>
+          <f-checkbox v-model="checkboxVal2" color="red" :indeterminate="true">3</f-checkbox>
+          <div class="item-title">单选框</div>
+          <f-radio :label="1" v-model="radioVal">1</f-radio>
+          <f-radio :label="2" v-model="radioVal">2</f-radio>
+          <f-radio :label="3" v-model="radioVal" disabled>3</f-radio>
+          <div class="item-title">开关</div>
+          <f-switch v-model="switchVal">{{ switchVal }}</f-switch>
+          <f-switch v-model="switchVal" disabled>{{ switchVal }}</f-switch>
+          <div class="item-title">输入框</div>
+          <f-input type="number" :fractionDigits="0" clearable placeholder="请输入" :max-length="11"
+                   v-model="inputVal" :rules="inputRules"></f-input>
+          <div class="item-title">输入框2</div>
+          <f-input-2 placeholder="请输入"></f-input-2>
+          <div class="item-title">加减</div>
+          <f-number v-model="numVal" :step="0.1"></f-number>
+          <div class="space"></div>
+          <f-input-number v-model="inputNumVal" editable display size="mini" :max-value="10"></f-input-number>
+          <div class="space"></div>
+          <f-button @click="handleSubmit">提交</f-button>
+        </f-form>
         <div class="item-title">数字小键盘</div>
         <f-input placeholder="点击弹出小键盘" readonly v-model="keyboardVal" @focus="keyboardFlag=true"></f-input>
         <f-number-keyboard :show-flag.sync="keyboardFlag" v-model="keyboardVal">数字小键盘</f-number-keyboard>
@@ -95,7 +99,8 @@
         <f-upload :clip="true"></f-upload>
         <input type="file" @change="handleSelectFile"/>
         <img style="max-width: 100%" v-if="imgData" :src="imgData">
-        <f-img-clip :img="file" :show-flag.sync="imgClipFlag" :width="500" :height="200" @submitClip="e=>imgData=e"></f-img-clip>
+        <f-img-clip :img="file" :show-flag.sync="imgClipFlag" :width="500" :height="200"
+                    @submitClip="e=>imgData=e"></f-img-clip>
         <div class="item-title">上拉加载</div>
         <ul class="data-list">
           <li v-for="item in dataList">{{ item }}</li>
@@ -110,13 +115,15 @@ import FUpload from "../components/upload";
 import {fileToDataURL} from "js-utils";
 import {province, city, area} from "../components/area-picker/area-data";
 import FView from "../components/view";
+import FForm from "@/components/form";
+import {Validate} from "js-utils/validate";
 
 export default {
   name: 'f-preview',
-  components: {FView, FUpload},
+  components: {FForm, FView, FUpload},
   data() {
     return {
-      file:null,
+      file: null,
       img1: [require('../img/404.png'), require('../img/defaultImg.png')],
       time: "2020-08-01 12:12:12",
       provinceList: [],
@@ -150,7 +157,9 @@ export default {
       pickerValues: [],
       pickerFlag: false,
       areaValues: [],
-      inputVal: ""
+      inputVal: "",
+      inputRules: [{validator: Validate.isPhone, message: '请输入手机号'}],
+      checkboxRules: [{required: true, message: '复选框不能为空'}]
     }
   },
   methods: {
@@ -191,6 +200,13 @@ export default {
     },
     submit(date) {
       console.log(date)
+    },
+    handleSubmit() {
+      this.$refs.form.validate().then(() => {
+        console.log("success");
+      }).catch(() => {
+        console.log("fail");
+      })
     }
   },
   computed: {},

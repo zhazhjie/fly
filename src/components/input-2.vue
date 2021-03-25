@@ -38,6 +38,9 @@
       },
       placeholder: {
         type: String,
+      },
+      rules: {
+        type: Array,
       }
     },
     data() {

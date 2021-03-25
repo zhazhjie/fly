@@ -40,6 +40,9 @@
         type: Number,
         default: 1
       },
+      rules: {
+        type: Array,
+      }
     },
     data() {
       return {}

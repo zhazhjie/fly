@@ -49,6 +49,9 @@
       indeterminate:{
         type: Boolean,
         default: false
+      },
+      rules: {
+        type: Array,
       }
     },
     data() {
