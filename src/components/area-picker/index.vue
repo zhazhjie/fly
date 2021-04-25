@@ -56,8 +56,8 @@
 			townList: {
 				type: Array,
 				default: () => {
-					let {townConfig = {}} = Vue.prototype.$fly;
-					let {townList = []} = townConfig;
+					let {areaConfig = {}} = Vue.prototype.$fly;
+					let {townList = []} = areaConfig;
 					return townList;
 				}
 			},
@@ -110,7 +110,9 @@
 				this.setResult(this.areaFilterList, "area", this.value[2]);
 			},
 			"result.area": function (area) {
-				this.setResult(this.townFilterList, "town", this.value[3]);
+				if (this.requireTown){
+					this.setResult(this.townFilterList, "town", this.value[3]);
+        }
 			},
 			showFlag: function (value) {
 				if (value && !this.initFlag) {
@@ -168,7 +170,9 @@
 					this.setResult(this.provinceList, "province", this.value[0]);
 					this.setResult(this.cityList, "city", this.value[1]);
 					this.setResult(this.areaList, "area", this.value[2]);
-					this.setResult(this.townList, "town", this.value[3]);
+					if (this.requireTown){
+						this.setResult(this.townList, "town", this.value[3]);
+					}
 					this.initFlag = true;
 				}
 			}
