@@ -24,11 +24,11 @@ export default {
     },
     duration: {
       type: Number,
-      default: 300
+      default: 400
     },
     delay: {
       type: Number,
-      default: 3000
+      default: 4000
     },
     loop: {
       type: Boolean,
@@ -191,7 +191,7 @@ export default {
       }
     },
     setTransition() {
-      this.carousel.style.transition = `all ${this.duration / 1000}s`;
+      this.carousel.style.transition = `all ${this.duration / 1000}s linear`;
     },
     removeTransition() {
       this.carousel.style.transition = "";
@@ -225,6 +225,11 @@ export default {
             let firstItem = items[0];
             firstItem.style.left = totalWidth + "px";
             this.setTranslateX(-totalWidth);
+            setTimeout(() => {
+              this.removeTransition();
+              firstItem.style.left = 0;
+              this.setTranslateX(0);
+            }, this.duration);
           } else {
             this.setTranslateX(0);
           }
@@ -234,6 +239,7 @@ export default {
       } else {
         this.index++;
         let translateX = this.getCumSumWidth();
+        let totalWidth = this.getTotalWidth();
         this.setTransition();
         this.setTranslateX(-translateX);
       }

@@ -87,7 +87,7 @@
         <f-button @click="payBoxFlag=true">支付盒子</f-button>
         <f-pay-box :show-flag.sync="payBoxFlag"></f-pay-box>
         <div class="item-title">轮播图</div>
-        <f-carousel :auto-play="false">
+        <f-carousel>
           <f-carousel-item v-for="(item,index) in imgList" :key="index">
             <div class="item" :style="{background:item%2===0?'#ccc':'#eee'}">{{ item }}</div>
           </f-carousel-item>
