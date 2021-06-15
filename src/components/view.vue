@@ -15,13 +15,14 @@
     </div>
     <slot name="footer"></slot>
     <transition :name='transitionName' v-if="routable">
-      <router-view class='child-router scroll-box'/>
+      <router-view class='child-router' :class="isIOS?'scroll-box':''"/>
     </transition>
   </section>
 </template>
 
 <script>
   import FTitle from "./title";
+  import {Validate} from "js-utils/validate";
 
   export default {
     name: "f-view",
@@ -45,7 +46,9 @@
     },
     components: {FTitle},
     data() {
-      return {}
+      return {
+        isIOS: Validate.isIOS()
+      }
     },
     methods: {},
     mounted() {
@@ -56,5 +59,9 @@
 <style scoped>
   .view {
     padding-top: 0.45rem;
+  }
+
+  .child-router {
+    overflow-y: auto;
   }
 </style>
