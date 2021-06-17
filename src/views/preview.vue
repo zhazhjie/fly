@@ -211,7 +211,7 @@ export default {
   },
   computed: {},
   mounted() {
-    this.showLoading()
+
   }
 }
 </script>
