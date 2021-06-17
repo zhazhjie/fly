@@ -126,9 +126,9 @@ export default {
       file: null,
       img1: [require('../img/404.png'), require('../img/defaultImg.png')],
       time: "2020-08-01 12:12:12",
-      provinceList: [],
-      cityList: [],
-      areaList: [],
+      provinceList: province,
+      cityList: city,
+      areaList: area,
       selectVal: 1,
       checkboxVal: [1],
       checkboxVal2: false,
@@ -141,7 +141,7 @@ export default {
       datePickerFlag: false,
       areaPickerFlag: false,
       payBoxFlag: false,
-      imgList: [],
+      imgList: [1, 2, 3, 4],
       imgClipFlag: false,
       imgData: "",
       score: 2,
@@ -211,13 +211,7 @@ export default {
   },
   computed: {},
   mounted() {
-    setTimeout(() => {
-      this.imgList = [1, 2, 3, 4];
-      this.provinceList = province;
-      this.cityList = city;
-      this.areaList = area;
-      this.areaValues = [350000, 350500, 350521]
-    }, 3000);
+    this.showLoading()
   }
 }
 </script>

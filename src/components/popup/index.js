@@ -32,11 +32,13 @@ Vue.prototype.$confirm = function (data) {
   let loading = false;
   if (toString(data) === "[object Object]") {
     for (let key in data) {
-      let value = data[key];
-      if (key === "loading") {
-        loading = value
-      } else {
-        options.props[key] = formatProp(value.__proto__.constructor, value);
+      if (data.hasOwnProperty(key)) {
+        let value = data[key];
+        if (key === "loading") {
+          loading = value
+        } else {
+          options.props[key] = formatProp(value.constructor, value);
+        }
       }
     }
   } else if (toString(data) === "[object String]") {

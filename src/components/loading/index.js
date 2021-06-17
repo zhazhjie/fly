@@ -9,7 +9,8 @@ import Loading from './loading-1.vue';
 import {getInstance} from "../util";
 
 let instance = getInstance(Loading);
-Vue.prototype.showLoading = function () {
+Vue.prototype.showLoading = function (text) {
+  instance.text = text || "加载中...";
   instance.showFlag = true;
 };
 Vue.prototype.hideLoading = function () {

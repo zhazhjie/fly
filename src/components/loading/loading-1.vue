@@ -10,7 +10,7 @@
     <div id="loading-wrap" v-show="showFlag" v-if="showFlag||initFlag">
       <div id="loading">
         <div class="loading"><i class="icon-common">&#xe604;</i></div>
-        <p>加载中...</p>
+        <p>{{ text }}</p>
       </div>
     </div>
   </transition>
@@ -24,6 +24,10 @@
       showFlag: {
         type: Boolean,
         default: false
+      },
+      text: {
+        type: String,
+        default: "加载中..."
       }
     },
     data() {
