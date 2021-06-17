@@ -15,6 +15,7 @@
           <div v-if="title" v-html="title"></div>
           <slot v-else name='title'>提示</slot>
         </div>
+        <slot name='header'/>
         <slot name='out'/>
         <div class="popup-content scroll-box">
           <div v-if="content" v-html="content"></div>

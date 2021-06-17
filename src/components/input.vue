@@ -181,6 +181,7 @@ export default {
     },
     handleClear() {
       this.$emit("input", "");
+      this.focus();
     },
     init() {
       this.$nextTick(() => {
