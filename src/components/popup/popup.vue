@@ -65,7 +65,7 @@ export default {
     },
     zIndex: {
       type: [Number, String],
-      default: 99
+      default: 999
     },
     closeOnClickModal: {
       type: Boolean,
